@@ -1,0 +1,51 @@
+/* Kod blokları — çok kompakt */
+.slidev-code {
+  font-size: 0.48rem !important;
+  line-height: 1.2 !important;
+}
+
+/* Kod bloklarının padding'ini minimize et */
+.slidev-layout pre.shiki {
+  padding: 0.2rem 0.4rem !important;
+  margin: 0 !important;
+  border-radius: 0.2rem !important;
+}
+
+/* two-cols layout — slayt padding azalt */
+.slidev-layout.two-columns {
+  padding: 0.6rem 1rem !important;
+}
+
+/* two-cols h2 başlıkları kompakt */
+.slidev-layout.two-columns h2,
+.two-columns h2 {
+  font-size: 0.85rem !important;
+  margin-bottom: 0.15rem !important;
+  margin-top: 0 !important;
+}
+
+/* v-click blokları arası boşluk sıfırla */
+.two-columns .slidev-vclick-target {
+  margin-top: 0.1rem !important;
+  margin-bottom: 0 !important;
+}
+
+/* Kod blokları arasındaki boşluk */
+.two-columns .slidev-vclick-target + .slidev-vclick-target {
+  margin-top: 0.15rem !important;
+}
+
+/* Genel paragraf boşluklarını azalt */
+.two-columns p {
+  margin: 0 !important;
+}
+
+/* Strategy karsilastirma slaydi - okunabilir kod boyutu */
+.strategy-compare .slidev-code {
+  font-size: 0.62rem !important;
+  line-height: 1.25 !important;
+}
+
+.strategy-compare pre.shiki {
+  padding: 0.3rem 0.45rem !important;
+}

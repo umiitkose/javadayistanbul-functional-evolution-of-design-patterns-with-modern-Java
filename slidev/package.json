@@ -1,0 +1,17 @@
+{
+  "name": "javaday-istanbul-slidev",
+  "version": "1.0.0",
+  "description": "JavaDay İstanbul 2025 - Slidev Presentation",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.47.0",
+    "@slidev/theme-default": "^0.24.0"
+  },
+  "devDependencies": {
+    "@iconify-json/logos": "^1.1.0"
+  }
+}
