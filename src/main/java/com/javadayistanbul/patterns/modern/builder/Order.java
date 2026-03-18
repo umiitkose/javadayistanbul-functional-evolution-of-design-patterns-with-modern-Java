@@ -18,6 +18,12 @@ public record Order(
         Objects.requireNonNull(id, "Order ID zorunludur");
         Objects.requireNonNull(customerId, "Customer ID zorunludur");
         Objects.requireNonNull(items, "Urun listesi zorunludur");
+        if (id.isBlank()) {
+            throw new IllegalArgumentException("Order ID bos olamaz");
+        }
+        if (customerId.isBlank()) {
+            throw new IllegalArgumentException("Customer ID bos olamaz");
+        }
         if (items.isEmpty()) {
             throw new IllegalArgumentException("Siparis en az bir urun icermelidir");
         }

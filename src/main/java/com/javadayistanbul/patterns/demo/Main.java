@@ -17,16 +17,16 @@ public class Main {
         StrategyDemo.run();
         separator();
 
-        BuilderDemo.run();
-        separator();
-
         TemplateMethodDemo.run();
         separator();
 
         DecoratorDemo.run();
         separator();
 
-        VisitorDemo.run();
+        BuilderDemo.run();
+        separator();
+
+        IteratorStreamDemo.run();
         separator();
 
         System.out.println(">>> BONUS PATTERN'LER (6 Ek Pattern) <<<");

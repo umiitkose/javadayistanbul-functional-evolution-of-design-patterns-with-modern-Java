@@ -1,7 +1,6 @@
 package com.javadayistanbul.patterns.demo;
 
-
-import com.javadayistanbul.patterns.classic.builder.OrderClassicBuilder;
+import com.javadayistanbul.patterns.classic.builder.OrderClassic;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,26 +21,28 @@ public class BuilderDemo {
 
     private static void classicApproach() {
         System.out.println("--- Klasik Yaklasim (POJO + Builder) ---");
-        System.out.println("  [2 dosya: 1 POJO (getter/setter/equals/hashCode/toString) + 1 Builder]");
+        System.out.println("  [1 dosya: POJO + nested static Builder]");
+        System.out.println("  Zorunlu alanlar: id, customerId, items");
         System.out.println("  ~90 satir boilerplate kod!");
         System.out.println();
 
-        var order = new OrderClassicBuilder()
+        var order = new OrderClassic.Builder()
                 .id("ORD-001")
                 .customerId("CUST-42")
-                .customerName("Ahmet Yilmaz")
                 .addItem("Java in Action")
                 .addItem("Design Patterns")
-                .totalAmount(new BigDecimal("149.90"))
-                .shippingAddress("Istanbul, Kadikoy")
                 .build();
+
+        order.setShippingAddress("Istanbul, Kadikoy");
+        order.setTotalAmount(new BigDecimal("149.90"));
 
         System.out.println("  Siparis: " + order);
     }
 
     private static void modernApproach() {
-        System.out.println("--- Modern Yaklasim (Record + Nested Builder) ---");
-        System.out.println("  [1 dosya: record + compact constructor + nested static Builder]");
+        System.out.println("--- Modern Yaklasim (Record + Immutable update) ---");
+        System.out.println("  [1 dosya: record + compact constructor]");
+        System.out.println("  Zorunlu alanlar: id, customerId, items");
         System.out.println("  toString/equals/hashCode otomatik!");
         System.out.println("  Immutable by default!");
         System.out.println();
@@ -49,9 +50,9 @@ public class BuilderDemo {
         var order = new com.javadayistanbul.patterns.modern.builder.Order(
                 "ORD-001",
                 "CUST-42",
-                "Ahmet Yilmaz",
+                null,
                 List.of("Java in Action", "Design Patterns"),
-                new BigDecimal("149.90"),
+                null,
                 null,
                 null
         );

@@ -6,10 +6,10 @@ public class InteractiveDemo {
 
     private static final String[] PATTERN_NAMES = {
             "Strategy Pattern",
-            "Builder Pattern",
             "Template Method Pattern",
             "Decorator Pattern",
-            "Visitor Pattern",
+            "Builder Pattern",
+            "Iterator/Stream Pattern",
             "Observer Pattern",
             "Factory Method Pattern",
             "State Pattern",
@@ -20,10 +20,10 @@ public class InteractiveDemo {
 
     private static final Runnable[] DEMOS = {
             StrategyDemo::run,
-            BuilderDemo::run,
             TemplateMethodDemo::run,
             DecoratorDemo::run,
-            VisitorDemo::run,
+            BuilderDemo::run,
+            IteratorStreamDemo::run,
             ObserverDemo::run,
             FactoryDemo::run,
             StateDemo::run,
