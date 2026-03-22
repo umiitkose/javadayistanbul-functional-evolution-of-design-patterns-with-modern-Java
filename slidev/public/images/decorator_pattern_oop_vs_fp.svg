@@ -1,0 +1,90 @@
+<svg width="100%" viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(230,232,236,0.95)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+  <style>
+    .txtMain { fill: #f6f5ef; font: 600 14px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .txtSub { fill: #c8c6ba; font: 400 12px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .txtTitle { fill: #f0f0ea; font: 600 13px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .boxText { fill: #d4d2c7; font: 600 12px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .line { stroke: rgba(230,232,236,0.56); stroke-width: 1.2; }
+    .fade { opacity: 0; transform: translateY(7px); }
+    @keyframes show {
+      from { opacity: 0; transform: translateY(7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #oopLabel { animation: show .28s ease-out .14s forwards; }
+    #oopOuter { animation: show .30s ease-out .56s forwards; }
+    #oopMid { animation: show .28s ease-out 1.02s forwards; }
+    #oopCore { animation: show .28s ease-out 1.42s forwards; }
+    #oopRisk { animation: show .24s ease-out 1.90s forwards; }
+    #fpLabel { animation: show .28s ease-out 2.30s forwards; }
+    #divider { animation: show .20s ease-out 2.44s forwards; }
+    #fpBase { animation: show .26s ease-out 2.82s forwards; }
+    #fpA1 { animation: show .22s ease-out 3.18s forwards; }
+    #fpB1 { animation: show .24s ease-out 3.48s forwards; }
+    #fpA2 { animation: show .22s ease-out 3.82s forwards; }
+    #fpB2 { animation: show .24s ease-out 4.10s forwards; }
+    #fpA3 { animation: show .22s ease-out 4.44s forwards; }
+    #fpB3 { animation: show .24s ease-out 4.72s forwards; }
+    #fpResult { animation: show .26s ease-out 5.22s forwards; }
+    #fpBenefit { animation: show .28s ease-out 6.08s forwards; }
+  </style>
+
+  <rect x="0" y="0" width="680" height="400" rx="10" fill="rgba(12,16,24,0.96)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+
+  <text id="oopLabel" class="txtMain fade" x="160" y="28" text-anchor="middle">Klasik OOP</text>
+  <text id="fpLabel" class="txtMain fade" x="510" y="28" text-anchor="middle">Modern FP</text>
+  <line id="divider" class="fade" x1="340" y1="14" x2="340" y2="386" stroke="rgba(222,220,209,0.18)" stroke-width="1" stroke-dasharray="4 4" />
+
+  <g id="oopOuter" class="fade">
+    <rect x="50" y="44" width="220" height="230" rx="10" fill="#633806" stroke="#ef9f27" stroke-width="0.8" />
+    <text class="txtSub" x="160" y="64" text-anchor="middle" fill="#ef9f27">ExpressShippingDecorator</text>
+  </g>
+  <g id="oopMid" class="fade">
+    <rect x="70" y="78" width="180" height="170" rx="8" fill="#6f2d17" stroke="#ef9a7b" stroke-width="0.8" />
+    <text class="txtSub" x="160" y="98" text-anchor="middle" fill="#ef9a7b">InsuranceDecorator</text>
+  </g>
+  <g id="oopCore" class="fade">
+    <rect x="90" y="112" width="140" height="108" rx="7" fill="#085040" stroke="#5dcaa5" stroke-width="0.8" />
+    <text class="txtTitle" x="160" y="136" text-anchor="middle">GiftWrapDecorator</text>
+    <text class="txtSub" x="160" y="154" text-anchor="middle">wrap(new Basic...)</text>
+    <text class="txtSub" x="160" y="170" text-anchor="middle">OrderService())</text>
+    <text class="txtSub" x="160" y="186" text-anchor="middle">nested constructor chain</text>
+    <text class="txtSub" x="160" y="202" text-anchor="middle">sinif sayisi hizli artar</text>
+  </g>
+  <g id="oopRisk" class="fade">
+    <rect x="50" y="296" width="220" height="56" rx="7" fill="#792020" stroke="#f09595" stroke-width="0.8" />
+    <text class="txtSub" x="160" y="318" text-anchor="middle" fill="#f09595">Her yeni ozellik = yeni wrapper</text>
+    <text class="txtSub" x="160" y="336" text-anchor="middle" fill="#f09595">Test ve kurulum maliyeti artar</text>
+  </g>
+
+  <g id="fpBase" class="fade">
+    <rect x="400" y="44" width="150" height="44" rx="8" fill="#085040" stroke="#5dcaa5" stroke-width="0.8" />
+    <text class="txtTitle" x="475" y="62" text-anchor="middle">Order base</text>
+    <text class="txtSub" x="475" y="78" text-anchor="middle">UnaryOperator&lt;Order&gt;</text>
+  </g>
+  <line id="fpA1" class="fade line" x1="475" y1="88" x2="475" y2="108" marker-end="url(#arrow)" />
+  <g id="fpB1" class="fade">
+    <rect x="400" y="110" width="150" height="38" rx="7" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
+    <text class="boxText" x="475" y="133" text-anchor="middle">.andThen(giftWrap)</text>
+  </g>
+  <line id="fpA2" class="fade line" x1="475" y1="148" x2="475" y2="168" marker-end="url(#arrow)" />
+  <g id="fpB2" class="fade">
+    <rect x="400" y="170" width="150" height="38" rx="7" fill="#6f2d17" stroke="#ef9a7b" stroke-width="0.8" />
+    <text class="boxText" x="475" y="193" text-anchor="middle">.andThen(insurance)</text>
+  </g>
+  <line id="fpA3" class="fade line" x1="475" y1="208" x2="475" y2="228" marker-end="url(#arrow)" />
+  <g id="fpB3" class="fade">
+    <rect x="400" y="230" width="150" height="38" rx="7" fill="#633806" stroke="#ef9f27" stroke-width="0.8" />
+    <text class="boxText" x="475" y="253" text-anchor="middle">.andThen(express)</text>
+  </g>
+  <line id="fpResult" class="fade line" x1="475" y1="268" x2="475" y2="292" marker-end="url(#arrow)" />
+  <g id="fpBenefit" class="fade">
+    <rect x="372" y="296" width="206" height="56" rx="7" fill="#28500a" stroke="#97c459" stroke-width="0.8" />
+    <text class="txtSub" x="475" y="318" text-anchor="middle" fill="#97c459">Composition ile sira dinamik kurulur</text>
+    <text class="txtSub" x="475" y="336" text-anchor="middle" fill="#97c459">sinif acmadan akisi test et</text>
+  </g>
+</svg>

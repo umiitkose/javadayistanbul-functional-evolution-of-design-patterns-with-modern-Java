@@ -325,11 +325,9 @@ Konusmaci Notu:
 -->
 
 ---
-
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
-
 ---
 
 ## 🎯 <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Strategy</span>
@@ -465,23 +463,28 @@ Bu kısımda pure function olayını destekleyecek konuşmada yerler eklemeliyiz
   </div>
 </div>
 
-<div class="text-center mt-10">
-  <div class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-3">
-    Higher-Order Functions
-  </div>
-  <div class="text-lg opacity-85 max-w-3xl mx-auto leading-relaxed">
-    <span class="text-blue-400 font-semibold">Kısa Bilgi:</span>
-    Modern Java ile bu iskelet, abstract class hiyerarşisi yerine fonksiyon parametreleriyle kurulabilir.
-    <span class="text-green-400">Composition over inheritance.</span>
-  </div>
+<div class="mt-4 flex justify-center">
+  <object
+    :data="`/images/template_method_oop_vs_fp.svg?play=${$slidev.nav.currentPage}-${$slidev.nav.clicks}`"
+    type="image/svg+xml"
+    alt="Template Method OOP ve FP karsilastirma diyagrami"
+    class="h-[min(46vh,320px)] w-auto max-w-[92%] rounded-lg border border-white/10 bg-transparent"
+  ></object>
 </div>
 
----
+<!--
+Konusmaci Notu:
+- Sol tarafta kalitim agacinin nasil buyudugunu vurgula.
+- Sag tarafta ayni iskeletin lambda setleriyle kuruldugunu goster.
+- Mesaj: inheritance yerine composition ile degisim maliyeti azalir.
+- Vurgu cumlesi: Higher-Order Functions.
+- Kisa bilgi: Modern Java ile bu iskelet, abstract class hiyerarsisi yerine fonksiyon parametreleriyle kurulabilir; composition over inheritance.
+-->
 
+---
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
-
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Template Method</span>
@@ -596,22 +599,26 @@ OrderProcessor.premium().process(order);
   </div>
 </div>
 
-<div class="text-center mt-10">
-  <div class="text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent mb-3">
-    Function Composition & andThen()
-  </div>
-  <div class="text-lg opacity-85 max-w-3xl mx-auto leading-relaxed">
-    <span class="text-orange-400 font-semibold">Kısa Bilgi:</span>
-    Modern tarafta decorator zinciri, sınıf sarmalama yerine <code>andThen()</code> ile fonksiyon kompozisyonu olarak kurulabilir.
-  </div>
+<div class="mt-4 flex justify-center">
+  <object
+    :data="`/images/decorator_pattern_oop_vs_fp.svg?play=${$slidev.nav.currentPage}-${$slidev.nav.clicks}`"
+    type="image/svg+xml"
+    alt="Decorator Pattern OOP ve FP karsilastirma diyagrami"
+    class="h-[min(46vh,320px)] w-auto max-w-[92%] rounded-lg border border-white/10 bg-transparent"
+  ></object>
 </div>
 
----
+<!--
+Konusmaci Notu:
+- Sol tarafta nested wrapper yapisinin nasil buyudugunu anlat.
+- Sag tarafta andThen zinciriyle ayni davranisin sinifsiz kuruldugunu vurgula.
+- Vurgu cumlesi: Function Composition and andThen.
+-->
 
+---
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
-
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Decorator</span>
@@ -738,22 +745,26 @@ var campaignResult = campaignFlow.apply(order);
   </div>
 </div>
 
-<div class="text-center mt-10">
-  <div class="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-3">
-    Records & Functional Builder
-  </div>
-  <div class="text-lg opacity-85 max-w-3xl mx-auto leading-relaxed">
-    <span class="text-purple-400 font-semibold">Kısa Bilgi:</span>
-    Record + fluent `with...` yaklaşımı ile klasik builder'daki tekrarlayan kod ciddi şekilde azalır ve okunabilirlik artar.
-  </div>
+<div class="mt-4 flex justify-center">
+  <object
+    :data="`/images/builder_pattern_oop_vs_fp.svg?play=${$slidev.nav.currentPage}-${$slidev.nav.clicks}`"
+    type="image/svg+xml"
+    alt="Builder Pattern OOP ve FP karsilastirma diyagrami"
+    class="h-[min(46vh,320px)] w-auto max-w-[92%] rounded-lg border border-white/10 bg-transparent"
+  ></object>
 </div>
 
----
+<!--
+Konusmaci Notu:
+- Sol taraf: klasik builder yapisi ve boilerplate.
+- Sag taraf: record + with metotlariyla immutable akis.
+- Vurgu cumlesi: Records and Functional Builder.
+-->
 
+---
 layout: two-cols
 layoutClass: gap-3
 class: text-xs builder-compare
-
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Builder</span>
@@ -907,22 +918,26 @@ Order order = new Order(
   </div>
 </div>
 
-<div class="text-center mt-10">
-  <div class="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-3">
-    Imperative vs Declarative
-  </div>
-  <div class="text-lg opacity-85 max-w-3xl mx-auto leading-relaxed">
-    <span class="text-green-400 font-semibold">Kısa Bilgi:</span>
-    Stream API ile internal iteration'a geçerek <span class="text-green-400">nasıl</span> yerine <span class="text-green-400">ne</span> istediğimizi ifade ederiz.
-  </div>
+<div class="mt-4 flex justify-center">
+  <object
+    :data="`/images/iterator_stream_imperative_vs_declarative.svg?play=${$slidev.nav.currentPage}-${$slidev.nav.clicks}`"
+    type="image/svg+xml"
+    alt="Iterator ve Stream yaklasimlari karsilastirma diyagrami"
+    class="h-[min(46vh,320px)] w-auto max-w-[92%] rounded-lg border border-white/10 bg-transparent"
+  ></object>
 </div>
 
----
+<!--
+Konusmaci Notu:
+- Sol tarafta adim adim imperative akis var: init, loop, if, toplama.
+- Sag tarafta declarative niyet var: stream, filter, map, reduce.
+- Vurgu cumlesi: Imperative vs Declarative.
+-->
 
+---
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
-
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Iterator (Imperative)</span>
@@ -1017,10 +1032,8 @@ System.out.println("  [Modern] Book revenue: " + total + " TL");
 </div>
 
 ---
-
 layout: default
 class: text-sm
-
 ---
 
 # Ne Zaman Hangi Yaklaşımı Tercih Etmeliyiz?
@@ -1125,10 +1138,8 @@ class: text-sm
 </div>
 
 ---
-
 layout: default
 class: text-sm
-
 ---
 
 # Best Practices & Öneriler
@@ -1185,29 +1196,45 @@ class: text-sm
 </div>
 
 ---
-
 layout: center
 class: text-center
-
 ---
 
-<div class="flex flex-col items-center justify-center">
-  <div class="text-5xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6">
+# OOP vs FP Karar Agaci
+
+<div class="mt-2 flex items-center justify-center">
+  <img
+    src="/images/oop_vs_fp_decision_tree.svg"
+    alt="OOP ve FP karar agaci"
+    class="h-[min(66vh,460px)] w-auto max-w-[96%] rounded-lg border border-white/10 bg-transparent object-contain"
+  />
+</div>
+
+---
+layout: center
+class: text-center
+---
+
+<div class="h-full w-full flex flex-col items-center justify-center text-center px-4">
+  <div class="text-4xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-2">
     Teşekkürler!
   </div>
 
-  <div class="text-2xl opacity-70 mb-8 max-w-xl">
+  <div class="text-lg opacity-70 mb-2 max-w-xl">
     Modern Java ile Design Patterns'ın Fonksiyonel Evrimi
   </div>
 
-  <div class="grid grid-cols-3 gap-4 mb-8">
+  <div class="grid grid-cols-3 gap-3 mb-2 w-full max-w-6xl">
     <div class="p-3 bg-white/5 rounded-lg border border-white/10 text-center">
       <div class="text-sm opacity-50 mb-1">GitHub</div>
-      <div class="text-yellow-400 font-mono text-xs">github.com/umiitkose</div>
+      <div class="text-yellow-400 font-mono text-xs mb-1">github.com/umiitkose</div>
+      <div class="text-xs opacity-50 mb-1">GitHub QR</div>
+      <img src="/images/github-repo-qr.png" alt="GitHub QR code" class="w-20 h-20 mx-auto rounded bg-white p-1" />
     </div>
     <div class="p-3 bg-white/5 rounded-lg border border-white/10 text-center">
       <div class="text-sm opacity-50 mb-1">YouTube</div>
-      <div class="text-yellow-400 font-mono text-xs mb-2">Design Patterns Serisi</div>
+      <div class="text-yellow-400 font-mono text-xs mb-1">Design Patterns Serisi</div>
+      <div class="text-xs opacity-50 mb-1">YouTube QR</div>
       <img src="/images/youtube-playlist-qr.png" alt="YouTube design patterns playlist QR code" class="w-20 h-20 mx-auto rounded bg-white p-1" />
     </div>
     <div class="p-3 bg-white/5 rounded-lg border border-white/10 text-center">
@@ -1218,7 +1245,8 @@ class: text-center
     </div>
   </div>
 
-  <div class="text-3xl opacity-80">
+  <div class="text-2xl opacity-85 mt-1">
     Sorularınız?
   </div>
+
 </div>

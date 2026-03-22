@@ -1,0 +1,97 @@
+<svg width="100%" viewBox="0 0 760 430" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(230,232,236,0.95)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+  <style>
+    .txtMain { fill: #f6f5ef; font: 600 15px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .txtSub { fill: #c8c6ba; font: 400 12px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .fade { opacity: 1; transform: translateY(0); }
+    @keyframes show {
+      from { opacity: 0; transform: translateY(7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #t0 { animation: show .26s ease-out .12s forwards; }
+    #q1 { animation: show .30s ease-out .52s forwards; }
+    #a1 { animation: show .20s ease-out .86s forwards; }
+    #a2 { animation: show .20s ease-out 1.02s forwards; }
+    #a1t { animation: show .20s ease-out .90s forwards; }
+    #a2t { animation: show .20s ease-out 1.06s forwards; }
+    #q2l { animation: show .26s ease-out 1.40s forwards; }
+    #q2r { animation: show .26s ease-out 1.66s forwards; }
+    #b1 { animation: show .20s ease-out 2.00s forwards; }
+    #b2 { animation: show .20s ease-out 2.16s forwards; }
+    #b3 { animation: show .20s ease-out 2.32s forwards; }
+    #b4 { animation: show .20s ease-out 2.48s forwards; }
+    #r1 { animation: show .24s ease-out 2.90s forwards; }
+    #r2 { animation: show .24s ease-out 3.18s forwards; }
+    #r3 { animation: show .24s ease-out 3.44s forwards; }
+    #r4 { animation: show .24s ease-out 3.70s forwards; }
+    #m1 { animation: show .22s ease-out 4.06s forwards; }
+    #m2 { animation: show .22s ease-out 4.22s forwards; }
+    #hy { animation: show .30s ease-out 4.70s forwards; }
+    #tips { animation: show .30s ease-out 6.00s forwards; }
+  </style>
+
+  <rect x="0" y="0" width="760" height="430" rx="10" fill="rgba(12,16,24,0.96)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <text id="t0" class="txtMain fade" x="380" y="28" text-anchor="middle">OOP mu, FP mi? Karar agaci</text>
+
+  <g id="q1" class="fade">
+    <rect x="250" y="44" width="260" height="54" rx="10" fill="#3c3488" stroke="#afa9ec" stroke-width="0.9" />
+    <text class="txtMain" x="380" y="66" text-anchor="middle">State ve kalitim yogun mu?</text>
+    <text class="txtSub" x="380" y="84" text-anchor="middle">framework class hiyerarsisi bekliyor mu?</text>
+  </g>
+  <path id="a1" class="fade" d="M300 98 L205 140" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+  <path id="a2" class="fade" d="M460 98 L555 140" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+  <text id="a1t" class="txtSub fade" x="235" y="124" text-anchor="middle">Evet</text>
+  <text id="a2t" class="txtSub fade" x="525" y="124" text-anchor="middle">Hayir</text>
+
+  <g id="q2l" class="fade">
+    <rect x="90" y="142" width="230" height="44" rx="8" fill="#6f2d17" stroke="#ef9a7b" stroke-width="0.8" />
+    <text class="txtMain" x="205" y="169" text-anchor="middle">Domain kurallari karmasik mi?</text>
+  </g>
+  <g id="q2r" class="fade">
+    <rect x="440" y="142" width="230" height="44" rx="8" fill="#085040" stroke="#5dcaa5" stroke-width="0.8" />
+    <text class="txtMain" x="555" y="169" text-anchor="middle">Degisim hizi yuksek mi?</text>
+  </g>
+
+  <path id="b1" class="fade" d="M150 186 L110 228" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+  <path id="b2" class="fade" d="M260 186 L300 228" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+  <path id="b3" class="fade" d="M610 186 L650 228" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+  <path id="b4" class="fade" d="M500 186 L460 228" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+
+  <g id="r1" class="fade">
+    <rect x="46" y="232" width="130" height="62" rx="9" fill="#792020" stroke="#f09595" stroke-width="0.9" />
+    <text class="txtMain" x="111" y="255" text-anchor="middle">Klasik OOP</text>
+    <text class="txtSub" x="111" y="274" text-anchor="middle">interface + class</text>
+  </g>
+  <g id="r2" class="fade">
+    <rect x="235" y="232" width="130" height="62" rx="9" fill="#633806" stroke="#ef9f27" stroke-width="0.9" />
+    <text class="txtMain" x="300" y="255" text-anchor="middle">Hibrit</text>
+    <text class="txtSub" x="300" y="274" text-anchor="middle">core OOP + FP</text>
+  </g>
+  <g id="r3" class="fade">
+    <rect x="395" y="232" width="130" height="62" rx="9" fill="#633806" stroke="#ef9f27" stroke-width="0.9" />
+    <text class="txtMain" x="460" y="255" text-anchor="middle">Hibrit</text>
+    <text class="txtSub" x="460" y="274" text-anchor="middle">OOP kapsul + FP</text>
+  </g>
+  <g id="r4" class="fade">
+    <rect x="584" y="232" width="130" height="62" rx="9" fill="#28500a" stroke="#97c459" stroke-width="0.9" />
+    <text class="txtMain" x="649" y="255" text-anchor="middle">Modern FP</text>
+    <text class="txtSub" x="649" y="274" text-anchor="middle">lambda, stream</text>
+  </g>
+
+  <path id="m1" class="fade" d="M300 294 L360 334" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+  <path id="m2" class="fade" d="M460 294 L400 334" fill="none" stroke="rgba(230,232,236,0.56)" stroke-width="1.2" marker-end="url(#arrow)" />
+  <g id="hy" class="fade">
+    <rect x="255" y="336" width="250" height="62" rx="10" fill="#3c3488" stroke="#afa9ec" stroke-width="0.9" />
+    <text class="txtMain" x="380" y="360" text-anchor="middle">Gercek dunya: Dengeli Hibrit</text>
+    <text class="txtSub" x="380" y="378" text-anchor="middle">Domain model OOP, data pipeline FP</text>
+  </g>
+
+  <g id="tips" class="fade">
+    <rect x="18" y="404" width="724" height="18" rx="4" fill="#1c2536" stroke="#32415f" stroke-width="0.8" />
+    <text class="txtSub" x="380" y="417" text-anchor="middle">Karar verirken ekip yetkinligi, test kolayligi ve degisim hizi birlikte degerlendirilir.</text>
+  </g>
+</svg>
