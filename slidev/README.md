@@ -1,5 +1,7 @@
 # Slidev Sunumu
 
+Bu klasor, JavaDay Istanbul sunumu icin hazirlanan Slidev sunumunu icerir.
+
 ## Kurulum
 
 ```bash
@@ -7,40 +9,58 @@ cd slidev
 npm install
 ```
 
-## Kullanım
+## Kullanim
 
-### Geliştirme Modu
+### Gelistirme Modu
 
 ```bash
 npm run dev
 ```
 
-Tarayıcıda `http://localhost:3030` adresinde sunum açılacak.
+Tarayicida `http://localhost:3030` adresinde sunum acilir.
 
-### Export
+### Build / Export
 
 ```bash
-# PDF olarak export
-npm run export
-
-# HTML olarak build
+# Statik cikti
 npm run build
+
+# PDF export
+npm run export
 ```
 
-## Özellikler
+## Sunum Icerigi (Guncel)
 
-- ✅ Sağlı sollu kod karşılaştırması
-- ✅ Syntax highlighting
-- ✅ Line highlighting (vurgulama)
-- ✅ Koyu tema
-- ✅ Manuel kontrol (klavye ile ilerleme)
-- ✅ PDF export desteği
+Sunumda 5 ana pattern modern Java yaklasimlari ile karsilastirmali anlatilir:
 
-## Klavye Kısayolları
+- Strategy
+- Template Method
+- Decorator
+- Builder
+- Iterator/Stream
 
-- `Space` veya `→`: Sonraki slide
-- `←`: Önceki slide
+## Son Guncellemeler
+
+- Kod slaytlari tek seferde kalabalik gostermek yerine adim adim (`v-click`) akisla ilerler.
+- Pattern kodlarinda gorunen satir sayisi sadeleştirildi; ana fikir odakta tutuldu.
+- Kapanis slaydinda iletisim/kaynak kartlari guncellendi.
+- Son slaytta:
+  - YouTube oynatma listesi icin QR karti yer alir.
+  - Ornek Kodlar karti ile Repo QR birlestirilmistir.
+
+## QR Varliklari
+
+Sunumda kullanilan QR dosyalari:
+
+- `public/images/github-repo-qr.png`
+- `public/images/youtube-playlist-qr.png`
+
+Not: QR gorselleri degistirilecekse ayni dosya adlari korunursa `slides.md` tarafinda ekstra guncelleme gerekmez.
+
+## Klavye Kisayollari
+
+- `Space` veya `Right Arrow`: Sonraki slayt / adim
+- `Left Arrow`: Onceki slayt / adim
 - `f`: Fullscreen
 - `o`: Overview
-- `g`: Go to slide
-# javadayistanbul-functional-evolution-of-design-patterns-with-modern-Java
+- `g`: Belirli slayta git
