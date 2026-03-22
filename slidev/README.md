@@ -43,3 +43,4 @@ npm run build
 - `f`: Fullscreen
 - `o`: Overview
 - `g`: Go to slide
+# javadayistanbul-functional-evolution-of-design-patterns-with-modern-Java

@@ -1,6 +1,6 @@
 ---
 theme: default
-background: '#0d1117'
+background: "#0d1117"
 class: text-white
 highlighter: shiki
 lineNumbers: false
@@ -68,6 +68,16 @@ Sealamlama ile başlayalım. 10 - 15 saniye olmalı.
         </div>
       </div>
     </div>
+    <div class="p-3 rounded-xl bg-white/8 border border-white/15">
+      <div class="text-xs uppercase tracking-wide opacity-60 mb-2">Repo QR</div>
+      <div class="flex items-center gap-3">
+        <img src="/images/github-repo-qr.png" alt="GitHub repository QR code" class="w-20 h-20 rounded bg-white p-1" />
+        <div class="text-xs opacity-80 leading-relaxed">
+          Sunumdaki tum kodlar:
+          <div class="text-yellow-400 font-mono break-all">github.com/umiitkose/javadayistanbul-functional-evolution-of-design-patterns-with-modern-Java</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -131,7 +141,7 @@ Sealamlama ile başlayalım. 10 - 15 saniye olmalı.
 
 <div v-click="5" class="mt-4 text-center">
   <div class="inline-block px-4 py-2 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-full border border-yellow-400/20 text-xs opacity-80">
-    ⏱️ 25 dakika • Java 8–25 odaklı
+    ⏱️ 25 dakika • Java 8–26 odaklı
   </div>
 </div>
 
@@ -318,45 +328,51 @@ class: text-xs
 
 ## 🎯 <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Strategy</span>
 
+<v-click at="1">
+
 ```java
 // classic/strategy/PaymentStrategy.java
 public interface PaymentStrategy {
     void pay(BigDecimal amount);
 }
+```
 
+</v-click>
+<v-click at="2">
+
+```java
 // classic/strategy/PaymentService.java
 public class PaymentService {
     private PaymentStrategy strategy;
-    public PaymentService(PaymentStrategy strategy) {
-        this.strategy = strategy;
-    }
-    public void processPayment(BigDecimal amount) {
-        strategy.pay(amount);
-    }
+    public PaymentService(PaymentStrategy strategy) { this.strategy = strategy; }
+    public void processPayment(BigDecimal amount) { strategy.pay(amount); }
 }
 ```
+
+</v-click>
+<v-click at="3">
 
 ```java
 // classic/strategy/CreditCardPayment.java
 public class CreditCardPayment implements PaymentStrategy {
     @Override
-    public void pay(BigDecimal amount) {
-        System.out.println("Kredi karti ile odeme: " + amount);
-    }
+    public void pay(BigDecimal amount) { System.out.println("Kredi karti ile odeme: " + amount); }
 }
 ```
+
+</v-click>
+<v-click at="4">
 
 ```java
 // classic/strategy/StrategyDemo.java
-public static void main(String[] args) {
-    BigDecimal amount = new BigDecimal("299.99");
-
-    PaymentService service = new PaymentService(new CreditCardPayment());
-    service.processPayment(amount);
-}
+BigDecimal amount = new BigDecimal("299.99");
+PaymentService service = new PaymentService(new CreditCardPayment());
+service.processPayment(amount);
 ```
 
-<div class="mt-2 p-2 rounded bg-red-400/10 border border-red-300/25 text-[11px]">
+</v-click>
+
+<div v-click="9" class="mt-2 p-2 rounded bg-red-400/10 border border-red-300/25 text-[11px]">
   <div class="text-red-300 font-semibold mb-1">Not</div>
   <div class="opacity-90">
     Strategy'nin ana fikri davranisi nesneden ayirmaktir. Klasikte interface + class, modernde functional interface + lambda ile ayni hedefe ulasiriz.
@@ -367,13 +383,16 @@ public static void main(String[] args) {
 
 ## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Strategy</span>
 
+<v-click at="5">
+
 ```java
-// java.util.function.Consumer
-@FunctionalInterface
-public interface Consumer<T> {
-    void accept(T t);
-}
+// modern/strategy/PaymentService.java
+Consumer<BigDecimal> creditCard = amount ->
+    System.out.println("Kredi karti ile odeme: " + amount + " TL");
 ```
+
+</v-click>
+<v-click at="6">
 
 ```java
 // modern/strategy/PaymentService.java
@@ -389,25 +408,37 @@ public static void processPayment(Consumer<BigDecimal> strategy, BigDecimal amou
 }
 ```
 
+</v-click>
+<v-click at="7">
+
 ```java
 // StrategyDemo.modernApproach(...)
 Consumer<BigDecimal> cc = PaymentService.creditCard("...0366", "Ahmet Yilmaz");
 PaymentService.processPayment(cc, amount);
+```
 
+</v-click>
+<v-click at="8">
+
+```java
+// runtime'da farkli strateji secimi
 Consumer<BigDecimal> bank = PaymentService.bankTransfer("TR...1326", "Garanti");
 PaymentService.processPayment(bank, amount);
 ```
 
+</v-click>
+
 <div class="mt-4 grid grid-cols-3 gap-2 text-xs">
-  <div v-click="1" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
+  <div v-click="9" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
     <div class="text-blue-300 font-semibold mb-1">Functional Interface</div>
-    <div class="opacity-85">Strategy davranisini sinif yerine fonksiyonel bir tip (ornegin <code>Consumer&lt;BigDecimal&gt;</code>) ile temsil ediyoruz.</div>
+    <div class="opacity-85">Strategy davranisini sinif yerine fonksiyonel bir tip (ornegin
+      <code class="inline-block break-all">Consumer&lt;<wbr>BigDecimal<wbr>&gt;</code>) ile temsil ediyoruz.</div>
   </div>
-  <div v-click="2" class="p-2 rounded bg-green-400/10 border border-green-300/25">
+  <div v-click="10" class="p-2 rounded bg-green-400/10 border border-green-300/25">
     <div class="text-green-300 font-semibold mb-1">Lambda ve Tip Bagimliligi</div>
     <div class="opacity-85">Java'da lambda tek basina tip tasimaz; hedef tipi her zaman bir functional interface belirler.</div>
   </div>
-  <div v-click="3" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
+  <div v-click="11" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
     <div class="text-yellow-300 font-semibold mb-1">Daha Az Boilerplate</div>
     <div class="opacity-85">Daha az sınıf, daha kısa kod, daha kolay bakım ve test.</div>
   </div>
@@ -458,11 +489,6 @@ public abstract class AbstractOrderProcessor {
         applyDiscount(order, total);
         sendConfirmation(order);
     }
-
-    protected abstract void validateOrder(Order order);
-    protected abstract BigDecimal calculateTotal(Order order);
-    protected abstract void applyDiscount(Order order, BigDecimal total);
-    protected abstract void sendConfirmation(Order order);
 }
 ```
 
@@ -470,31 +496,38 @@ public abstract class AbstractOrderProcessor {
 <v-click at="2">
 
 ```java
+// degisen adimlar alt sinifa birakilir
+protected abstract void validateOrder(Order order);
+protected abstract BigDecimal calculateTotal(Order order);
+protected abstract void applyDiscount(Order order, BigDecimal total);
+protected abstract void sendConfirmation(Order order);
+```
+
+</v-click>
+<v-click at="3">
+
+```java
 // TemplateMethodDemo.classicApproach(...)
 var order = new Order("ORD-001", "Ahmet Yilmaz", items);
-
 new StandardOrderProcessor().process(order); // indirim yok
 new PremiumOrderProcessor().process(order);  // %10 VIP indirimi
 
 // PremiumOrderProcessor.java
-protected void applyDiscount(Order order, BigDecimal total) {
-    BigDecimal discounted = total.multiply(new BigDecimal("0.90"));
-    System.out.println("  [Premium] %10 VIP indirimi uygulandi: " + discounted + " TL");
-}
+protected void applyDiscount(Order order, BigDecimal total) { /* %10 VIP */ }
 ```
 
 </v-click>
 
 <div class="mt-3 grid grid-cols-3 gap-2 text-[11px]">
-  <div v-click="3" class="p-2 rounded bg-orange-400/10 border border-orange-300/25">
+  <div v-click="7" class="p-2 rounded bg-orange-400/10 border border-orange-300/25">
     <div class="text-orange-300 font-semibold mb-1">Hap Bilgi 1</div>
     <div class="opacity-85">Classic yapıda sabit akış abstract class içinde kalır; her varyasyon için yeni alt sınıf açılır.</div>
   </div>
-  <div v-click="4" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
+  <div v-click="8" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
     <div class="text-blue-300 font-semibold mb-1">Hap Bilgi 2</div>
     <div class="opacity-85">Modern tarafta <code>process</code> adimlari fonksiyon olarak gecirilir; bu tam olarak higher-order function yaklasimidir.</div>
   </div>
-  <div v-click="5" class="p-2 rounded bg-green-400/10 border border-green-300/25">
+  <div v-click="9" class="p-2 rounded bg-green-400/10 border border-green-300/25">
     <div class="text-green-300 font-semibold mb-1">Hap Bilgi 3</div>
     <div class="opacity-85">Yeni adim veya farkli varyasyon ihtiyacinda composition ile ilerlemek, inheritance agacinin sismesini azaltir.</div>
   </div>
@@ -504,7 +537,7 @@ protected void applyDiscount(Order order, BigDecimal total) {
 
 ## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Template Method</span>
 
-<v-click at="6">
+<v-click at="4">
 
 ```java
 // modern/templatemethod/OrderProcessor.java
@@ -513,31 +546,33 @@ public record OrderProcessor(
     Function<Order, BigDecimal> totalCalculator,
     BiConsumer<Order, BigDecimal> discountApplier,
     Consumer<Order> confirmationSender
-) {
-    public void process(Order order) {
-        validator.accept(order);
-        BigDecimal total = totalCalculator.apply(order);
-        discountApplier.accept(order, total);
-        confirmationSender.accept(order);
-    }
+) {}
+```
+
+</v-click>
+<v-click at="5">
+
+```java
+// record icine eklenen process() iskeleti
+public void process(Order order) {
+    validator.accept(order);
+    BigDecimal total = totalCalculator.apply(order);
+    discountApplier.accept(order, total);
+    confirmationSender.accept(order);
 }
 ```
 
 </v-click>
-<v-click at="7">
+<v-click at="6">
 
 ```java
 // TemplateMethodDemo.modernApproach(...)
 var order = new Order("ORD-001", "Ahmet Yilmaz", items);
-
 OrderProcessor.standard().process(order);
 OrderProcessor.premium().process(order);
 
 // OrderProcessor.premium()
-(order, total) -> {
-    var discounted = total.multiply(new BigDecimal("0.90"));
-    System.out.println("  [Premium] %10 VIP indirimi: " + discounted + " TL");
-}
+(order, total) -> total.multiply(new BigDecimal("0.90"));
 ```
 
 </v-click>
@@ -578,7 +613,12 @@ class: text-xs
 public interface OrderService {
     Order process(Order order);
 }
+```
 
+</v-click>
+<v-click at="2">
+
+```java
 // classic/decorator/GiftWrapDecorator.java
 public class GiftWrapDecorator implements OrderService {
     private final OrderService wrapped;
@@ -592,7 +632,7 @@ public class GiftWrapDecorator implements OrderService {
 ```
 
 </v-click>
-<v-click at="2">
+<v-click at="3">
 
 ```java
 // DecoratorDemo.classicApproach(...)
@@ -608,15 +648,15 @@ var result = service.process(order);
 </v-click>
 
 <div class="mt-3 grid grid-cols-3 gap-2 text-[11px]">
-  <div v-click="3" class="p-2 rounded bg-orange-400/10 border border-orange-300/25">
+  <div v-click="7" class="p-2 rounded bg-orange-400/10 border border-orange-300/25">
     <div class="text-orange-300 font-semibold mb-1">Hap Bilgi 1</div>
     <div class="opacity-85">Classic yaklaşımda her yeni özellik için yeni bir wrapper sınıfı gerekir.</div>
   </div>
-  <div v-click="4" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
+  <div v-click="8" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
     <div class="text-blue-300 font-semibold mb-1">Hap Bilgi 2</div>
     <div class="opacity-85">Modern tarafta <code>UnaryOperator</code> zinciriyle davranışlar composable hale gelir.</div>
   </div>
-  <div v-click="5" class="p-2 rounded bg-green-400/10 border border-green-300/25">
+  <div v-click="9" class="p-2 rounded bg-green-400/10 border border-green-300/25">
     <div class="text-green-300 font-semibold mb-1">Hap Bilgi 3</div>
     <div class="opacity-85">Her iki tarafta da ana nesne bozulmadan özellik eklenir; Open/Closed korunur.</div>
   </div>
@@ -626,7 +666,7 @@ var result = service.process(order);
 
 ## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Decorator</span>
 
-<v-click at="6">
+<v-click at="4">
 
 ```java
 // modern/decorator/Order.java
@@ -643,7 +683,7 @@ public record Order(String id, BigDecimal basePrice, BigDecimal totalPrice, List
 ```
 
 </v-click>
-<v-click at="7">
+<v-click at="5">
 
 ```java
 // modern/decorator/OrderEnhancer.java
@@ -653,8 +693,13 @@ UnaryOperator<Order> standardFlow = OrderEnhancer.giftWrap()
 
 var order = new Order("ORD-001", new BigDecimal("200"));
 var standardResult = standardFlow.apply(order);
+```
 
-// Kampanyaya gore dinamik composition
+</v-click>
+<v-click at="6">
+
+```java
+// kampanyaya gore dinamik composition
 List<UnaryOperator<Order>> campaign = List.of(
     OrderEnhancer.giftWrap(),
     OrderEnhancer.expressShipping()
@@ -667,7 +712,7 @@ var campaignResult = campaignFlow.apply(order);
 
 </v-click>
 
-<div v-click="8" class="mt-2 p-2 rounded bg-cyan-400/10 border border-cyan-300/25 text-[11px]">
+<div v-click="10" class="mt-2 p-2 rounded bg-cyan-400/10 border border-cyan-300/25 text-[11px]">
   <div class="text-cyan-300 font-semibold mb-1">Function Composition Notu</div>
   <div class="opacity-85"><code>andThen()</code> soldan saga uygulanir; zincirdeki sira degistiginde toplam fiyat ve ozellik sirası da degisir.</div>
 </div>
@@ -697,10 +742,11 @@ var campaignResult = campaignFlow.apply(order);
 layout: two-cols
 layoutClass: gap-3
 class: text-xs builder-compare
-
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Builder</span>
+
+<v-click at="1">
 
 ```java
 // classic/builder/OrderClassic.java
@@ -709,44 +755,57 @@ public class OrderClassic {
         private String id;
         private String customerId;
         private final List<String> items = new ArrayList<>();
-        private BigDecimal totalAmount = BigDecimal.ZERO;
-
-        public Builder id(String id) { this.id = id; return this; }
-        public Builder customerId(String customerId) { this.customerId = customerId; return this; }
-        public Builder addItem(String item) { this.items.add(item); return this; }
-        public Builder totalAmount(BigDecimal totalAmount) { this.totalAmount = totalAmount; return this; }
-
-        public OrderClassic build() {
-            if (id == null || id.isBlank()) throw new IllegalStateException("Order ID zorunludur");
-            if (customerId == null || customerId.isBlank()) throw new IllegalStateException("Customer ID zorunludur");
-            if (items.isEmpty()) throw new IllegalStateException("Siparis en az bir urun icermelidir");
-            return new OrderClassic(); // alanlar set edilir
-        }
     }
 }
 ```
 
-```java {1-3}
+</v-click>
+<v-click at="2">
+
+```java
+// fluent adimlari
+public Builder id(String id) { this.id = id; return this; }
+public Builder customerId(String customerId) { this.customerId = customerId; return this; }
+public Builder addItem(String item) { this.items.add(item); return this; }
+```
+
+</v-click>
+<v-click at="3">
+
+```java
+// build() icinde zorunlu alan kontrolleri
+public OrderClassic build() {
+    if (id == null || id.isBlank()) throw new IllegalStateException("Order ID zorunludur");
+    if (customerId == null || customerId.isBlank()) throw new IllegalStateException("Customer ID zorunludur");
+    if (items.isEmpty()) throw new IllegalStateException("Siparis en az bir urun icermelidir");
+    return new OrderClassic(); // alanlar set edilir
+}
+```
+
+</v-click>
+<v-click at="4">
+
+```java
 OrderClassic order = new OrderClassic.Builder()
     .id("ORD-1001")
     .customerId("CUST-42")
     .addItem("MacBook Pro")
-    .build();
-order.setShippingAddress("Istanbul");
-order.setTotalAmount(new BigDecimal("125000"));
+    .build(); // opsiyonel alanlar sonradan set edilir
 ```
 
-<div class="mt-2 text-[11px] text-red-300 font-semibold">Neden onemli?</div>
+</v-click>
+
+<div v-click="9" class="mt-2 text-[11px] text-red-300 font-semibold">Neden onemli?</div>
 <div class="mt-1 grid grid-cols-3 gap-2 text-[11px]">
-  <div v-click="1" class="p-2 rounded bg-red-400/10 border border-red-300/25">
+  <div v-click="9" class="p-2 rounded bg-red-400/10 border border-red-300/25">
     <div class="font-semibold text-red-300 mb-1">Ayni Zorunlu Alanlar</div>
     <div class="opacity-90">id, customerId ve items olmadan build edilmez.</div>
   </div>
-  <div v-click="2" class="p-2 rounded bg-red-400/10 border border-red-300/25">
+  <div v-click="10" class="p-2 rounded bg-red-400/10 border border-red-300/25">
     <div class="font-semibold text-red-300 mb-1">Okunabilirlik</div>
     <div class="opacity-90">Fluent API ile parametreler daha anlasilir olur.</div>
   </div>
-  <div v-click="3" class="p-2 rounded bg-red-400/10 border border-red-300/25">
+  <div v-click="11" class="p-2 rounded bg-red-400/10 border border-red-300/25">
     <div class="font-semibold text-red-300 mb-1">Esneklik</div>
     <div class="opacity-90">Opsiyonel alanlar adim adim ve kontrollu kurulur.</div>
   </div>
@@ -756,48 +815,70 @@ order.setTotalAmount(new BigDecimal("125000"));
 
 ## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Builder</span>
 
+<v-click at="5">
+
 ```java
 // modern/builder/Order.java
 public record Order(
-    String id, String customerId, String customerName,
-    List<String> items, BigDecimal totalAmount,
-    String shippingAddress, LocalDateTime createdAt
+    String id,
+    String customerId,
+    List<String> items,
+    BigDecimal totalAmount,
+    String shippingAddress
 ) {
-    public Order {
-        Objects.requireNonNull(id, "Order ID zorunlu");
-        Objects.requireNonNull(customerId, "Customer ID zorunlu");
-        Objects.requireNonNull(items, "Urun listesi zorunlu");
-        if (id.isBlank()) throw new IllegalArgumentException("Order ID bos olamaz");
-        if (customerId.isBlank()) throw new IllegalArgumentException("Customer ID bos olamaz");
-        if (items.isEmpty())
-            throw new IllegalArgumentException("En az bir urun gerekli");
-        items = List.copyOf(items);
-        if (totalAmount == null) totalAmount = BigDecimal.ZERO;
-        if (createdAt == null) createdAt = LocalDateTime.now();
-    }
-    public Order withShippingAddress(String shippingAddress) { /* ... */ }
-    public Order withTotalAmount(BigDecimal totalAmount) { /* ... */ }
 }
 ```
 
-```java {1-4}
+</v-click>
+<v-click at="6">
+
+```java
+// compact constructor ile validasyon + default
+public Order {
+    Objects.requireNonNull(id, "Order ID zorunlu");
+    Objects.requireNonNull(customerId, "Customer ID zorunlu");
+    if (items == null || items.isEmpty())
+        throw new IllegalArgumentException("En az bir urun gerekli");
+    items = List.copyOf(items);
+    if (totalAmount == null) totalAmount = BigDecimal.ZERO;
+}
+```
+
+</v-click>
+<v-click at="7">
+
+```java
+// immutable "builder-like" fluent adimlar
+public Order withShippingAddress(String shippingAddress) {
+    return new Order(id, customerId, items, totalAmount, shippingAddress);
+}
+public Order withTotalAmount(BigDecimal totalAmount) {
+    return new Order(id, customerId, items, totalAmount, shippingAddress);
+}
+```
+
+</v-click>
+<v-click at="8">
+
+```java
 Order order = new Order(
-    "ORD-1001", "CUST-42", "Umit Kose",
-    List.of("MacBook Pro"), null, null, null
+    "ORD-1001", "CUST-42", List.of("MacBook Pro"), null, null
 ).withShippingAddress("Istanbul")
  .withTotalAmount(new BigDecimal("125000"));
 ```
 
+</v-click>
+
 <div class="mt-4 grid grid-cols-3 gap-2 text-xs">
-  <div v-click="4" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
+  <div v-click="9" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
     <div class="text-blue-300 font-semibold mb-1">Ayni Zorunlu Alanlar</div>
     <div class="opacity-85">Classic ile ayni: id, customerId, items zorunlu.</div>
   </div>
-  <div v-click="5" class="p-2 rounded bg-green-400/10 border border-green-300/25">
+  <div v-click="10" class="p-2 rounded bg-green-400/10 border border-green-300/25">
     <div class="text-green-300 font-semibold mb-1">Immutable Record</div>
     <div class="opacity-85">Zorunlu kontroller compact constructor ile tek yerde.</div>
   </div>
-  <div v-click="6" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
+  <div v-click="11" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
     <div class="text-yellow-300 font-semibold mb-1">Daha Az Boilerplate</div>
     <div class="opacity-85">Tekrarlayan kod azalir, bakim kolaylasir.</div>
   </div>
@@ -839,10 +920,6 @@ class: text-xs
 public static BigDecimal totalBookRevenue(List<OrderItem> items) {
     BigDecimal total = BigDecimal.ZERO;
     for (OrderItem item : items) {
-        if ("BOOK".equals(item.category())) {
-            BigDecimal lineTotal = item.price().multiply(BigDecimal.valueOf(item.quantity()));
-            total = total.add(lineTotal);
-        }
     }
     return total;
 }
@@ -850,6 +927,17 @@ public static BigDecimal totalBookRevenue(List<OrderItem> items) {
 
 </v-click>
 <v-click at="2">
+
+```java
+// category filter + manual toplama
+if ("BOOK".equals(item.category())) {
+    BigDecimal lineTotal = item.price().multiply(BigDecimal.valueOf(item.quantity()));
+    total = total.add(lineTotal);
+}
+```
+
+</v-click>
+<v-click at="3">
 
 ```java
 // demo/IteratorStreamDemo.classicApproach(...)
@@ -865,20 +953,29 @@ System.out.println("  [Classic] Book revenue: " + total + " TL");
 
 ## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Stream (Declarative)</span>
 
-<v-click at="3">
+<v-click at="4">
 
 ```java
 // modern/iterator/OrderAnalytics.java
 public static BigDecimal totalBookRevenue(List<OrderItem> items) {
     return items.stream()
-            .filter(item -> "BOOK".equals(item.category()))
-            .map(item -> item.price().multiply(BigDecimal.valueOf(item.quantity())))
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
+            .filter(item -> "BOOK".equals(item.category()));
 }
 ```
 
 </v-click>
-<v-click at="4">
+<v-click at="5">
+
+```java
+// pipeline tamamlanmis hali
+return items.stream()
+    .filter(item -> "BOOK".equals(item.category()))
+.map(item -> item.price().multiply(BigDecimal.valueOf(item.quantity())))
+.reduce(BigDecimal.ZERO, BigDecimal::add);
+```
+
+</v-click>
+<v-click at="6">
 
 ```java
 // demo/IteratorStreamDemo.modernApproach(...)
@@ -891,15 +988,15 @@ System.out.println("  [Modern] Book revenue: " + total + " TL");
 </v-click>
 
 <div class="mt-3 grid grid-cols-1 gap-2 text-[11px]">
-  <div v-click="5" class="p-2 rounded bg-green-400/10 border border-green-300/25">
+  <div v-click="7" class="p-2 rounded bg-green-400/10 border border-green-300/25">
     <div class="text-green-300 font-semibold mb-1">Hap Bilgi 1</div>
     <div class="opacity-85">Imperative yaklaşım adım adım nasıl ilerleyeceğimizi anlatır; kontrol akışı geliştiricide kalır.</div>
   </div>
-  <div v-click="6" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
+  <div v-click="8" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
     <div class="text-blue-300 font-semibold mb-1">Hap Bilgi 2</div>
     <div class="opacity-85">Declarative stream pipeline, niyeti daha net ifade eder: filtrele, dönüştür, topla.</div>
   </div>
-  <div v-click="7" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
+  <div v-click="9" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
     <div class="text-yellow-300 font-semibold mb-1">Hap Bilgi 3</div>
     <div class="opacity-85">Aynı sonuca daha kısa ve composable kodla ulaşıldığı için bakım ve test süreçleri kolaylaşır.</div>
   </div>
@@ -1090,11 +1187,14 @@ class: text-center
     </div>
     <div class="p-3 bg-white/5 rounded-lg border border-white/10 text-center">
       <div class="text-sm opacity-50 mb-1">YouTube</div>
-      <div class="text-yellow-400 font-mono text-xs">Design Patterns Serisi</div>
+      <div class="text-yellow-400 font-mono text-xs mb-2">Design Patterns Serisi</div>
+      <img src="/images/youtube-playlist-qr.png" alt="YouTube design patterns playlist QR code" class="w-20 h-20 mx-auto rounded bg-white p-1" />
     </div>
     <div class="p-3 bg-white/5 rounded-lg border border-white/10 text-center">
       <div class="text-sm opacity-50 mb-1">Örnek Kodlar</div>
-      <div class="text-yellow-400 font-mono text-xs">functional-programming-and-streams</div>
+      <div class="text-yellow-400 font-mono text-[10px] leading-tight break-all">javadayistanbul-functional-evolution-of-design-patterns-with-modern-Java</div>
+      <div class="text-xs opacity-50 mt-2 mb-1">Repo QR</div>
+      <img src="/images/github-repo-qr.png" alt="GitHub repository QR code" class="w-20 h-20 mx-auto rounded bg-white p-1" />
     </div>
   </div>
 
