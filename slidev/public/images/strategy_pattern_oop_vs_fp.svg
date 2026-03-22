@@ -1,0 +1,132 @@
+<svg width="100%" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(230,232,236,0.95)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </marker>
+  </defs>
+
+  <style>
+    .txtMain { fill: #f6f5ef; font: 600 14px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .txtSub { fill: #c8c6ba; font: 400 12px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .txtTitle { fill: #f0f0ea; font: 500 13px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .boxText { fill: #d4d2c7; font: 500 13px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .boxHint { fill: #b4b2a8; font: 400 11px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .line { stroke: rgba(230,232,236,0.58); stroke-width: 1.25; }
+    .fade { opacity: 0; transform: translateY(7px); }
+    @keyframes show {
+      from { opacity: 0; transform: translateY(7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #oopLabel { animation: show .30s ease-out .14s forwards; }
+    #oopTop { animation: show .30s ease-out .49s forwards; }
+    #oopArrowsTop { animation: show .26s ease-out .84s forwards; }
+    #oopCard1 { animation: show .26s ease-out 1.19s forwards; }
+    #oopCard2 { animation: show .26s ease-out 1.54s forwards; }
+    #oopCard3 { animation: show .26s ease-out 1.89s forwards; }
+    #oopService { animation: show .28s ease-out 2.24s forwards; }
+    #oopArrowService { animation: show .24s ease-out 2.59s forwards; }
+    #oopNote { animation: show .28s ease-out 2.94s forwards; }
+
+    #fpLabel { animation: show .30s ease-out 3.29s forwards; }
+    #divider { animation: show .24s ease-out 3.57s forwards; }
+    #fpTop { animation: show .30s ease-out 3.92s forwards; }
+    #fpArrowsTop { animation: show .26s ease-out 4.27s forwards; }
+    #fpCard1 { animation: show .26s ease-out 4.62s forwards; }
+    #fpCard2 { animation: show .26s ease-out 4.97s forwards; }
+    #fpCard3 { animation: show .26s ease-out 5.32s forwards; }
+    #fpService { animation: show .28s ease-out 5.67s forwards; }
+    #fpArrowService { animation: show .24s ease-out 6.02s forwards; }
+    #fpNote { animation: show .28s ease-out 6.44s forwards; }
+  </style>
+
+  <rect x="0" y="0" width="680" height="380" rx="10" fill="rgba(12,16,24,0.96)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+
+  <text id="oopLabel" class="txtMain fade" x="160" y="28" text-anchor="middle">Klasik OOP</text>
+  <text id="fpLabel" class="txtMain fade" x="510" y="28" text-anchor="middle">Modern FP</text>
+  <line id="divider" class="fade" x1="340" y1="14" x2="340" y2="366" stroke="rgba(222,220,209,0.18)" stroke-width="1" stroke-dasharray="4 4" />
+
+  <g id="oopTop" class="fade">
+    <rect x="60" y="44" width="200" height="52" rx="8" fill="#6f2d17" stroke="#ef9a7b" stroke-width="0.8" />
+    <text class="txtSub" x="160" y="62" text-anchor="middle">interface</text>
+    <text class="txtTitle" x="160" y="80" text-anchor="middle">PaymentStrategy</text>
+    <text class="txtSub" x="160" y="112" text-anchor="middle">pay(BigDecimal)</text>
+  </g>
+
+  <g id="oopArrowsTop" class="fade">
+    <line class="line" x1="110" y1="116" x2="84" y2="155" marker-end="url(#arrow)" />
+    <line class="line" x1="160" y1="116" x2="180" y2="155" marker-end="url(#arrow)" />
+    <line class="line" x1="210" y1="116" x2="274" y2="155" marker-end="url(#arrow)" />
+  </g>
+
+  <g id="oopCard1" class="fade">
+    <rect x="36" y="156" width="96" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
+    <text class="boxText" x="84" y="173" text-anchor="middle">CreditCard</text>
+    <text class="boxHint" x="84" y="188" text-anchor="middle">pay()</text>
+  </g>
+  <g id="oopCard2" class="fade">
+    <rect x="132" y="156" width="96" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
+    <text class="boxText" x="180" y="173" text-anchor="middle">BankTransfer</text>
+    <text class="boxHint" x="180" y="188" text-anchor="middle">pay()</text>
+  </g>
+  <g id="oopCard3" class="fade">
+    <rect x="228" y="156" width="92" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
+    <text class="boxText" x="274" y="173" text-anchor="middle">Crypto</text>
+    <text class="boxHint" x="274" y="188" text-anchor="middle">pay()</text>
+  </g>
+
+  <g id="oopService" class="fade">
+    <rect x="88" y="230" width="144" height="52" rx="8" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
+    <text class="txtTitle" x="160" y="252" text-anchor="middle">PaymentService</text>
+    <text class="txtSub" x="160" y="270" text-anchor="middle">strategy: PaymentStrategy</text>
+  </g>
+  <path id="oopArrowService" class="fade line" d="M160 230 L160 200" fill="none" marker-end="url(#arrow)" />
+
+  <g id="oopNote" class="fade">
+    <rect x="60" y="302" width="200" height="36" rx="6" fill="#792020" stroke="#f09595" stroke-width="0.7" />
+    <text class="txtSub" x="160" y="320" text-anchor="middle" fill="#f09595">Yeni odeme = yeni sinif</text>
+    <text class="txtSub" x="160" y="334" text-anchor="middle" fill="#f09595">implement + deploy</text>
+  </g>
+
+  <g id="fpTop" class="fade">
+    <rect x="410" y="44" width="200" height="52" rx="8" fill="#085040" stroke="#5dcaa5" stroke-width="0.8" />
+    <text class="txtSub" x="510" y="62" text-anchor="middle">@FunctionalInterface</text>
+    <text class="txtTitle" x="510" y="80" text-anchor="middle">Consumer&lt;BigDecimal&gt;</text>
+    <text class="txtSub" x="510" y="112" text-anchor="middle">accept(BigDecimal)</text>
+  </g>
+
+  <g id="fpArrowsTop" class="fade">
+    <line class="line" x1="460" y1="116" x2="415" y2="155" marker-end="url(#arrow)" />
+    <line class="line" x1="510" y1="116" x2="509" y2="155" marker-end="url(#arrow)" />
+    <line class="line" x1="560" y1="116" x2="598" y2="155" marker-end="url(#arrow)" />
+  </g>
+
+  <g id="fpCard1" class="fade">
+    <rect x="374" y="156" width="82" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
+    <text class="boxText" x="415" y="173" text-anchor="middle">lambda card</text>
+    <text class="boxHint" x="415" y="188" text-anchor="middle">amount -&gt; ...</text>
+  </g>
+  <g id="fpCard2" class="fade">
+    <rect x="468" y="156" width="82" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
+    <text class="boxText" x="509" y="173" text-anchor="middle">lambda bank</text>
+    <text class="boxHint" x="509" y="188" text-anchor="middle">amount -&gt; ...</text>
+  </g>
+  <g id="fpCard3" class="fade">
+    <rect x="562" y="156" width="72" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
+    <text class="boxText" x="598" y="173" text-anchor="middle">lambda x</text>
+    <text class="boxHint" x="598" y="188" text-anchor="middle">amount -&gt; ...</text>
+  </g>
+
+  <g id="fpService" class="fade">
+    <rect x="438" y="230" width="144" height="52" rx="8" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
+    <text class="txtTitle" x="510" y="252" text-anchor="middle">processPayment</text>
+    <text class="txtSub" x="510" y="270" text-anchor="middle">Consumer&lt;BigDecimal&gt;</text>
+  </g>
+  <path id="fpArrowService" class="fade line" d="M510 230 L510 200" fill="none" marker-end="url(#arrow)" />
+
+  <g id="fpNote" class="fade">
+    <rect x="410" y="302" width="200" height="36" rx="6" fill="#28500a" stroke="#97c459" stroke-width="0.7" />
+    <text class="txtSub" x="510" y="320" text-anchor="middle" fill="#97c459">Yeni odeme = yeni lambda</text>
+    <text class="txtSub" x="510" y="334" text-anchor="middle" fill="#97c459">sinif yok, deploy yok</text>
+  </g>
+</svg>

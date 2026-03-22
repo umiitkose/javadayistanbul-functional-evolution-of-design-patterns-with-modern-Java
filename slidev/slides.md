@@ -307,23 +307,29 @@ Sealamlama ile başlayalım. 10 - 15 saniye olmalı.
   </div>
 </div>
 
-<div class="text-center mt-10">
-  <div class="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent mb-3">
-    Davranışı Runtime'da Değiştirme
-  </div>
-  <div class="text-lg opacity-85 max-w-3xl mx-auto leading-relaxed">
-    <span class="text-red-400 font-semibold">Klasik OOP:</span>
-    davranış, bir <code>Strategy interface</code> ve onu implemente eden concrete class'larla modellenir.
-    <br />
-    <span class="text-green-400 font-semibold">Modern FP:</span>
-    davranış, bir functional interface (ör. <code>Consumer&lt;BigDecimal&gt;</code>) ile fonksiyon olarak geçirilir.
-  </div>
+<div class="mt-4 flex justify-center">
+  <object
+    :data="`/images/strategy_pattern_oop_vs_fp.svg?play=${$slidev.nav.currentPage}-${$slidev.nav.clicks}`"
+    type="image/svg+xml"
+    alt="Strategy Pattern OOP ve FP karsilastirma diyagrami"
+    class="h-[min(46vh,320px)] w-auto max-w-[92%] rounded-lg border border-white/10 bg-transparent"
+  ></object>
 </div>
 
+<!--
+Konusmaci Notu:
+- Bu slaytta once "runtime'da degistirme" fikrini ver, sonra diyagrami soldan saga oku.
+- Sol taraf: yeni odeme tipi -> yeni sinif, implementasyon ve deploy maliyeti.
+- Sag taraf: ayni akis Consumer ve lambda ile sinif acmadan degisiyor.
+- Mesaj: Pattern ayni, modern Java ile uygulama daha composable ve hizli evriliyor.
+-->
+
 ---
+
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
+
 ---
 
 ## 🎯 <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Strategy</span>
@@ -471,9 +477,11 @@ Bu kısımda pure function olayını destekleyecek konuşmada yerler eklemeliyiz
 </div>
 
 ---
+
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
+
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Template Method</span>
@@ -599,9 +607,11 @@ OrderProcessor.premium().process(order);
 </div>
 
 ---
+
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
+
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Decorator</span>
@@ -739,9 +749,11 @@ var campaignResult = campaignFlow.apply(order);
 </div>
 
 ---
+
 layout: two-cols
 layoutClass: gap-3
 class: text-xs builder-compare
+
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Builder</span>
@@ -906,9 +918,11 @@ Order order = new Order(
 </div>
 
 ---
+
 layout: two-cols
 layoutClass: gap-3
 class: text-xs
+
 ---
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Iterator (Imperative)</span>
@@ -1003,8 +1017,10 @@ System.out.println("  [Modern] Book revenue: " + total + " TL");
 </div>
 
 ---
+
 layout: default
 class: text-sm
+
 ---
 
 # Ne Zaman Hangi Yaklaşımı Tercih Etmeliyiz?
@@ -1109,8 +1125,10 @@ class: text-sm
 </div>
 
 ---
+
 layout: default
 class: text-sm
+
 ---
 
 # Best Practices & Öneriler
@@ -1167,8 +1185,10 @@ class: text-sm
 </div>
 
 ---
+
 layout: center
 class: text-center
+
 ---
 
 <div class="flex flex-col items-center justify-center">
