@@ -2,7 +2,7 @@
 
 **JavaDay Istanbul 2025** - 25 Dakikalik Sunum
 
-Klasik Gang of Four design pattern'lerinin modern Java (17-25) ile nasil daha sade, daha guclu ve daha fonksiyonel bir hale geldigini gosteren kapsamli ornek projesi.
+Klasik Gang of Four design pattern'lerinin modern Java (8-26) ile nasil daha sade, daha guclu ve daha fonksiyonel bir hale geldigini gosteren kapsamli ornek projesi.
 
 ## Proje Hakkinda
 
@@ -20,7 +20,7 @@ Bu proje, bir **E-Ticaret Siparis Isleme Sistemi** uzerinden 11 farkli design pa
 | 2 | **Builder** | POJO (getter/setter/equals/hashCode) + Builder | record + compact constructor + wither | Records, Compact Constructors |
 | 3 | **Template Method** | Abstract class + inheritance | record + Consumer/Function parametreleri | Higher-Order Functions, Composition |
 | 4 | **Decorator** | Interface + wrapper classes (ic ice sarma) | UnaryOperator\<T> + andThen() zincirleme | UnaryOperator, Function Composition |
-| 5 | **Visitor** | Double dispatch + visitor interface | sealed interface + switch expression | Sealed Classes, Pattern Matching |
+| 5 | **Iterator/Stream** | for-each ile external iteration | Stream pipeline ile internal iteration | Stream API, Declarative Thinking |
 
 ## Bonus Pattern'ler (6 Ek Pattern)
 
@@ -111,10 +111,9 @@ src/main/java/com/javadayistanbul/patterns/
 **Umit Kose**
 
 - YouTube: [Design Patterns Playlist](https://www.youtube.com/watch?v=Sc2d6y2YO9w&list=PLXSngD2-TyxqItaCjTW_UaovgtTfGZhhY)
-- GitHub: [Functional Programming & Streams](https://github.com/umiitkose/functional-programming-and-streams)
+- GitHub: [Sunum Repo](https://github.com/umiitkose/javadayistanbul-functional-evolution-of-design-patterns-with-modern-Java)
 - Turkiye Java Community - Ankara 2024: [Java ile Fonksiyonel Programlama](https://kommunity.com/turkiye-java-community/events/java-ile-fonksiyonel-programlama-lambdadan-stream-gathererslara-7cd8a2a3)
 
 ## Lisans
 
 MIT License
-# javadayistanbul-functional-evolution-of-design-patterns-with-modern-Java
