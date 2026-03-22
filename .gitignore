@@ -14,3 +14,8 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Slidev outputs and dependencies
+slidev/node_modules/
+slidev/node_modules copy/
+slidev/dist/
