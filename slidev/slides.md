@@ -31,7 +31,7 @@ mdc: true
 </div>
 
 <!--
-Sealamlama ile başlayalım. 10 - 15 saniye olmalı.
+"Herkese Günaydın, Javaday İstanbulda günün ilk sunumunda bolca javayı konuşacağımız bir sunuma hoşgeldiniz." gibi bir giriş yapalım.
 -->
 
 ---
@@ -80,6 +80,10 @@ Sealamlama ile başlayalım. 10 - 15 saniye olmalı.
     </div>
   </div>
 </div>
+
+<!--
+Ümit KÖSE, @Türksat. Senior Software Developer. Sosyal medya hesapları umiitkose. Sunumla ilgili herşeyin olduğu repoya QR'dan ulaşabilirsiniz.
+-->
 
 ---
 
@@ -144,6 +148,14 @@ Sealamlama ile başlayalım. 10 - 15 saniye olmalı.
     ⏱️ 25 dakika • Java 8–26 odaklı
   </div>
 </div>
+
+<!--
+Buraya da QR Ekleyelim, kaçıran vs olursa diye.
+
+- Genel bir tanım yapalım. FP İlke ve özelliklerine değinerek OOP prensipleriyle kıyaslayacağız.
+
+- Özet & Best Practices kısmını düzenleyeceğiz.
+-->
 
 ---
 
@@ -294,6 +306,15 @@ Sealamlama ile başlayalım. 10 - 15 saniye olmalı.
     <span class="text-green-400 font-bold">sağda modern FP</span> yaklaşımını yan yana göreceğiz
   </div>
 </div>
+
+<!--
+buraya FP ne olduğuyla ilgili güzel bir slayt eklemesi yapmamız gerekebilir.
+
+- Declarative
+- Pure Functions
+- Immutability
+- Okunabilirlik
+-->
 
 ---
 
@@ -613,6 +634,8 @@ Konusmaci Notu:
 - Sol tarafta nested wrapper yapisinin nasil buyudugunu anlat.
 - Sag tarafta andThen zinciriyle ayni davranisin sinifsiz kuruldugunu vurgula.
 - Vurgu cumlesi: Function Composition and andThen.
+
+Kamera ve Lens örneği buraya çok iyi oturur.
 -->
 
 ---
@@ -733,6 +756,15 @@ var campaignResult = campaignFlow.apply(order);
   <div class="text-cyan-300 font-semibold mb-1">Function Composition Notu</div>
   <div class="opacity-85"><code>andThen()</code> soldan saga uygulanir; zincirdeki sira degistiginde toplam fiyat ve ozellik sirası da degisir.</div>
 </div>
+
+<!--
+Geçiş: "Strategy behavioral'dı. Şimdi structural bir pattern — Decorator."
+Ana mesaj: andThen() ile dinamik kombinasyon, runtime'da karar.
+Vurgu: SVG'de sol taraf iç içe kutular, sağ taraf düz zincir. Görsel farkı söyle.
+Beklenen soru: "reduce(identity, andThen) ne yapıyor?" → "List üzerinden pipeline oluşturuyor, sıra önemli."
+
+Burada reduce öncesi büyük bir kod sonra da reducelu kod yazalım..
+-->
 
 ---
 
@@ -907,6 +939,13 @@ Order order = new Order(
   </div>
 </div>
 
+<!--
+Geçiş: "Behavioral ve structural gördük. Şimdi creational — Builder."
+Ana mesaj: Compact constructor doğrulamayı tek yere topluyor, atlama yolu yok.
+Vurgu: "Record her zaman Builder'ın yerini tutmaz" — dürüstlük güven inşa eder.
+Tempo: Bu slayt en fazla soru alır, 4.5 dakika ayır.
+-->
+
 ---
 
 # 🔁 Iterator Pattern
@@ -1031,53 +1070,12 @@ System.out.println("  [Modern] Book revenue: " + total + " TL");
   </div>
 </div>
 
----
-layout: default
-class: text-sm
----
-
-# Ne Zaman Hangi Yaklaşımı Tercih Etmeliyiz?
-
-<div class="grid grid-cols-2 gap-4 mt-4">
-
-<div class="p-4 bg-red-400/10 rounded-lg border border-red-400/20">
-  <div class="text-red-400 text-lg font-bold mb-3">Klasik OOP Tercih Edilmeli</div>
-  <div class="text-xs opacity-90 space-y-2">
-    <ul class="list-none space-y-2">
-      <li class="flex items-start gap-2"><span class="text-red-400">▸</span> Karmaşık state yönetimi gerektiğinde</li>
-      <li class="flex items-start gap-2"><span class="text-red-400">▸</span> Çok sayıda field ve method içeren sınıflar</li>
-      <li class="flex items-start gap-2"><span class="text-red-400">▸</span> Inheritance hiyerarşisi kritik olduğunda</li>
-      <li class="flex items-start gap-2"><span class="text-red-400">▸</span> Legacy kod tabanı ile uyumluluk</li>
-      <li class="flex items-start gap-2"><span class="text-red-400">▸</span> Framework'ler class yapısı bekliyorsa</li>
-      <li class="flex items-start gap-2"><span class="text-red-400">▸</span> Ekip FP deneyimi sınırlıysa</li>
-    </ul>
-  </div>
-</div>
-
-<div class="p-4 bg-green-400/10 rounded-lg border border-green-400/20">
-  <div class="text-green-400 text-lg font-bold mb-3">Modern FP Tercih Edilmeli</div>
-  <div class="text-xs opacity-90 space-y-2">
-    <ul class="list-none space-y-2">
-      <li class="flex items-start gap-2"><span class="text-green-400">▸</span> Basit, tek sorumluluklu davranışlar</li>
-      <li class="flex items-start gap-2"><span class="text-green-400">▸</span> Yüksek composability gerektiğinde</li>
-      <li class="flex items-start gap-2"><span class="text-green-400">▸</span> Runtime'da dinamik davranış değişikliği</li>
-      <li class="flex items-start gap-2"><span class="text-green-400">▸</span> Stream processing ve data transformation</li>
-      <li class="flex items-start gap-2"><span class="text-green-400">▸</span> Event-driven mimariler</li>
-      <li class="flex items-start gap-2"><span class="text-green-400">▸</span> Test edilebilirlik öncelikli olduğunda</li>
-    </ul>
-  </div>
-</div>
-
-</div>
-
-<div class="mt-4 p-4 bg-blue-400/10 rounded-lg border border-blue-400/20">
-  <div class="text-blue-400 text-lg font-bold mb-2">Hibrit Yaklaşım — Gerçek Dünyada En İyi Pratik</div>
-  <div class="text-xs opacity-90">
-    Her iki yaklaşımı birlikte kullanın. Karmaşık domain logic için <span class="text-red-400 font-bold">OOP</span>,
-    data processing ve transformation için <span class="text-green-400 font-bold">FP</span>.
-    Modern Java her ikisini de birinci sınıf destekler. Önemli olan <span class="text-yellow-400 font-bold">doğru aracı doğru yerde kullanmak</span>.
-  </div>
-</div>
+<!--
+Geçiş: "Son pattern. Belki en günlük kullandığınız."
+Ana mesaj: 5 satırın 4'ü nasıl, 1'i ne — declarative bunu tersine çevirir.
+Vurgu: SVG'de lazy etiketlerine dikkat çek — terminal op tetikleyene kadar hiçbir şey çalışmıyor.
+Beklenen soru: "parallelStream her zaman daha hızlı mı?" → "Hayır — küçük listeler, stateful lambda, ordered stream'lerde overhead ekler."
+-->
 
 ---
 
@@ -1209,6 +1207,25 @@ class: text-center
     class="h-[min(66vh,460px)] w-auto max-w-[96%] rounded-lg border border-white/10 bg-transparent object-contain"
   />
 </div>
+
+<!--
+Konusmaci Notu:
+- Bu slayt "Ne zaman hangi yaklasim?" slaydinin ozetidir; karar agaci olarak anlat.
+- Klasik OOP tercih:
+  * Karmasik state yonetimi gerekiyorsa
+  * Cok sayida field/method ve kalitim hiyerarsisi kritikse
+  * Legacy kod ve framework class beklentisi varsa
+  * Ekipte FP deneyimi sinirliysa
+- Modern FP tercih:
+  * Basit, tek sorumluluklu davranislar varsa
+  * Composability yuksek oncelikse
+  * Runtime'da dinamik davranis degisimi gerekiyorsa
+  * Stream/data transformation agirlikli akis varsa
+  * Test edilebilirlik oncelikliyse
+- Hibrit mesaji:
+  * Domain logic tarafinda OOP, data pipeline tarafinda FP genelde en iyi dengeyi verir.
+  * Ana ilke: dogru araci dogru yerde kullanmak.
+-->
 
 ---
 layout: center
