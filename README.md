@@ -1,6 +1,6 @@
 # Modern Java ile Design Patterns'in Fonksiyonel Evrimi
 
-**JavaDay Istanbul 2025** - 25 Dakikalik Sunum
+**JavaDay Istanbul 2026** - 25 Dakikalik Sunum
 
 Klasik Gang of Four design pattern'lerinin modern Java (8-26) ile nasil daha sade, daha guclu ve daha fonksiyonel bir hale geldigini gosteren kapsamli ornek projesi.
 
@@ -9,29 +9,29 @@ Klasik Gang of Four design pattern'lerinin modern Java (8-26) ile nasil daha sad
 Bu proje, bir **E-Ticaret Siparis Isleme Sistemi** uzerinden 11 farkli design pattern'in hem klasik OOP hem de modern fonksiyonel versiyonlarini icermektedir. Her pattern icin:
 
 - `classic/` - Klasik OOP implementasyonu (Java 8 oncesi yaklasim)
-- `modern/` - Modern fonksiyonel implementasyon (Java 17-25 ozellikleri)
+- `modern/` - Modern fonksiyonel implementasyon (Java 8-26 ozellikleri)
 - `demo/` - Karsilastirmali demo sinifi (her ikisini de calistirir)
 
-## Sunum Pattern'leri (5 Ana Pattern)
+## Sunum Pattern'leri (3 Ana Pattern)
 
-| # | Pattern | Klasik | Modern | Ogrenilen Java Ozelligi |
-|---|---------|--------|--------|------------------------|
-| 1 | **Strategy** | Interface + 3 concrete class + service | Consumer\<T> + lambda | Lambda Expressions, Functional Interface |
-| 2 | **Builder** | POJO (getter/setter/equals/hashCode) + Builder | record + compact constructor + wither | Records, Compact Constructors |
-| 3 | **Template Method** | Abstract class + inheritance | record + Consumer/Function parametreleri | Higher-Order Functions, Composition |
-| 4 | **Decorator** | Interface + wrapper classes (ic ice sarma) | UnaryOperator\<T> + andThen() zincirleme | UnaryOperator, Function Composition |
-| 5 | **Iterator/Stream** | for-each ile external iteration | Stream pipeline ile internal iteration | Stream API, Declarative Thinking |
+| #   | Pattern             | Klasik                                         | Modern                                   | Ogrenilen Java Ozelligi                  |
+| --- | ------------------- | ---------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| 1   | **Builder**         | POJO (getter/setter/equals/hashCode) + Builder | record + compact constructor + wither    | Records, Compact Constructors            |
+| 2   | **Strategy**        | Interface + 3 concrete class + service         | Consumer\<T> + lambda                    | Lambda Expressions, Functional Interface |
+| 3   | **Decorator**       | Interface + wrapper classes (ic ice sarma)     | UnaryOperator\<T> + andThen() zincirleme | UnaryOperator, Function Composition      |
 
-## Bonus Pattern'ler (6 Ek Pattern)
+## Bonus Pattern'ler (8 Ek Pattern)
 
-| # | Pattern | Klasik | Modern | Ogrenilen Java Ozelligi |
-|---|---------|--------|--------|------------------------|
-| 6 | **Observer** | Listener interface + concrete listeners | Consumer\<T> + lambda | Consumer, Method References |
-| 7 | **Factory Method** | Enum + factory class + interface | sealed interface + pattern matching | Sealed + Exhaustive Switch |
-| 8 | **State** | State interface + 4 state class + context | sealed interface + record + switch | Sealed Records, Pattern Matching |
-| 9 | **Chain of Responsibility** | Abstract handler + concrete handlers | Predicate\<T> + and()/or() | Predicate Composition |
-| 10 | **Command** | Command interface + concrete commands | Runnable + lambda | Runnable, Method References |
-| 11 | **Adapter** | Wrapper class + interface | BiFunction + lambda adaptasyon | BiFunction, Lambda |
+| #   | Pattern                     | Klasik                                    | Modern                              | Ogrenilen Java Ozelligi          |
+| --- | --------------------------- | ----------------------------------------- | ----------------------------------- | -------------------------------- |
+| 4   | **Iterator/Stream**         | for-each ile external iteration           | Stream pipeline ile internal iteration | Stream API, Declarative Thinking |
+| 5   | **Template Method**         | Abstract class + inheritance              | record + Consumer/Function parametreleri | Higher-Order Functions, Composition |
+| 6   | **Observer**                | Listener interface + concrete listeners   | Consumer\<T> + lambda               | Consumer, Method References      |
+| 7   | **Factory Method**          | Enum + factory class + interface          | sealed interface + pattern matching | Sealed + Exhaustive Switch       |
+| 8   | **State**                   | State interface + 4 state class + context | sealed interface + record + switch  | Sealed Records, Pattern Matching |
+| 9   | **Chain of Responsibility** | Abstract handler + concrete handlers      | Predicate\<T> + and()/or()          | Predicate Composition            |
+| 10  | **Command**                 | Command interface + concrete commands     | Runnable + lambda                   | Runnable, Method References      |
+| 11  | **Adapter**                 | Wrapper class + interface                 | BiFunction + lambda adaptasyon      | BiFunction, Lambda               |
 
 ## Gereksinimler
 
@@ -50,7 +50,6 @@ mvn exec:java -Dexec.mainClass="com.javadayistanbul.patterns.demo.Main"
 # Tek bir pattern calistir
 mvn exec:java -Dexec.mainClass="com.javadayistanbul.patterns.demo.StrategyDemo"
 mvn exec:java -Dexec.mainClass="com.javadayistanbul.patterns.demo.BuilderDemo"
-mvn exec:java -Dexec.mainClass="com.javadayistanbul.patterns.demo.TemplateMethodDemo"
 mvn exec:java -Dexec.mainClass="com.javadayistanbul.patterns.demo.DecoratorDemo"
 mvn exec:java -Dexec.mainClass="com.javadayistanbul.patterns.demo.VisitorDemo"
 ```
@@ -100,11 +99,11 @@ src/main/java/com/javadayistanbul/patterns/
 
 ## Dosya Sayisi Karsilastirmasi
 
-| Yaklasim | Dosya Sayisi |
-|----------|-------------|
-| **Klasik OOP** | ~55 dosya |
-| **Modern Fonksiyonel** | ~12 dosya |
-| **Azalma** | **~%80** |
+| Yaklasim               | Dosya Sayisi |
+| ---------------------- | ------------ |
+| **Klasik OOP**         | ~55 dosya    |
+| **Modern Fonksiyonel** | ~12 dosya    |
+| **Azalma**             | **~%80**     |
 
 ## Sunumcu
 

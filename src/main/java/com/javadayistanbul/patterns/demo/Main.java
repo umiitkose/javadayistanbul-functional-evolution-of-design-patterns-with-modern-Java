@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println();
         System.out.println("#".repeat(60));
-        System.out.println("#  JavaDay Istanbul 2025");
+        System.out.println("#  JavaDay Istanbul 2026");
         System.out.println("#  Modern Java ile Design Patterns'in Fonksiyonel Evrimi");
         System.out.println("#  Klasik OOP vs Modern Functional - 11 Pattern");
         System.out.println("#".repeat(60));

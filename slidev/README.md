@@ -31,13 +31,14 @@ npm run export
 
 ## Sunum Icerigi (Guncel)
 
-Sunumda 5 ana pattern modern Java yaklasimlari ile karsilastirmali anlatilir:
+Sunumda 3 ana pattern modern Java yaklasimlari ile karsilastirmali anlatilir:
 
-- Strategy
-- Template Method
-- Decorator
 - Builder
-- Iterator/Stream
+- Strategy
+- Decorator
+
+Ek olarak, pattern bolumunden bagimsiz kisa bir
+`Imperative vs Declarative` karsilastirma slaydi bulunur.
 
 ## Son Guncellemeler
 
