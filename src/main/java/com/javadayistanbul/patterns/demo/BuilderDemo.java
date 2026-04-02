@@ -26,9 +26,7 @@ public class BuilderDemo {
         System.out.println("  ~90 satir boilerplate kod!");
         System.out.println();
 
-        var order = new OrderClassic.Builder()
-                .id("ORD-001")
-                .customerId("CUST-42")
+        var order = new OrderClassic.Builder("ORD-001","CUST-42")
                 .addItem("Java in Action")
                 .addItem("Design Patterns")
                 .build();

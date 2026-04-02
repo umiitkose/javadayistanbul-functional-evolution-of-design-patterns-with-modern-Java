@@ -113,9 +113,8 @@ mdc: true
   <div v-click="3" class="flex items-center gap-3 p-3 bg-white/5 rounded-lg border-l-4 border-orange-400">
     <div class="text-orange-400 font-bold text-lg w-8">03</div>
     <div>
-      <div class="font-semibold">3 Pattern</div>
-      <div class="text-xs opacity-60">Imperative & Declarative ile Design Patterns
-      </div>
+      <div class="font-semibold">4 Pattern</div>
+      <div class="text-xs opacity-60">Klasik OOP ↔ modern Java (records, lambda, kompozisyon)</div>
     </div>
   </div>
 </div>
@@ -124,16 +123,17 @@ mdc: true
   <div v-click="3" class="p-3 bg-orange-400/10 rounded-lg border border-orange-400/20">
     <div class="text-orange-400 font-bold mb-2 text-xs">Pattern'ler</div>
     <div class="space-y-1 text-xs opacity-80">
-      <div>🏗️ Builder → Records & Functional Builder</div>
+      <div>🏗️ Builder → Immutability & Records</div>
       <div>🎯 Strategy → Lambda & Functional Interfaces</div>
       <div>🎨 Decorator → Function Composition</div>
+      <div>📋 Template Method → Higher-Order Functions</div>
     </div>
   </div>
 
   <div v-click="4" class="flex items-center gap-3 p-3 bg-white/5 rounded-lg border-l-4 border-green-400">
     <div class="text-green-400 font-bold text-lg w-8">04</div>
     <div>
-      <div class="font-semibold">Özet & Best Practices</div>
+      <div class="font-semibold">Genel Değerlendirme</div>
       <div class="text-xs opacity-60">Ne zaman OOP, ne zaman FP?</div>
     </div>
   </div>
@@ -264,12 +264,12 @@ Buraya da QR Ekleyelim, kaçıran vs olursa diye.
 
 # Sunumdaki Pattern'ler
 
-<div class="grid grid-cols-3 gap-3 mt-8">
+<div class="grid grid-cols-4 gap-3 mt-8">
 
 <div v-click="1" class="p-4 bg-gradient-to-b from-purple-400/15 to-transparent rounded-lg border border-purple-400/20 text-center">
   <div class="text-3xl mb-2">🏗️</div>
   <div class="text-purple-400 text-sm font-bold mb-1">Builder</div>
-  <div class="text-xs opacity-60 leading-tight">Records<br/>Functional Builder</div>
+  <div class="text-xs opacity-60 leading-tight">Immutability<br/>Records</div>
 </div>
 
 <div v-click="2" class="p-4 bg-gradient-to-b from-yellow-400/15 to-transparent rounded-lg border border-yellow-400/20 text-center">
@@ -284,9 +284,15 @@ Buraya da QR Ekleyelim, kaçıran vs olursa diye.
   <div class="text-xs opacity-60 leading-tight">Function Composition<br/>andThen()</div>
 </div>
 
+<div v-click="4" class="p-4 bg-gradient-to-b from-blue-400/15 to-transparent rounded-lg border border-blue-400/20 text-center">
+  <div class="text-3xl mb-2">📋</div>
+  <div class="text-blue-400 text-sm font-bold mb-1">Template Method</div>
+  <div class="text-xs opacity-60 leading-tight">Higher-Order<br/>Functions</div>
 </div>
 
-<div v-click="4" class="mt-8 p-4 bg-gradient-to-r from-yellow-400/10 via-orange-400/10 to-green-400/10 rounded-lg border border-yellow-400/15">
+</div>
+
+<div v-click="5" class="mt-8 p-4 bg-gradient-to-r from-yellow-400/10 via-orange-400/10 to-green-400/10 rounded-lg border border-yellow-400/15">
   <div class="text-center text-sm opacity-90">
     Her pattern için <span class="text-red-400 font-bold">solda klasik OOP</span> ve
     <span class="text-green-400 font-bold">sağda modern FP</span> yaklaşımını yan yana göreceğiz
@@ -294,82 +300,155 @@ Buraya da QR Ekleyelim, kaçıran vs olursa diye.
 </div>
 
 <!--
-buraya FP ne olduğuyla ilgili güzel bir slayt eklemesi yapmamız gerekebilir.
-
-- Declarative
-- Pure Functions
-- Immutability
-- Okunabilirlik
+Istege bagli: FP vurgulari (pure functions, immutability, okunabilirlik) ayri slayt.
 -->
 
 ---
+class: builder-pattern-slide-1
+---
 
-# 🏗️ Builder Pattern
+# 🏗️ Builder Pattern — <span class="text-red-300">klasik OOP</span>
 
-<div class="mt-6 max-w-4xl">
-  <div class="text-lg opacity-85 leading-relaxed">
-    <span class="text-purple-400 font-semibold">Tanım:</span>
-    Builder Pattern, karmaşık nesneleri adım adım oluşturup aynı süreçle farklı konfigürasyonlar üretmemizi sağlayan bir creational pattern'dir.
+<div class="text-base opacity-90 max-w-5xl leading-snug">
+  <span class="text-purple-400 font-semibold">Tanım:</span> Karmaşık nesneyi <em>adım adım</em> kurup <code>build()</code> ile tek seferde doğrulayan creational pattern. Telescoping constructor yerine okunabilir fluent API.
+</div>
+
+<div class="mt-3 w-full max-w-5xl mx-auto px-2 sm:px-0">
+  <div class="rounded-lg bg-red-400/10 border border-red-300/25 px-4 py-3 text-sm w-full">
+    <div class="text-red-300 font-semibold mb-1">Telescoping</div>
+    <pre class="text-sm leading-snug opacity-90 m-0 p-0 font-mono overflow-x-auto"><code>new Thing("a","b", null, null, BigDecimal.ZERO);</code></pre>
   </div>
 </div>
 
-<div class="mt-4 flex justify-center">
+<div v-click="1" class="mt-4 flex justify-center px-2">
   <object
     :data="`/images/builder_pattern_oop_vs_fp.svg?play=${$slidev.nav.currentPage}-${$slidev.nav.clicks}`"
     type="image/svg+xml"
-    alt="Builder Pattern OOP ve FP karsilastirma diyagrami"
-    class="h-[min(46vh,320px)] w-auto max-w-[92%] rounded-lg border border-white/10 bg-transparent"
+    title="Builder Pattern OOP ve FP karsilastirma diyagrami"
+    class="block h-[min(40vh,320px)] w-auto max-w-[min(90vw,720px)] rounded-lg border border-white/10 bg-transparent"
   ></object>
 </div>
 
+<div class="mt-4 grid grid-cols-3 gap-3 text-xs max-w-5xl">
+  <div class="p-3 rounded-lg bg-red-400/10 border border-red-300/20">
+    <div class="font-semibold text-red-300 mb-1">Mutable ara durum</div>
+    <div class="opacity-90 leading-snug">Builder’da fluent setter’lar (<code>requestedQuantity</code> vb.) ara alanları değiştirir.</div>
+  </div>
+  <div class="p-3 rounded-lg bg-red-400/10 border border-red-300/20">
+    <div class="font-semibold text-red-300 mb-1">İki katman</div>
+    <div class="opacity-90 leading-snug">Ürün immutable olsa da <em>kurulum süreci</em> mutasyon içerir.</div>
+  </div>
+  <div class="p-3 rounded-lg bg-red-400/10 border border-red-300/20">
+    <div class="font-semibold text-red-300 mb-1">Uzun build()</div>
+    <div class="opacity-90 leading-snug">Çok alanda doğrulama tek metotta şişebilir.</div>
+  </div>
+</div>
+
 <!--
-Konusmaci Notu:
-- Sol taraf: klasik builder yapisi ve boilerplate.
-- Sag taraf: record + with metotlariyla immutable akis.
-- Vurgu cumlesi: Records and Functional Builder.
+Sonraki slaytta kod — bu slaytta sadece problem + diyagram + mesaj.
 -->
 
 ---
 layout: two-cols
-layoutClass: gap-3
-class: text-xs builder-compare
+layoutClass: gap-3 items-start
+class: builder-pattern-code builder-pattern-two-cols
 ---
 
-## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Builder</span>
+<style>
+.builder-pattern-two-cols .slidev-code {
+  font-size: 12px !important;
+  line-height: 1.36 !important;
+  padding: 0.4rem 0.5rem !important;
+}
+.builder-pattern-two-cols h2 {
+  font-size: 0.95rem !important;
+  line-height: 1.2 !important;
+  margin: 0 0 0.35rem 0 !important;
+}
+</style>
+
+## <span class="text-red-400">Klasik OOP</span> — `StockReservationClassic`
 
 <v-click at="1">
 
 ```java
-// classic/builder/OrderClassic.java
-public class OrderClassic {
+// classic/builder/StockReservationClassic.java — yapı özeti
+public final class StockReservationClassic {
+
+    // private final alanlar (~20)
+
+    private StockReservationClassic(Builder builder) {
+        // builder alanlarından atama
+    }
+
+    // getter'lar …
+    @Override public String toString() { /* … */ }
+    @Override public boolean equals(Object o) { /* reservationId */ }
+    @Override public int hashCode() { return Objects.hash(reservationId); }
+
     public static class Builder {
-        private String id;
-        private String customerId;
-        private final List<String> items = new ArrayList<>();
+        private final String reservationId;
+        private final String warehouseId;
+        private final String sku;
+        private int requestedQuantity;
+        // reservedQuantity, unitCost, discountPercent, vatPercent, currencyCode, aisleCode, binCode, priorityBand
+        // grossWeightKg, netWeightKg, bestBeforeDate, batchNumber, lotSerial, hazmatCategory, originCountryCode, internalNotes
+
+        public Builder(String reservationId, String warehouseId, String sku) {
+            this.reservationId = reservationId;
+            this.warehouseId = warehouseId;
+            this.sku = sku;
+        }
+
+        public Builder requestedQuantity(int requestedQuantity) {
+            this.requestedQuantity = requestedQuantity;
+            return this;
+        }
+        // … fluent setter'lar
+
+        public StockReservationClassic build() {
+            // validasyonlar — çoğu kural bu metotta
+            if (reservationId == null || reservationId.isBlank())
+                throw new IllegalStateException("Rezervasyon ID zorunludur");
+            // …
+            return new StockReservationClassic(this);
+        }
     }
 }
 ```
 
 </v-click>
+
+::right::
+
+## <span class="text-green-400">Modern</span> — record kompozisyonu
+
 <v-click at="2">
 
 ```java
-// fluent adimlari
-public Builder id(String id) { this.id = id; return this; }
-public Builder customerId(String customerId) { this.customerId = customerId; return this; }
-public Builder addItem(String item) { this.items.add(item); return this; }
+// modern/builder/StockReservation.java — aggregate
+public record StockReservation(
+    ReservationIdentity identity,
+    QuantityAllocation quantities,
+    PricingTerms pricing,
+    StorageSlot storageSlot,
+    PhysicalWeights physicalWeights,
+    LotTraceability traceability,
+    ComplianceNotes compliance
+) {}
 ```
 
 </v-click>
 <v-click at="3">
 
 ```java
-// build() icinde zorunlu alan kontrolleri
-public OrderClassic build() {
-    if (id == null || id.isBlank()) throw new IllegalStateException("Order ID zorunludur");
-    if (customerId == null || customerId.isBlank()) throw new IllegalStateException("Customer ID zorunludur");
-    if (items.isEmpty()) throw new IllegalStateException("Siparis en az bir urun icermelidir");
-    return new OrderClassic(); // alanlar set edilir
+// Alt tiplerde validasyon (compact constructor) — örnek: ReservationIdentity
+public record ReservationIdentity(String reservationId, String warehouseId, String sku) {
+    public ReservationIdentity {
+        if (reservationId == null || reservationId.isBlank())
+            throw new IllegalArgumentException("Rezervasyon ID zorunludur");
+        // warehouseId, sku …
+    }
 }
 ```
 
@@ -377,109 +456,40 @@ public OrderClassic build() {
 <v-click at="4">
 
 ```java
-OrderClassic order = new OrderClassic.Builder()
-    .id("ORD-1001")
-    .customerId("CUST-42")
-    .addItem("MacBook Pro")
-    .build(); // opsiyonel alanlar sonradan set edilir
+// Kullanım: factory / defaults ile birleştirme
+var res = new StockReservation(
+    new ReservationIdentity("R-1", "WH-1", "SKU-A"),
+    new QuantityAllocation(100, 80),
+    new PricingTerms(new BigDecimal("10"), BigDecimal.ZERO, BigDecimal.ZERO, "TRY"),
+    StorageSlot.defaults(),
+    PhysicalWeights.none(),
+    LotTraceability.empty(),
+    ComplianceNotes.empty()
+);
 ```
 
 </v-click>
 
-<div class="mt-2 text-[11px] text-red-300 font-semibold">Neden onemli?</div>
-<div class="mt-1 grid grid-cols-3 gap-2 text-[11px]">
-  <div class="p-2 rounded bg-red-400/10 border border-red-300/25">
-    <div class="font-semibold text-red-300 mb-1">Ayni Zorunlu Alanlar</div>
-    <div class="opacity-90">id, customerId ve items olmadan build edilmez.</div>
-  </div>
-  <div class="p-2 rounded bg-red-400/10 border border-red-300/25">
-    <div class="font-semibold text-red-300 mb-1">Okunabilirlik</div>
-    <div class="opacity-90">Fluent API ile parametreler daha anlasilir olur.</div>
-  </div>
-  <div class="p-2 rounded bg-red-400/10 border border-red-300/25">
-    <div class="font-semibold text-red-300 mb-1">Esneklik</div>
-    <div class="opacity-90">Opsiyonel alanlar adim adim ve kontrollu kurulur.</div>
-  </div>
+<div v-click="5" class="text-[10px] opacity-80 leading-tight mt-1">
+  Özet: doğrulama <code>build()</code> yığınında değil; küçük record’ların ctor’unda. Aggregate yalnızca kompozisyon.
 </div>
 
-::right::
+<div v-click="6" class="mt-2 p-1.5 rounded bg-green-400/10 border border-green-300/20 text-[10px]">
+  <span class="text-green-300 font-semibold">Immutability:</span> alanlar sabit; eksik opsiyoneller <code>defaults()</code> / <code>empty()</code> ile doldurulur.
+</div>
 
-## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Builder</span>
-
-<v-click at="5">
-
-```java
-// modern/builder/Order.java
-public record Order(
-    String id,
-    String customerId,
-    List<String> items,
-    BigDecimal totalAmount,
-    String shippingAddress
-) {
-}
-```
-
-</v-click>
-<v-click at="6">
-
-```java
-// compact constructor ile validasyon + default
-public Order {
-    Objects.requireNonNull(id, "Order ID zorunlu");
-    Objects.requireNonNull(customerId, "Customer ID zorunlu");
-    if (items == null || items.isEmpty())
-        throw new IllegalArgumentException("En az bir urun gerekli");
-    items = List.copyOf(items);
-    if (totalAmount == null) totalAmount = BigDecimal.ZERO;
-}
-```
-
-</v-click>
-<v-click at="7">
-
-```java
-// immutable "builder-like" fluent adimlar
-public Order withShippingAddress(String shippingAddress) {
-    return new Order(id, customerId, items, totalAmount, shippingAddress);
-}
-public Order withTotalAmount(BigDecimal totalAmount) {
-    return new Order(id, customerId, items, totalAmount, shippingAddress);
-}
-```
-
-</v-click>
-<v-click at="8">
-
-```java
-Order order = new Order(
-    "ORD-1001", "CUST-42", List.of("MacBook Pro"), null, null
-).withShippingAddress("Istanbul")
- .withTotalAmount(new BigDecimal("125000"));
-```
-
-</v-click>
-
-<div class="mt-4 grid grid-cols-3 gap-2 text-xs">
-  <div class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
-    <div class="text-blue-300 font-semibold mb-1">Ayni Zorunlu Alanlar</div>
-    <div class="opacity-85">Classic ile ayni: id, customerId, items zorunlu.</div>
-  </div>
-  <div class="p-2 rounded bg-green-400/10 border border-green-300/25">
-    <div class="text-green-300 font-semibold mb-1">Immutable Record</div>
-    <div class="opacity-85">Zorunlu kontroller compact constructor ile tek yerde.</div>
-  </div>
-  <div class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
-    <div class="text-yellow-300 font-semibold mb-1">Daha Az Boilerplate</div>
-    <div class="opacity-85">Tekrarlayan kod azalir, bakim kolaylasir.</div>
-  </div>
+<div v-click="7" class="mt-1 p-1.5 rounded bg-sky-400/10 border border-sky-300/20 text-[10px]">
+  <span class="text-sky-300 font-semibold">Parçalı kurallar:</span> fiyat, miktar, uyumluluk ayrı dosyalarda test edilebilir; tek dev <code>build()</code> bloğu şişmez.
 </div>
 
 <!--
-Geçiş: "Behavioral ve structural gördük. Şimdi creational — Builder."
-Ana mesaj: Compact constructor doğrulamayı tek yere topluyor, atlama yolu yok.
-Vurgu: "Record her zaman Builder'ın yerini tutmaz" — dürüstlük güven inşa eder.
-Tempo: Bu slayt en fazla soru alır, 4.5 dakika ayır.
+Konusmaci akisi (7 tik):
+1) Klasik: urun + ic Builder, validasyon build()'te toplanir.
+2) Modern: ayni domain tek record ama 8 parca — "nesne" kompozisyon.
+3) Ornek alt tip: compact ctor ile kural nerede yasiyor goster.
+4) Tam kurulum: fabrikalarla opsiyonelleri kapat.
+5) Tek cumle mesaj.
+6-7) Iki vurgu: immutable + kurallarin dagilimi. "Record her yerde Builder degildir"i sozlu soyle.
 -->
 
 ---
@@ -570,12 +580,22 @@ service.processPayment(amount);
   </div>
 </div>
 
-
 ::right::
 
 ## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Strategy</span>
 
 <v-click at="5">
+
+```java
+// java.util.function paketinde
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+```
+
+</v-click>
+<v-click at="6">
 
 ```java
 // modern/strategy/PaymentService.java
@@ -584,7 +604,7 @@ Consumer<BigDecimal> creditCard = amount ->
 ```
 
 </v-click>
-<v-click at="6">
+<v-click at="7">
 
 ```java
 // modern/strategy/PaymentService.java
@@ -601,7 +621,7 @@ public static void processPayment(Consumer<BigDecimal> strategy, BigDecimal amou
 ```
 
 </v-click>
-<v-click at="7">
+<v-click at="8">
 
 ```java
 // StrategyDemo.modernApproach(...)
@@ -610,7 +630,7 @@ PaymentService.processPayment(cc, amount);
 ```
 
 </v-click>
-<v-click at="8">
+<v-click at="9">
 
 ```java
 // runtime'da farkli strateji secimi
@@ -621,16 +641,16 @@ PaymentService.processPayment(bank, amount);
 </v-click>
 
 <div class="mt-4 grid grid-cols-3 gap-2 text-xs">
-  <div v-click="9" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
+  <div v-click="10" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
     <div class="text-blue-300 font-semibold mb-1">Functional Interface</div>
     <div class="opacity-85">Strategy davranisini sinif yerine fonksiyonel bir tip (ornegin
       <code class="inline-block break-all">Consumer&lt;<wbr>BigDecimal<wbr>&gt;</code>) ile temsil ediyoruz.</div>
   </div>
-  <div v-click="10" class="p-2 rounded bg-green-400/10 border border-green-300/25">
+  <div v-click="11" class="p-2 rounded bg-green-400/10 border border-green-300/25">
     <div class="text-green-300 font-semibold mb-1">Lambda ve Tip Bagimliligi</div>
     <div class="opacity-85">Java'da lambda tek basina tip tasimaz; hedef tipi her zaman bir functional interface belirler.</div>
   </div>
-  <div v-click="11" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
+  <div v-click="12" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
     <div class="text-yellow-300 font-semibold mb-1">Daha Az Boilerplate</div>
     <div class="opacity-85">Daha az sınıf, daha kısa kod, daha kolay bakım ve test.</div>
   </div>
@@ -793,57 +813,117 @@ Geçiş: "Strategy behavioral'dı. Şimdi structural bir pattern — Decorator."
 Ana mesaj: andThen() ile dinamik kombinasyon, runtime'da karar.
 Vurgu: SVG'de sol taraf iç içe kutular, sağ taraf düz zincir. Görsel farkı söyle.
 Beklenen soru: "reduce(identity, andThen) ne yapıyor?" → "List üzerinden pipeline oluşturuyor, sıra önemli."
-
-Burada reduce öncesi büyük bir kod sonra da reducelu kod yazalım..
 -->
 
 ---
 
-# Imperative vs Declarative
+# 📋 Template Method Pattern
 
-<div class="grid grid-cols-2 gap-4 mt-4 text-xs">
-  <div v-click="1" class="p-3 rounded-lg bg-red-400/10 border border-red-300/25">
-    <div class="text-red-300 font-semibold mb-2">Imperative (Nasıl?)</div>
-    <pre class="text-[11px] leading-relaxed"><code>BigDecimal total = BigDecimal.ZERO;
-for (OrderItem item : items) {
-  if ("BOOK".equals(item.category())) {
-    total = total.add(item.price()
-      .multiply(BigDecimal.valueOf(item.quantity())));
-  }
-}</code></pre>
-  </div>
-
-  <div v-click="2" class="p-3 rounded-lg bg-green-400/10 border border-green-300/25">
-    <div class="text-green-300 font-semibold mb-2">Declarative (Ne?)</div>
-    <pre class="text-[11px] leading-relaxed"><code>BigDecimal total = items.stream()
-  .filter(item -> "BOOK".equals(item.category()))
-  .map(item -> item.price()
-    .multiply(BigDecimal.valueOf(item.quantity())))
-  .reduce(BigDecimal.ZERO, BigDecimal::add);</code></pre>
+<div class="mt-6 max-w-4xl">
+  <div class="text-lg opacity-85 leading-relaxed">
+    <span class="text-blue-400 font-semibold">Tanım:</span>
+    Template Method, bir algoritmanın iskeletini tanımlar; degisen adimlar alt siniflara
+    ya da fonksiyon parametrelerine birakilir.
   </div>
 </div>
 
-<div v-click="3" class="mt-4 grid grid-cols-3 gap-2 text-[11px]">
-  <div class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
-    <div class="text-blue-300 font-semibold mb-1">Mesaj 1</div>
-    <div class="opacity-85">Imperative yaklaşım adımları tek tek tarif eder.</div>
-  </div>
-  <div class="p-2 rounded bg-green-400/10 border border-green-300/25">
-    <div class="text-green-300 font-semibold mb-1">Mesaj 2</div>
-    <div class="opacity-85">Declarative yaklaşım niyeti öne çıkarır: filtrele, dönüştür, topla.</div>
-  </div>
-  <div class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
-    <div class="text-yellow-300 font-semibold mb-1">Mesaj 3</div>
-    <div class="opacity-85">Aynı probleme farklı düşünme biçimleriyle yaklaşırız.</div>
-  </div>
+<div class="mt-4 flex justify-center">
+  <object
+    :data="`/images/template_method_oop_vs_fp.svg?play=${$slidev.nav.currentPage}-${$slidev.nav.clicks}`"
+    type="image/svg+xml"
+    alt="Template Method OOP ve FP karsilastirma diyagrami"
+    class="h-[min(46vh,320px)] w-auto max-w-[92%] rounded-lg border border-white/10 bg-transparent"
+  ></object>
 </div>
 
-<!--
-Konusmaci Notu:
-- Bu bolum artik pattern degil, dusunce bicimi karsilastirmasi.
-- Imperative: adimlarin nasil yapilacagi anlatilir.
-- Declarative: ne istedigimiz ifade edilir.
--->
+---
+layout: two-cols
+layoutClass: gap-3
+class: text-xs
+---
+
+## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Template Method</span>
+
+<v-click at="1">
+
+```java
+// classic/templatemethod/AbstractOrderProcessor.java
+public abstract class AbstractOrderProcessor {
+    public final void process(Order order) {
+        validateOrder(order);
+        BigDecimal total = calculateTotal(order);
+        applyDiscount(order, total);
+        sendConfirmation(order);
+    }
+}
+```
+
+</v-click>
+<v-click at="2">
+
+```java
+// degisen adimlar alt sinifa birakilir
+protected abstract void validateOrder(Order order);
+protected abstract BigDecimal calculateTotal(Order order);
+protected abstract void applyDiscount(Order order, BigDecimal total);
+protected abstract void sendConfirmation(Order order);
+```
+
+</v-click>
+<v-click at="3">
+
+```java
+// TemplateMethodDemo.classicApproach(...)
+var order = new Order("ORD-001", "Ahmet Yilmaz", items);
+new StandardOrderProcessor().process(order);
+new PremiumOrderProcessor().process(order);
+```
+
+</v-click>
+
+::right::
+
+## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Template Method</span>
+
+<v-click at="4">
+
+```java
+// modern/templatemethod/OrderProcessor.java
+public record OrderProcessor(
+    Consumer<Order> validator,
+    Function<Order, BigDecimal> totalCalculator,
+    BiConsumer<Order, BigDecimal> discountApplier,
+    Consumer<Order> confirmationSender
+) {}
+```
+
+</v-click>
+<v-click at="5">
+
+```java
+public void process(Order order) {
+    validator.accept(order);
+    BigDecimal total = totalCalculator.apply(order);
+    discountApplier.accept(order, total);
+    confirmationSender.accept(order);
+}
+```
+
+</v-click>
+<v-click at="6">
+
+```java
+// TemplateMethodDemo.modernApproach(...)
+OrderProcessor.standard().process(order);
+OrderProcessor.premium().process(order);
+```
+
+</v-click>
+
+<div v-click="7" class="mt-3 p-2 rounded bg-blue-400/10 border border-blue-300/25 text-[11px]">
+  <div class="text-blue-300 font-semibold mb-1">Mesaj</div>
+  <div class="opacity-85">Modern Java'da ayni iskelet, inheritance yerine composition ile kurulabilir.</div>
+</div>
 
 ---
 
@@ -854,7 +934,7 @@ Konusmaci Notu:
 <div class="space-y-3">
   <div v-click="1" class="p-3 bg-gradient-to-r from-yellow-400/15 to-transparent rounded-lg border border-yellow-400/20">
     <div class="text-purple-400 font-bold mb-1 text-sm">Builder</div>
-    <div class="text-xs opacity-70">Verbose builder → Record + Consumer&lt;Builder&gt;</div>
+    <div class="text-xs opacity-70">Verbose builder → Immutability &amp; records</div>
   </div>
   <div v-click="2" class="p-3 bg-gradient-to-r from-blue-400/15 to-transparent rounded-lg border border-blue-400/20">
     <div class="text-yellow-400 font-bold mb-1 text-sm">Strategy</div>
@@ -864,21 +944,24 @@ Konusmaci Notu:
     <div class="text-blue-400 font-bold mb-1 text-sm">Decorator</div>
     <div class="text-xs opacity-70">Class hiyerarşisi → andThen() kompozisyonu</div>
   </div>
+  <div v-click="4" class="p-3 bg-gradient-to-r from-cyan-400/15 to-transparent rounded-lg border border-cyan-400/20">
+    <div class="text-cyan-400 font-bold mb-1 text-sm">Template Method</div>
+    <div class="text-xs opacity-70">Abstract class → Higher-order functions</div>
+  </div>
 </div>
 
 <div class="space-y-3">
-  <div v-click="4" class="p-4 bg-green-400/10 rounded-lg border border-green-400/20">
+  <div v-click="5" class="p-4 bg-green-400/10 rounded-lg border border-green-400/20">
     <div class="text-green-400 text-sm font-bold mb-2">Modern Java'nın Kazanımları</div>
     <ul class="text-xs opacity-80 space-y-1 list-none">
       <li class="flex items-start gap-2"><span class="text-green-400">✓</span> %60-80 daha az kod</li>
       <li class="flex items-start gap-2"><span class="text-green-400">✓</span> Daha yüksek okunabilirlik</li>
       <li class="flex items-start gap-2"><span class="text-green-400">✓</span> Daha kolay test edilebilirlik</li>
-      <li class="flex items-start gap-2"><span class="text-green-400">✓</span> Yüksek composability</li>
-      <li class="flex items-start gap-2"><span class="text-green-400">✓</span> Type-safety (exhaustive matching)</li>
+      <li class="flex items-start gap-2"><span class="text-green-400">✓</span> <span>Yüksek composability — küçük davranış parçalarını (lambda, <code>andThen</code>, HOF) birleştirerek yeni akışlar kurmak</span></li>
     </ul>
   </div>
 
-  <div v-click="5" class="p-4 bg-yellow-400/10 rounded-lg border border-yellow-400/20">
+  <div v-click="6" class="p-4 bg-yellow-400/10 rounded-lg border border-yellow-400/20">
     <div class="text-yellow-400 text-sm font-bold mb-2">Kullanılan Java Özellikleri</div>
     <div class="grid grid-cols-2 gap-1 text-xs opacity-80">
       <div>• Lambda Expressions</div>
@@ -888,7 +971,6 @@ Konusmaci Notu:
       <div>• Records</div>
       <div>• Sealed Classes</div>
       <div>• Pattern Matching</div>
-      <div>• Record Patterns</div>
     </div>
   </div>
 </div>
@@ -954,23 +1036,78 @@ class: text-sm
 </div>
 
 ---
-layout: center
-class: text-center
+layout: default
+class: '!pt-10 !pb-6'
 ---
 
-# OOP vs FP Karar Agaci
+<div class="text-xl font-bold mb-2 tracking-tight">OOP vs FP — karar çerçevesi</div>
 
-<div class="mt-2 flex items-center justify-center">
-  <img
-    src="/images/oop_vs_fp_decision_tree.svg"
-    alt="OOP ve FP karar agaci"
-    class="h-[min(66vh,460px)] w-auto max-w-[96%] rounded-lg border border-white/10 bg-transparent object-contain"
-  />
+<div class="max-w-6xl mx-auto space-y-2">
+
+<div class="grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-3 items-start">
+
+<div class="rounded-xl border border-white/12 bg-gradient-to-b from-white/[0.05] to-transparent p-2 shadow-[0_0_24px_rgba(0,0,0,0.3)]">
+<div class="text-[10px] uppercase tracking-wider text-white/45 font-semibold mb-1 text-center">Aynı domain — iki rol</div>
+<img src="/images/chess_oop_fp_diagram.svg" alt="Satranç: OOP varlıklar, FP kurallar" class="w-full h-auto max-h-[min(30vh,268px)] object-contain object-top mx-auto rounded-md" />
+<div class="mt-1.5 flex flex-wrap justify-center gap-1 text-[9px] leading-none">
+<span class="px-1.5 py-0.5 rounded-full bg-violet-500/20 text-violet-200/95 border border-violet-400/20">OOP → kimlik · durum</span>
+<span class="px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200/95 border border-emerald-400/20">FP → saf fonksiyon</span>
+</div>
+<div class="mt-2 rounded-lg border border-amber-400/35 bg-gradient-to-r from-amber-500/12 to-orange-500/8 px-2.5 py-2 text-center">
+<div class="text-amber-100 font-semibold text-xs leading-tight">
+OOP <span class="text-white/45 font-normal">“neyi”</span> · FP <span class="text-white/45 font-normal">“nasıl”</span>
+</div>
+<div class="text-[9px] text-white/55 mt-1 leading-snug">Doğru aracı doğru katmana vermek.</div>
+</div>
+</div>
+
+<div class="space-y-2 text-[11px] leading-tight md:text-xs md:leading-snug [&_code]:text-[10px] [&_code]:px-1 [&_code]:py-0 [&_code]:rounded [&_code]:bg-white/12 [&_code]:text-white/90">
+
+<div class="rounded-lg border border-violet-400/30 bg-violet-950/35 p-2.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="text-base opacity-90" aria-hidden="true">♟</span>
+<span class="font-bold text-violet-200/95 text-xs">OOP — kimlik ve durum</span>
+</div>
+<ul class="list-none space-y-1 text-white/78 pl-0.5">
+<li class="flex gap-1.5"><span class="text-violet-400 shrink-0">▸</span><span>Taşlar <em>nesnedir</em>; konum, geçmiş, “rok oldu mu?” gibi <strong class="text-white/88">durum</strong> vardır.</span></li>
+<li class="flex gap-1.5"><span class="text-violet-400 shrink-0">▸</span><span><code class="font-mono">King</code>, <code class="font-mono">Rook</code>, <code class="font-mono">Pawn</code>… <code class="font-mono">Piece</code> özelleşmesi — kalıtım burada doğal.</span></li>
+<li class="flex gap-1.5"><span class="text-violet-400 shrink-0">▸</span><span>OOP: <strong class="text-white/88">kimlik ve durum</strong>.</span></li>
+</ul>
+</div>
+
+<div class="rounded-lg border border-emerald-400/30 bg-emerald-950/30 p-2.5">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="text-base font-mono text-emerald-300/90 leading-none" aria-hidden="true">λ</span>
+<span class="font-bold text-emerald-200/95 text-xs">FP — kurallar ve dönüşüm</span>
+</div>
+<ul class="list-none space-y-1 text-white/78 pl-0.5">
+<li class="flex gap-1.5"><span class="text-emerald-400 shrink-0">▸</span><span>Hamle, şah, mat: <strong class="text-white/88">evrensel</strong> kurallar (kişisel tercih değil).</span></li>
+<li class="flex gap-1.5"><span class="text-emerald-400 shrink-0">▸</span><span class="min-w-0"><code class="font-mono">legalMoves(…)</code>, <code class="font-mono">isInCheck(…)</code> — aynı girdi, aynı sonuç; <strong class="text-white/88">saf, yan etkisiz</strong>.</span></li>
+<li class="flex gap-1.5"><span class="text-emerald-400 shrink-0">▸</span><span>FP: <strong class="text-white/88">nasıl hesaplandığı</strong>.</span></li>
+</ul>
+</div>
+
+<div class="rounded-lg border border-sky-400/25 bg-sky-950/25 p-2.5">
+<div class="font-bold text-sky-200 text-xs mb-1">Birlikte</div>
+<ul class="list-none space-y-1 text-white/78 pl-0.5">
+<li class="flex gap-1.5"><span class="text-sky-400 shrink-0">▸</span><span><code class="font-mono">King</code> konumu bilir; şah kontrolü saf fonksiyonda.</span></li>
+<li class="flex gap-1.5"><span class="text-sky-400 shrink-0">▸</span><span><code class="font-mono">applyMove</code> yeni tahta döndürür → minimax için durumlar <strong class="text-white/88">bağımsız</strong>.</span></li>
+</ul>
+</div>
+
+</div>
+</div>
+
 </div>
 
 <!--
 Konusmaci Notu:
-- Bu slayt "Ne zaman hangi yaklasim?" slaydinin ozetidir; karar agaci olarak anlat.
+- Satranc metaforu (varliklar vs kurallar) slaytta yok; giris cumlesi olarak sen anlat.
+- Buyuk resim: Yazilimdaki secimlerin amaci "kodda bir problem cozmek" degil; isin, kullanicinin veya orgutun
+  dunyadaki (gercek) problemini cozmek. Karar agaci da OOP/FP de bu hedefe hizmet eden araclardir; stil savasi icin degil.
+- Iki yaklasim da gerekir: Ayni urunde domain ve surdurulebilirlik icin OOP, veri akisi ve ifade gucu icin FP
+  birlikte dusunulur; "sadece biri" degil, problem turune gore ikisinin dengesi.
+- Bu slayt "Ne zaman hangi yaklasim?"nin ozetidir; satranç diyagrami karar cercevesini somutlastirir.
 - Klasik OOP tercih:
   * Karmasik state yonetimi gerekiyorsa
   * Cok sayida field/method ve kalitim hiyerarsisi kritikse
@@ -992,7 +1129,37 @@ layout: center
 class: text-center
 ---
 
-<div class="h-full w-full flex flex-col items-center justify-center text-center px-4">
+<div class="max-w-3xl mx-auto px-6 py-3 space-y-8">
+  <div>
+    <div class="text-left border-l-4 border-orange-400/50 pl-6 py-2 space-y-2 text-lg md:text-xl text-white/90 leading-relaxed">
+      <p>Don't be a functional programmer.</p>
+      <p>Don't be an object-oriented programmer.</p>
+      <p class="text-yellow-300 font-semibold not-italic">Be a better programmer.</p>
+    </div>
+    <div class="mt-6 text-sm text-orange-300">Brian Goetz</div>
+    <div class="text-xs opacity-60 mt-1">
+      <cite>FP vs OO: Choose Two</cite>
+    </div>
+  </div>
+
+  <div class="text-left border-l-4 border-yellow-400/45 pl-4 pt-1">
+    <p class="text-sm md:text-base leading-relaxed text-white/88 italic">
+      Any fool can write code that a computer can understand. Good programmers write
+      code that humans can understand.
+    </p>
+    <div class="mt-2 text-xs text-yellow-400">Martin Fowler</div>
+    <div class="text-[11px] opacity-55 mt-0.5">
+      <cite>Refactoring: Improving the Design of Existing Code</cite>
+    </div>
+  </div>
+</div>
+
+---
+layout: center
+class: text-center
+---
+
+<div class="h-full w-full flex flex-col items-center justify-center text-center px-4 py-3">
   <div class="text-4xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-2">
     Teşekkürler!
   </div>
