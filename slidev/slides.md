@@ -1,6 +1,6 @@
 ---
 theme: default
-background: "#0d1117"
+background: '#0d1117'
 class: text-white
 highlighter: shiki
 lineNumbers: false
@@ -31,7 +31,7 @@ mdc: true
 </div>
 
 <!--
-"Herkese Günaydın, Javaday İstanbulda günün ilk sunumunda bolca javayı konuşacağımız bir sunuma hoşgeldiniz." gibi bir giriş yapalım.
+"Herkese Günaydın, Javaday İstanbulda bolca javayı konuştuğumuz bir günde sırada modern java ile design patternlerin fonksiyonel evrimi adında benim yapacağım sunuma hoşgeldiniz.
 -->
 
 ---
@@ -148,73 +148,104 @@ mdc: true
 </div>
 
 <!--
-Buraya da QR Ekleyelim, kaçıran vs olursa diye.
-
-- Genel bir tanım yapalım. FP İlke ve özelliklerine değinerek OOP prensipleriyle kıyaslayacağız.
-
-- Özet & Best Practices kısmını düzenleyeceğiz.
+sunumla iligli genel bilgiler, çok detaya girme.
 -->
 
 ---
+layout: default
+class: '!pt-6 !pb-3 text-[10px] leading-tight'
+---
 
-# Java 8 → Java 26
+<div class="max-w-[100%] mx-auto space-y-1">
 
-## Fonksiyonel Programlama Yolculuğu
-
-<div class="grid grid-cols-3 gap-2 mt-2 px-1">
-
-<div v-click="1" class="p-2 bg-gradient-to-br from-blue-400/20 to-blue-400/5 rounded-lg border border-blue-400/20">
-  <div class="text-blue-400 text-sm font-bold mb-1">Java 8 <span class="text-xs opacity-60">(2014)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Lambda Expressions & Functional Interfaces</div>
-  <div class="text-[11px] opacity-70 leading-tight">FP yaklaşımının başlangıcı</div>
+<div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-0.5 mb-0.5">
+<div>
+<div class="text-base sm:text-lg font-bold tracking-tight">Java 8 → Java 26</div>
+<div class="text-[10px] text-white/55 font-medium">Fonksiyonel programlama yolculuğu — özet harita</div>
+</div>
+<div class="flex flex-wrap gap-x-2 gap-y-0.5 text-[8px] text-white/58">
+<span class="inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span> FP altyapısı</span>
+<span class="inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span> Veri modelleme</span>
+<span class="inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0"></span> Tip &amp; pattern matching</span>
+<span class="inline-flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span> Son sürümler</span>
+</div>
 </div>
 
-<div v-click="2" class="p-2 bg-gradient-to-br from-blue-400/20 to-blue-400/5 rounded-lg border border-blue-400/20">
-  <div class="text-blue-400 text-sm font-bold mb-1">Java 8 <span class="text-xs opacity-60">(2014)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Stream API & Method References</div>
-  <div class="text-[11px] opacity-70 leading-tight">Deklaratif veri işleme</div>
+<div v-click="1" class="space-y-1">
+<div class="flex items-center gap-2 my-1">
+<div class="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
+<span class="text-[8px] font-bold uppercase tracking-widest text-emerald-300/90 whitespace-nowrap">2014 — Kırılma noktası</span>
+<div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
+</div>
+<div class="grid grid-cols-3 gap-1">
+<div class="rounded-md border border-emerald-400/35 bg-emerald-950/40 p-1.5 min-h-0">
+<div class="text-[8px] text-emerald-300/85 font-semibold mb-0.5">Java 8 · 2014</div>
+<div class="text-[10px] font-bold text-emerald-100 leading-tight mb-0.5">Lambda + Functional Interfaces</div>
+<p class="text-[9px] text-white/72 leading-tight">Davranış birinci sınıf; <code class="text-[8px] bg-white/10 px-0.5 rounded">Consumer</code>, <code class="text-[8px] bg-white/10 px-0.5 rounded">Function</code>, <code class="text-[8px] bg-white/10 px-0.5 rounded">Predicate</code>.</p>
+<div class="mt-1"><span class="text-[7px] px-1 py-0.5 rounded bg-emerald-500/25 text-emerald-200 border border-emerald-400/20">FP kapısı açıldı</span></div>
+</div>
+<div class="rounded-md border border-emerald-400/35 bg-emerald-950/40 p-1.5 min-h-0">
+<div class="text-[8px] text-emerald-300/85 font-semibold mb-0.5">Java 8 · 2014</div>
+<div class="text-[10px] font-bold text-emerald-100 leading-tight mb-0.5">Stream API</div>
+<p class="text-[9px] text-white/72 leading-tight"><code class="text-[8px] bg-white/10 px-0.5 rounded">filter</code>→<code class="text-[8px] bg-white/10 px-0.5 rounded">map</code>→<code class="text-[8px] bg-white/10 px-0.5 rounded">reduce</code>; lazy boru hatları.</p>
+<div class="mt-1"><span class="text-[7px] px-1 py-0.5 rounded bg-emerald-500/25 text-emerald-200 border border-emerald-400/20">Iterator → Stream</span></div>
+</div>
+<div class="rounded-md border border-emerald-400/35 bg-emerald-950/40 p-1.5 min-h-0">
+<div class="text-[8px] text-emerald-300/85 font-semibold mb-0.5">Java 8 · 2014</div>
+<div class="text-[10px] font-bold text-emerald-100 leading-tight mb-0.5">Optional + Default Methods</div>
+<p class="text-[9px] text-white/72 leading-tight">Null güvenliği; arayüzlere davranış — API’yi kırmadan evrim.</p>
+<div class="mt-1"><span class="text-[7px] px-1 py-0.5 rounded bg-emerald-500/25 text-emerald-200 border border-emerald-400/20">API evrimi</span></div>
+</div>
+</div>
 </div>
 
-<div v-click="3" class="p-2 bg-gradient-to-br from-blue-400/20 to-blue-400/5 rounded-lg border border-blue-400/20">
-  <div class="text-blue-400 text-sm font-bold mb-1">Java 8 <span class="text-xs opacity-60">(2014)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Optional & Default Methods</div>
-  <div class="text-[11px] opacity-70 leading-tight">Null safety ve davranış ekleme</div>
+<div v-click="2" class="space-y-1">
+<div class="flex items-center gap-2 my-1">
+<div class="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
+<span class="text-[8px] font-bold uppercase tracking-widest text-sky-300/90 whitespace-nowrap text-center">2018–2023 — Veri &amp; tip sistemi</span>
+<div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
+</div>
+<div class="grid grid-cols-3 gap-1">
+<div class="rounded-md border border-sky-400/35 bg-sky-950/35 p-1.5 min-h-0">
+<div class="text-[8px] text-sky-300/85 font-semibold mb-0.5">Records · 14→16</div>
+<div class="text-[10px] font-bold text-sky-100 leading-tight mb-0.5">Records</div>
+<p class="text-[9px] text-white/72 leading-tight">Değişmez taşıyıcılar; <code class="text-[8px] bg-white/10 px-0.5 rounded">equals/hashCode/toString</code>.</p>
+<div class="mt-1"><span class="text-[7px] px-1 py-0.5 rounded bg-sky-500/25 text-sky-200 border border-sky-400/20">Veri ≠ davranış</span></div>
+</div>
+<div class="rounded-md border border-violet-400/35 bg-violet-950/35 p-1.5 min-h-0">
+<div class="text-[8px] text-violet-300/85 font-semibold mb-0.5">Sealed · 17 LTS</div>
+<div class="text-[10px] font-bold text-violet-100 leading-tight mb-0.5">Sealed Classes</div>
+<p class="text-[9px] text-white/72 leading-tight">Kontrollü hiyerarşi; derleyici tüm alt tipleri bilir.</p>
+<div class="mt-1"><span class="text-[7px] px-1 py-0.5 rounded bg-violet-500/25 text-violet-200 border border-violet-400/20">ADT</span></div>
+</div>
+<div class="rounded-md border border-violet-400/35 bg-violet-950/35 p-1.5 min-h-0">
+<div class="text-[8px] text-violet-300/85 font-semibold mb-0.5">Java 21 LTS</div>
+<div class="text-[10px] font-bold text-violet-100 leading-tight mb-0.5">Switch + record patterns</div>
+<p class="text-[9px] text-white/72 leading-tight">Eksiksiz dallanma; okunabilir <code class="text-[8px] bg-white/10 px-0.5 rounded">switch</code>.</p>
+<div class="mt-1"><span class="text-[7px] px-1 py-0.5 rounded bg-violet-500/25 text-violet-200 border border-violet-400/20">Pattern matching</span></div>
+</div>
+</div>
 </div>
 
-<div v-click="4" class="p-2 bg-gradient-to-br from-purple-400/20 to-purple-400/5 rounded-lg border border-purple-400/20">
-  <div class="text-purple-400 text-sm font-bold mb-1">Java 10 <span class="text-xs opacity-60">(2018)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Local Variable Type Inference (var)</div>
-  <div class="text-[11px] opacity-70 leading-tight">Lambda parametresinde var (Java 11)</div>
+<div v-click="3" class="space-y-1">
+<div class="flex items-center gap-2 my-1">
+<div class="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></div>
+<span class="text-[8px] font-bold uppercase tracking-widest text-amber-300/90 whitespace-nowrap text-center">Java 24–26 · FP ile öne çıkanlar</span>
+<div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
 </div>
-
-<div v-click="5" class="p-2 bg-gradient-to-br from-yellow-400/20 to-yellow-400/5 rounded-lg border border-yellow-400/20">
-  <div class="text-yellow-400 text-sm font-bold mb-1">Java 14 <span class="text-xs opacity-60">(2020)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Records</div>
-  <div class="text-[11px] opacity-70 leading-tight">Immutable data, daha az boilerplate</div>
+<div class="grid grid-cols-2 gap-1.5 max-w-3xl mx-auto">
+<div class="rounded-md border border-emerald-400/30 bg-emerald-950/25 p-1.5 min-h-0">
+<div class="text-[8px] text-emerald-200/80 font-mono mb-0.5">JEP 485 · Java 24</div>
+<div class="text-[10px] font-bold text-emerald-100 leading-tight">Stream Gatherers</div>
+<p class="text-[9px] text-white/65 mt-0.5 leading-tight">Stream’e özelleştirilebilir ara <code class="text-[8px] bg-white/10 px-0.5 rounded">gather</code> adımları — <code class="text-[8px] bg-white/10 px-0.5 rounded">map/filter</code> ötesi FP tarzı boru hatları.</p>
+<div class="mt-1"><span class="text-[7px] px-1 py-0.5 rounded bg-emerald-500/25 text-emerald-200 border border-emerald-400/20">Stream + kompozisyon</span></div>
 </div>
-
-<div v-click="6" class="p-2 bg-gradient-to-br from-yellow-400/20 to-yellow-400/5 rounded-lg border border-yellow-400/20">
-  <div class="text-yellow-400 text-sm font-bold mb-1">Java 16 <span class="text-xs opacity-60">(2021)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Pattern Matching for instanceof</div>
-  <div class="text-[11px] opacity-70 leading-tight">Type-safe cast işlemleri</div>
+<div class="rounded-md border border-amber-400/30 bg-amber-950/25 p-1.5 min-h-0">
+<div class="text-[8px] text-amber-200/80 font-mono mb-0.5">JEP 500 · Java 26</div>
+<div class="text-[10px] font-bold text-amber-100 leading-tight">Make final mean final</div>
+<p class="text-[9px] text-white/65 mt-0.5 leading-tight">Final alanlar reflection’a karşı gerçekten değişmez.</p>
 </div>
-
-<div v-click="7" class="p-2 bg-gradient-to-br from-orange-400/20 to-orange-400/5 rounded-lg border border-orange-400/20">
-  <div class="text-orange-400 text-sm font-bold mb-1">Java 17 <span class="text-xs opacity-60">(2021 LTS)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Sealed Classes & Interfaces</div>
-  <div class="text-[11px] opacity-70 leading-tight">Kontrollü kalıtım, exhaustive matching</div>
 </div>
-
-<div v-click="8" class="p-2 bg-gradient-to-br from-red-400/20 to-red-400/5 rounded-lg border border-red-400/20">
-  <div class="text-red-400 text-sm font-bold mb-1">Java 21 <span class="text-xs opacity-60">(2023 LTS)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Switch & Record Pattern Matching</div>
-  <div class="text-[11px] opacity-70 leading-tight">Daha güçlü switch ve deconstruction</div>
-</div>
-
-<div v-click="9" class="p-2 bg-gradient-to-br from-green-400/20 to-green-400/5 rounded-lg border border-green-400/20">
-  <div class="text-green-400 text-sm font-bold mb-1">Java 24/25 <span class="text-xs opacity-60">(2025)</span></div>
-  <div class="text-xs font-semibold mb-1 leading-tight">Gatherers ve modern dil iyileştirmeleri</div>
-  <div class="text-[11px] opacity-70 leading-tight">Stream pipeline'larında daha esnek toplama</div>
 </div>
 
 </div>
