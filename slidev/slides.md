@@ -46,7 +46,7 @@ mdc: true
       class="w-28 h-28 rounded-full mx-auto mb-3 border-2 border-blue-200/50 shadow-[0_0_18px_rgba(147,197,253,0.35)] object-cover"
     />
     <div class="text-blue-100 font-bold text-lg">Ümit Köse</div>
-    <div class="text-xs opacity-75 mt-1">Senior Software Developer</div>
+    <div class="text-xs opacity-75 mt-1">Software Developer</div>
     <div class="text-xs opacity-70 mt-1">Türksat Uydu Haberleşme Kablo TV ve İşletme A.Ş.</div>
   </div>
 
