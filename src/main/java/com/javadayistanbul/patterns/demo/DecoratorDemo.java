@@ -1,13 +1,10 @@
 package com.javadayistanbul.patterns.demo;
 
-import com.javadayistanbul.patterns.classic.decorator.BasicOrderService;
-import com.javadayistanbul.patterns.classic.decorator.ExpressShippingDecorator;
-import com.javadayistanbul.patterns.classic.decorator.GiftWrapDecorator;
-import com.javadayistanbul.patterns.classic.decorator.InsuranceDecorator;
-import com.javadayistanbul.patterns.classic.decorator.OrderService;
+import com.javadayistanbul.patterns.classic.decorator.*;
 import com.javadayistanbul.patterns.modern.decorator.OrderEnhancer;
 
 import java.math.BigDecimal;
+import java.util.function.UnaryOperator;
 
 public class DecoratorDemo {
 
@@ -25,8 +22,11 @@ public class DecoratorDemo {
 
     private static void classicApproach() {
         System.out.println("--- Klasik Yaklasim (Wrapper Classes) ---");
-        System.out.println("  [6 dosya: 1 interface + 1 base + 3 decorator + 1 Order]");
+        System.out.println("  [7 dosya: 1 interface + 1 soyut decorator + 1 concrete + 3 decorator + 1 Order]");
         System.out.println("  Her yeni ozellik icin yeni bir wrapper sinifi!");
+        System.out.println();
+        System.out.println("  Not: new'ler dis->ic (Express en dis); process() ic->dis calisir:");
+        System.out.println("       BasicOrderService -> GiftWrap -> Insurance -> ExpressShipping");
         System.out.println();
 
         OrderService service = new ExpressShippingDecorator(
@@ -54,6 +54,7 @@ public class DecoratorDemo {
         var enhance = OrderEnhancer.giftWrap()
                 .andThen(OrderEnhancer.insurance())
                 .andThen(OrderEnhancer.expressShipping());
+
 
         var order = new com.javadayistanbul.patterns.modern.decorator.Order(
                 "ORD-001", new BigDecimal("200"));

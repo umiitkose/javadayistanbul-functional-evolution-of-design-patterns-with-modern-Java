@@ -62,7 +62,7 @@ src/main/java/com/javadayistanbul/patterns/
 │   ├── strategy/              # 5 dosya: interface + 3 concrete + service
 │   ├── builder/               # 2 dosya: POJO + builder
 │   ├── templatemethod/        # 4 dosya: abstract + 2 concrete + orderClassic
-│   ├── decorator/             # 6 dosya: interface + base + 3 decorator + orderClassic
+│   ├── decorator/             # 7 dosya: interface + soyut decorator + concrete + 3 decorator + orderClassic
 │   ├── visitor/               # 8 dosya: item interface + 3 item + visitor interface + 2 visitor
 │   ├── observer/              # 5 dosya: event + listener interface + 2 listener + manager
 │   ├── factory/               # 6 dosya: enum + interface + 3 concrete + factory

@@ -31,8 +31,6 @@ public class BuilderDemo {
                 .addItem("Design Patterns")
                 .build();
 
-        order.setShippingAddress("Istanbul, Kadikoy");
-        order.setTotalAmount(new BigDecimal("149.90"));
 
         System.out.println("  Siparis: " + order);
     }
