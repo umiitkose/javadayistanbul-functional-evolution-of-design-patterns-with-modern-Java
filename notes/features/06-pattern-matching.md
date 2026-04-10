@@ -29,7 +29,7 @@ Java'da Pattern Matching — instanceof, switch, record patterns ve exhaustivene
 ```java
 // instanceof pattern (Java 16+)
 if (obj instanceof String s) {
-    System.out.println(s.toUpperCase());
+    IO.println(s.toUpperCase());
 }
 
 // switch pattern (Java 21+)

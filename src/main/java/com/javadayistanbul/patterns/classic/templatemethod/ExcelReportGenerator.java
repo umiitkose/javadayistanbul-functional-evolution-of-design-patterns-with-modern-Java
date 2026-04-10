@@ -7,7 +7,7 @@ public class ExcelReportGenerator extends AbstractReportGenerator {
         if (data.getColumns().isEmpty()) {
             throw new IllegalArgumentException("Excel raporu icin en az bir kolon gerekli");
         }
-        System.out.println("  [Excel] Veri dogrulandi: " + data.getColumns().size() + " kolon");
+        IO.println("  [Excel] Veri dogrulandi: " + data.getColumns().size() + " kolon");
     }
 
     @Override
@@ -17,20 +17,20 @@ public class ExcelReportGenerator extends AbstractReportGenerator {
         for (var row : data.getRows()) {
             sb.append(String.join(";", row)).append("\n");
         }
-        System.out.println("  [Excel] Hucre formati olusturuldu");
+        IO.println("  [Excel] Hucre formati olusturuldu");
         return sb.toString();
     }
 
     @Override
     protected String renderOutput(String formatted, String title) {
         String output = "EXCEL_WORKBOOK[" + title + "]:\n" + formatted;
-        System.out.println("  [Excel] Calisma sayfasi olusturuldu");
+        IO.println("  [Excel] Calisma sayfasi olusturuldu");
         return output;
     }
 
     @Override
     protected void sendReport(String output) {
-        System.out.println("  [Excel] Dosyaya yazildi: " + "rapor.xlsx");
-        System.out.println("  [Excel] Paylasim linki olusturuldu");
+        IO.println("  [Excel] Dosyaya yazildi: " + "rapor.xlsx");
+        IO.println("  [Excel] Paylasim linki olusturuldu");
     }
 }

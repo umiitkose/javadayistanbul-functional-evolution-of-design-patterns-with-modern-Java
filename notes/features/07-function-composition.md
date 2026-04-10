@@ -37,8 +37,8 @@ UnaryOperator<Order> pipeline = giftWrap().andThen(insurance()).andThen(expressS
 Predicate<Order> valid = hasStock.and(hasValidAmount).and(hasValidAddress);
 
 // Consumer: andThen()
-Consumer<String> log = s -> System.out.println(s);
-Consumer<String> upper = log.andThen(s -> System.out.println(s.toUpperCase()));
+Consumer<String> log = s -> IO.println(s);
+Consumer<String> upper = log.andThen(s -> IO.println(s.toUpperCase()));
 ```
 
 ---

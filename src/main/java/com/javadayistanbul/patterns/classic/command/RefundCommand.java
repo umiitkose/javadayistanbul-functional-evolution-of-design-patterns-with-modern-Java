@@ -13,6 +13,6 @@ public class RefundCommand implements OrderCommand {
 
     @Override
     public void execute() {
-        System.out.println("    Iade islemi yapildi: #" + orderId + " | Tutar: " + amount + " TL");
+        IO.println("    Iade islemi yapildi: #" + orderId + " | Tutar: " + amount + " TL");
     }
 }

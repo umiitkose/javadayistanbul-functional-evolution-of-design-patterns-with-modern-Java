@@ -7,7 +7,7 @@ public class PdfReportGenerator extends AbstractReportGenerator {
         if (data.getRows().isEmpty()) {
             throw new IllegalArgumentException("PDF raporu icin en az bir satir gerekli");
         }
-        System.out.println("  [PDF] Veri dogrulandi: " + data.getRows().size() + " satir");
+        IO.println("  [PDF] Veri dogrulandi: " + data.getRows().size() + " satir");
     }
 
     @Override
@@ -18,20 +18,20 @@ public class PdfReportGenerator extends AbstractReportGenerator {
         for (var row : data.getRows()) {
             sb.append(String.join(" | ", row)).append("\n");
         }
-        System.out.println("  [PDF] Tablo formati olusturuldu");
+        IO.println("  [PDF] Tablo formati olusturuldu");
         return sb.toString();
     }
 
     @Override
     protected String renderOutput(String formatted, String title) {
         String output = "=== PDF: " + title + " ===\n" + formatted;
-        System.out.println("  [PDF] PDF sayfasi olusturuldu");
+        IO.println("  [PDF] PDF sayfasi olusturuldu");
         return output;
     }
 
     @Override
     protected void sendReport(String output) {
-        System.out.println("  [PDF] Dosyaya yazildi: " + "rapor.pdf");
-        System.out.println("  [PDF] Kullaniciya e-posta ile gonderildi");
+        IO.println("  [PDF] Dosyaya yazildi: " + "rapor.pdf");
+        IO.println("  [PDF] Kullaniciya e-posta ile gonderildi");
     }
 }

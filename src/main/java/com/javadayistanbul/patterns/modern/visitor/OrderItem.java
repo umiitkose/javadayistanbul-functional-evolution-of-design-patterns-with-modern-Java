@@ -3,7 +3,7 @@ package com.javadayistanbul.patterns.modern.visitor;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public sealed interface OrderItem {
+public sealed interface OrderItem permits OrderItem.BookItem, OrderItem.ElectronicsItem, OrderItem.FoodItem {
 
     String name();
     BigDecimal price();
@@ -22,17 +22,17 @@ public sealed interface OrderItem {
         return switch (item) {
             case BookItem b -> {
                 var tax = b.price().multiply(new BigDecimal("0.08"));
-                System.out.println("    Kitap KDV (%8): " + b.name() + " -> " + tax + " TL");
+                IO.println("    Kitap KDV (%8): " + b.name() + " -> " + tax + " TL");
                 yield tax;
             }
             case ElectronicsItem e -> {
                 var tax = e.price().multiply(new BigDecimal("0.18"));
-                System.out.println("    Elektronik KDV (%18): " + e.name() + " -> " + tax + " TL");
+                IO.println("    Elektronik KDV (%18): " + e.name() + " -> " + tax + " TL");
                 yield tax;
             }
             case FoodItem f -> {
                 var tax = f.price().multiply(new BigDecimal("0.01"));
-                System.out.println("    Gida KDV (%1): " + f.name() + " -> " + tax + " TL");
+                IO.println("    Gida KDV (%1): " + f.name() + " -> " + tax + " TL");
                 yield tax;
             }
         };
@@ -42,16 +42,16 @@ public sealed interface OrderItem {
         return switch (item) {
             case BookItem b -> {
                 var discount = b.price().multiply(new BigDecimal("0.15"));
-                System.out.println("    Kitap indirimi (%15): " + b.name() + " -> -" + discount + " TL");
+                IO.println("    Kitap indirimi (%15): " + b.name() + " -> -" + discount + " TL");
                 yield discount;
             }
             case ElectronicsItem e -> {
                 var discount = e.price().multiply(new BigDecimal("0.10"));
-                System.out.println("    Elektronik indirimi (%10): " + e.name() + " -> -" + discount + " TL");
+                IO.println("    Elektronik indirimi (%10): " + e.name() + " -> -" + discount + " TL");
                 yield discount;
             }
             case FoodItem f -> {
-                System.out.println("    Gida indirimi yok: " + f.name());
+                IO.println("    Gida indirimi yok: " + f.name());
                 yield BigDecimal.ZERO;
             }
         };

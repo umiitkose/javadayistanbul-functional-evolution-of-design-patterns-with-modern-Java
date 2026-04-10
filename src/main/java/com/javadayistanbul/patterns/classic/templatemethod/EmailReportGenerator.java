@@ -13,7 +13,7 @@ public class EmailReportGenerator extends AbstractReportGenerator {
         if (recipient == null || recipient.isBlank()) {
             throw new IllegalArgumentException("E-posta alicisi bos olamaz");
         }
-        System.out.println("  [Email] Veri dogrulandi, alici: " + recipient);
+        IO.println("  [Email] Veri dogrulandi, alici: " + recipient);
     }
 
     @Override
@@ -27,19 +27,19 @@ public class EmailReportGenerator extends AbstractReportGenerator {
             }
             sb.append("\n");
         }
-        System.out.println("  [Email] Duz metin formati olusturuldu");
+        IO.println("  [Email] Duz metin formati olusturuldu");
         return sb.toString();
     }
 
     @Override
     protected String renderOutput(String formatted, String title) {
         String output = "Konu: " + title + "\n\n" + formatted;
-        System.out.println("  [Email] E-posta govdesi olusturuldu");
+        IO.println("  [Email] E-posta govdesi olusturuldu");
         return output;
     }
 
     @Override
     protected void sendReport(String output) {
-        System.out.println("  [Email] Gonderildi -> " + recipient);
+        IO.println("  [Email] Gonderildi -> " + recipient);
     }
 }

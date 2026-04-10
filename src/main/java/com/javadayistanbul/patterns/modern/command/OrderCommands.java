@@ -9,15 +9,15 @@ public class OrderCommands {
     private final List<Runnable> history = new ArrayList<>();
 
     public static Runnable createOrder(String orderId, String customerName) {
-        return () -> System.out.println("    Siparis olusturuldu: #" + orderId + " | Musteri: " + customerName);
+        return () -> IO.println("    Siparis olusturuldu: #" + orderId + " | Musteri: " + customerName);
     }
 
     public static Runnable cancelOrder(String orderId, String reason) {
-        return () -> System.out.println("    Siparis iptal edildi: #" + orderId + " | Sebep: " + reason);
+        return () -> IO.println("    Siparis iptal edildi: #" + orderId + " | Sebep: " + reason);
     }
 
     public static Runnable refund(String orderId, BigDecimal amount) {
-        return () -> System.out.println("    Iade islemi yapildi: #" + orderId + " | Tutar: " + amount + " TL");
+        return () -> IO.println("    Iade islemi yapildi: #" + orderId + " | Tutar: " + amount + " TL");
     }
 
     public void execute(Runnable command) {

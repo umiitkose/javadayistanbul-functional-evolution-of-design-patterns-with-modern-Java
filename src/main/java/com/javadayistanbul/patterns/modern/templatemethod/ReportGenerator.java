@@ -34,21 +34,21 @@ public record ReportGenerator(
                 data -> {
                     if (data.rows().isEmpty())
                         throw new IllegalArgumentException("PDF icin en az bir satir gerekli");
-                    System.out.println("  [PDF] Dogrulandi: " + data.rows().size() + " satir");
+                    IO.println("  [PDF] Dogrulandi: " + data.rows().size() + " satir");
                 },
                 data -> {
                     String headers = formatHeaders(data, " | ");
                     String rows = formatRows(data, " | ");
-                    System.out.println("  [PDF] Tablo formati olusturuldu");
+                    IO.println("  [PDF] Tablo formati olusturuldu");
                     return headers + "\n" + "-".repeat(40) + "\n" + rows;
                 },
                 formatted -> {
-                    System.out.println("  [PDF] PDF sayfasi olusturuldu");
+                    IO.println("  [PDF] PDF sayfasi olusturuldu");
                     return "[PDF_DOCUMENT]\n" + formatted;
                 },
                 output -> {
-                    System.out.println("  [PDF] Dosyaya yazildi: rapor.pdf");
-                    System.out.println("  [PDF] E-posta ile gonderildi");
+                    IO.println("  [PDF] Dosyaya yazildi: rapor.pdf");
+                    IO.println("  [PDF] E-posta ile gonderildi");
                 }
         );
     }
@@ -58,25 +58,25 @@ public record ReportGenerator(
                 data -> {
                     if (data.columns().isEmpty())
                         throw new IllegalArgumentException("Excel icin en az bir kolon gerekli");
-                    System.out.println("  [Excel] Dogrulandi: " + data.columns().size() + " kolon");
+                    IO.println("  [Excel] Dogrulandi: " + data.columns().size() + " kolon");
                 },
                 data -> {
                     String headers = formatHeaders(data, ";");
                     String rows = formatRows(data, ";");
-                    System.out.println("  [Excel] Hucre formati olusturuldu");
+                    IO.println("  [Excel] Hucre formati olusturuldu");
                     return headers + "\n" + rows;
                 },
                 formatted -> {
-                    System.out.println("  [Excel] Calisma sayfasi olusturuldu");
+                    IO.println("  [Excel] Calisma sayfasi olusturuldu");
                     return "[EXCEL_WORKBOOK]\n" + formatted;
                 },
-                output -> System.out.println("  [Excel] Dosyaya yazildi: rapor.xlsx")
+                output -> IO.println("  [Excel] Dosyaya yazildi: rapor.xlsx")
         );
     }
 
     public static ReportGenerator html() {
         return new ReportGenerator(
-                data -> System.out.println("  [HTML] Dogrulandi"),
+                data -> IO.println("  [HTML] Dogrulandi"),
                 data -> {
                     var sb = new StringBuilder();
                     sb.append("<tr>");
@@ -87,14 +87,14 @@ public record ReportGenerator(
                         row.forEach(cell -> sb.append("<td>").append(cell).append("</td>"));
                         sb.append("</tr>\n");
                     });
-                    System.out.println("  [HTML] Tablo satirlari olusturuldu");
+                    IO.println("  [HTML] Tablo satirlari olusturuldu");
                     return sb.toString();
                 },
                 formatted -> {
-                    System.out.println("  [HTML] Sayfa olusturuldu");
+                    IO.println("  [HTML] Sayfa olusturuldu");
                     return "<html><body><table>" + formatted + "</table></body></html>";
                 },
-                output -> System.out.println("  [HTML] Web sunucusuna yuklendi: /reports/rapor.html")
+                output -> IO.println("  [HTML] Web sunucusuna yuklendi: /reports/rapor.html")
         );
     }
 
@@ -103,19 +103,19 @@ public record ReportGenerator(
                 data -> {
                     if (recipient == null || recipient.isBlank())
                         throw new IllegalArgumentException("Alici bos olamaz");
-                    System.out.println("  [Email] Dogrulandi, alici: " + recipient);
+                    IO.println("  [Email] Dogrulandi, alici: " + recipient);
                 },
                 data -> {
                     String headers = formatHeaders(data, " | ");
                     String rows = formatRows(data, " | ");
-                    System.out.println("  [Email] Duz metin formati olusturuldu");
+                    IO.println("  [Email] Duz metin formati olusturuldu");
                     return headers + "\n" + rows;
                 },
                 formatted -> {
-                    System.out.println("  [Email] Govde olusturuldu");
+                    IO.println("  [Email] Govde olusturuldu");
                     return "Konu: Rapor\n\n" + formatted;
                 },
-                output -> System.out.println("  [Email] Gonderildi -> " + recipient)
+                output -> IO.println("  [Email] Gonderildi -> " + recipient)
         );
     }
 

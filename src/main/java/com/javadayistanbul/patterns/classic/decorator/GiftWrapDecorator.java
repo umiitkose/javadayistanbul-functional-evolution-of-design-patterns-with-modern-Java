@@ -12,7 +12,7 @@ public class GiftWrapDecorator extends OrderServiceDecorator {
     public Order process(Order order) {
         // Once icteki zincir; sonra bu katman ozelligi ekler.
         Order processed = wrapped.process(order);
-        System.out.println("    + Hediye paketi eklendi (+15 TL)");
+        IO.println("    + Hediye paketi eklendi (+15 TL)");
         return processed.addFeature("Hediye Paketi", new BigDecimal("15"));
     }
 }

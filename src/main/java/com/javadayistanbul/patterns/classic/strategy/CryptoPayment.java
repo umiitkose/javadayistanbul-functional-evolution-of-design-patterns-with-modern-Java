@@ -13,8 +13,8 @@ public class CryptoPayment implements PaymentStrategy {
 
     @Override
     public void pay(BigDecimal amount) {
-        System.out.println("  Kripto para ile odeme yapildi: " + amount + " TL");
-        System.out.println("    Cuzdan: " + walletAddress + " | Tur: " + cryptoType);
+        IO.println("  Kripto para ile odeme yapildi: " + amount + " TL");
+        IO.println("    Cuzdan: " + walletAddress + " | Tur: " + cryptoType);
     }
 
     public String getWalletAddress() {

@@ -9,25 +9,25 @@ import java.util.function.UnaryOperator;
 public class DecoratorDemo {
 
     public static void run() {
-        System.out.println("=".repeat(60));
-        System.out.println("  DECORATOR PATTERN");
-        System.out.println("  Java Feature: UnaryOperator & Function Composition");
-        System.out.println("=".repeat(60));
-        System.out.println();
+        IO.println("=".repeat(60));
+        IO.println("  DECORATOR PATTERN");
+        IO.println("  Java Feature: UnaryOperator & Function Composition");
+        IO.println("=".repeat(60));
+        IO.println();
 
         classicApproach();
-        System.out.println();
+        IO.println();
         modernApproach();
     }
 
     private static void classicApproach() {
-        System.out.println("--- Klasik Yaklasim (Wrapper Classes) ---");
-        System.out.println("  [7 dosya: 1 interface + 1 soyut decorator + 1 concrete + 3 decorator + 1 Order]");
-        System.out.println("  Her yeni ozellik icin yeni bir wrapper sinifi!");
-        System.out.println();
-        System.out.println("  Not: new'ler dis->ic (Express en dis); process() ic->dis calisir:");
-        System.out.println("       BasicOrderService -> GiftWrap -> Insurance -> ExpressShipping");
-        System.out.println();
+        IO.println("--- Klasik Yaklasim (Wrapper Classes) ---");
+        IO.println("  [7 dosya: 1 interface + 1 soyut decorator + 1 concrete + 3 decorator + 1 Order]");
+        IO.println("  Her yeni ozellik icin yeni bir wrapper sinifi!");
+        IO.println();
+        IO.println("  Not: new'ler dis->ic (Express en dis); process() ic->dis calisir:");
+        IO.println("       BasicOrderService -> GiftWrap -> Insurance -> ExpressShipping");
+        IO.println();
 
         OrderService service = new ExpressShippingDecorator(
                 new InsuranceDecorator(
@@ -40,16 +40,16 @@ public class DecoratorDemo {
         var order = new com.javadayistanbul.patterns.classic.decorator.Order(
                 "ORD-001", new BigDecimal("200"));
         var result = service.process(order);
-        System.out.println();
-        System.out.println("  Ozellikler: " + result.features());
-        System.out.println("  Toplam: " + result.totalPrice() + " TL (baz: " + result.basePrice() + " TL)");
+        IO.println();
+        IO.println("  Ozellikler: " + result.features());
+        IO.println("  Toplam: " + result.totalPrice() + " TL (baz: " + result.basePrice() + " TL)");
     }
 
     private static void modernApproach() {
-        System.out.println("--- Modern Yaklasim (Function Composition) ---");
-        System.out.println("  [2 dosya: 1 Order + 1 Enhancer (UnaryOperator + andThen)]");
-        System.out.println("  Decorator sinifi yok! andThen() ile zincirleme!");
-        System.out.println();
+        IO.println("--- Modern Yaklasim (Function Composition) ---");
+        IO.println("  [2 dosya: 1 Order + 1 Enhancer (UnaryOperator + andThen)]");
+        IO.println("  Decorator sinifi yok! andThen() ile zincirleme!");
+        IO.println();
 
         var enhance = OrderEnhancer.giftWrap()
                 .andThen(OrderEnhancer.insurance())
@@ -58,11 +58,11 @@ public class DecoratorDemo {
 
         var order = new com.javadayistanbul.patterns.modern.decorator.Order(
                 "ORD-001", new BigDecimal("200"));
-        System.out.println("  Siparis isleniyor: #" + order.id());
+        IO.println("  Siparis isleniyor: #" + order.id());
         var result = enhance.apply(order);
-        System.out.println();
-        System.out.println("  Ozellikler: " + result.features());
-        System.out.println("  Toplam: " + result.totalPrice() + " TL (baz: " + result.basePrice() + " TL)");
+        IO.println();
+        IO.println("  Ozellikler: " + result.features());
+        IO.println("  Toplam: " + result.totalPrice() + " TL (baz: " + result.basePrice() + " TL)");
     }
 
     public static void main(String[] args) {

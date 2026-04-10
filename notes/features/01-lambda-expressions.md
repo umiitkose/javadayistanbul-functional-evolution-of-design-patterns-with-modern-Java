@@ -26,10 +26,10 @@ Lambda ifadesi, **anonim bir fonksiyon** tanımlamanın kısa yoludur. Tek bir s
 
 ```java
 // Parametre(ler) -> ifade
-(amount) -> System.out.println("Ödeme: " + amount)
+(amount) -> IO.println("Ödeme: " + amount)
 
 // Tek parametre: parantez opsiyonel
-amount -> System.out.println("Ödeme: " + amount)
+amount -> IO.println("Ödeme: " + amount)
 
 // Çok parametre
 (a, b) -> a + b
@@ -37,7 +37,7 @@ amount -> System.out.println("Ödeme: " + amount)
 // Blok gövde, return gerekli
 (orderClassic, total) -> {
     var discounted = total.multiply(new BigDecimal("0.90"));
-    System.out.println("İndirimli: " + discounted);
+    IO.println("İndirimli: " + discounted);
 }
 ```
 
@@ -62,14 +62,14 @@ amount -> System.out.println("Ödeme: " + amount)
 paymentService.setStrategy(new PaymentStrategy() {
     @Override
     public void pay(BigDecimal amount) {
-        System.out.println("Ödeme: " + amount + " TL");
+        IO.println("Ödeme: " + amount + " TL");
     }
 });
 ```
 
 **Sonrası (lambda):**
 ```java
-Consumer<BigDecimal> pay = amount -> System.out.println("Ödeme: " + amount);
+Consumer<BigDecimal> pay = amount -> IO.println("Ödeme: " + amount);
 PaymentService.processPayment(pay, new BigDecimal("100"));
 ```
 

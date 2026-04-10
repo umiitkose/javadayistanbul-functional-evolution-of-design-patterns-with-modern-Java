@@ -12,16 +12,16 @@ import java.util.List;
 public class TemplateMethodDemo {
 
     public static void run() {
-        System.out.println("=".repeat(60));
-        System.out.println("  TEMPLATE METHOD — Rapor Uretimi");
-        System.out.println("  Java Feature: Higher-Order Functions & Composition");
-        System.out.println("=".repeat(60));
-        System.out.println();
+        IO.println("=".repeat(60));
+        IO.println("  TEMPLATE METHOD — Rapor Uretimi");
+        IO.println("  Java Feature: Higher-Order Functions & Composition");
+        IO.println("=".repeat(60));
+        IO.println();
 
         classicApproach();
-        System.out.println();
+        IO.println();
         modernApproach();
-        System.out.println();
+        IO.println();
         modernCustomApproach();
     }
 
@@ -50,62 +50,62 @@ public class TemplateMethodDemo {
     }
 
     private static void classicApproach() {
-        System.out.println("--- Klasik Yaklasim (Abstract Class + Inheritance) ---");
-        System.out.println("  [6 dosya: 1 abstract + 4 concrete + 1 ReportData]");
-        System.out.println("  Her yeni format icin yeni sinif gerekir!");
-        System.out.println();
+        IO.println("--- Klasik Yaklasim (Abstract Class + Inheritance) ---");
+        IO.println("  [6 dosya: 1 abstract + 4 concrete + 1 ReportData]");
+        IO.println("  Her yeni format icin yeni sinif gerekir!");
+        IO.println();
 
         var data = classicData();
 
-        System.out.println("  >> PDF:");
+        IO.println("  >> PDF:");
         new PdfReportGenerator().generate(data);
-        System.out.println();
+        IO.println();
 
-        System.out.println("  >> Excel:");
+        IO.println("  >> Excel:");
         new ExcelReportGenerator().generate(data);
-        System.out.println();
+        IO.println();
 
-        System.out.println("  >> HTML:");
+        IO.println("  >> HTML:");
         new HtmlReportGenerator().generate(data);
-        System.out.println();
+        IO.println();
 
-        System.out.println("  >> Email:");
+        IO.println("  >> Email:");
         new EmailReportGenerator("yonetim@sirket.com").generate(data);
     }
 
     private static void modernApproach() {
-        System.out.println("--- Modern Yaklasim (Function Injection) ---");
-        System.out.println("  [2 dosya: 1 record + 1 ReportData]");
-        System.out.println("  Abstract class yok! 4 format, 1 dosya!");
-        System.out.println();
+        IO.println("--- Modern Yaklasim (Function Injection) ---");
+        IO.println("  [2 dosya: 1 record + 1 ReportData]");
+        IO.println("  Abstract class yok! 4 format, 1 dosya!");
+        IO.println();
 
         var data = modernData();
 
-        System.out.println("  >> PDF:");
+        IO.println("  >> PDF:");
         ReportGenerator.pdf().generate(data);
-        System.out.println();
+        IO.println();
 
-        System.out.println("  >> Excel:");
+        IO.println("  >> Excel:");
         ReportGenerator.excel().generate(data);
-        System.out.println();
+        IO.println();
 
-        System.out.println("  >> HTML:");
+        IO.println("  >> HTML:");
         ReportGenerator.html().generate(data);
-        System.out.println();
+        IO.println();
 
-        System.out.println("  >> Email:");
+        IO.println("  >> Email:");
         ReportGenerator.email("yonetim@sirket.com").generate(data);
     }
 
     private static void modernCustomApproach() {
-        System.out.println("--- Modern: Runtime'da Ozel Format (custom) ---");
-        System.out.println("  Yeni sinif yok! 4 lambda ile Slack bildirimi:");
-        System.out.println();
+        IO.println("--- Modern: Runtime'da Ozel Format (custom) ---");
+        IO.println("  Yeni sinif yok! 4 lambda ile Slack bildirimi:");
+        IO.println();
 
         var data = modernData();
 
         ReportGenerator slackReport = ReportGenerator.custom(
-                d -> System.out.println("  [Slack] Dogrulandi: " + d.rows().size() + " satir"),
+                d -> IO.println("  [Slack] Dogrulandi: " + d.rows().size() + " satir"),
                 d -> {
                     var sb = new StringBuilder();
                     sb.append("*").append(d.title()).append("*\n");
@@ -115,7 +115,7 @@ public class TemplateMethodDemo {
                     return sb.toString();
                 },
                 formatted -> "```\n" + formatted + "```",
-                output -> System.out.println("  [Slack] #rapor kanalina gonderildi:\n" + output)
+                output -> IO.println("  [Slack] #rapor kanalina gonderildi:\n" + output)
         );
 
         slackReport.generate(data);

@@ -4,7 +4,7 @@ public class HtmlReportGenerator extends AbstractReportGenerator {
 
     @Override
     protected void validateData(ReportData data) {
-        System.out.println("  [HTML] Veri dogrulandi");
+        IO.println("  [HTML] Veri dogrulandi");
     }
 
     @Override
@@ -22,19 +22,19 @@ public class HtmlReportGenerator extends AbstractReportGenerator {
             }
             sb.append("</tr>\n");
         }
-        System.out.println("  [HTML] Tablo satirlari olusturuldu");
+        IO.println("  [HTML] Tablo satirlari olusturuldu");
         return sb.toString();
     }
 
     @Override
     protected String renderOutput(String formatted, String title) {
         String output = "<html><body><h1>" + title + "</h1><table>" + formatted + "</table></body></html>";
-        System.out.println("  [HTML] HTML sayfasi olusturuldu");
+        IO.println("  [HTML] HTML sayfasi olusturuldu");
         return output;
     }
 
     @Override
     protected void sendReport(String output) {
-        System.out.println("  [HTML] Web sunucusuna yuklendi: /reports/rapor.html");
+        IO.println("  [HTML] Web sunucusuna yuklendi: /reports/rapor.html");
     }
 }
