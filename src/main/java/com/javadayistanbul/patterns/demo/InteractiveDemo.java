@@ -32,12 +32,12 @@ public class InteractiveDemo {
             AdapterDemo::run
     };
 
-    public static void main(String[] args) {
+    static void main() {
         var scanner = new Scanner(System.in);
 
         while (true) {
             printMenu();
-            System.out.print("  Seciminiz (0-12): ");
+            IO.print("  Seciminiz (0-12): ");
 
             String input = scanner.nextLine().trim();
             if (input.isEmpty()) continue;
@@ -46,33 +46,33 @@ public class InteractiveDemo {
             try {
                 choice = Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.println("  Gecersiz giris!\n");
+                IO.println("  Gecersiz giris!\n");
                 continue;
             }
 
             if (choice == 0) {
-                System.out.println("\n  Iyi sunumlar!\n");
+                IO.println("\n  Iyi sunumlar!\n");
                 break;
             }
 
             if (choice == 12) {
-                System.out.println();
+                IO.println();
                 for (int i = 0; i < DEMOS.length; i++) {
                     DEMOS[i].run();
                     if (i < DEMOS.length - 1) {
-                        System.out.println("\n" + "-".repeat(60) + "\n");
+                        IO.println("\n" + "-".repeat(60) + "\n");
                     }
                 }
-                System.out.println();
+                IO.println();
                 continue;
             }
 
             if (choice >= 1 && choice <= 11) {
-                System.out.println();
+                IO.println();
                 DEMOS[choice - 1].run();
-                System.out.println();
+                IO.println();
             } else {
-                System.out.println("  Gecersiz secim!\n");
+                IO.println("  Gecersiz secim!\n");
             }
         }
 
@@ -80,24 +80,24 @@ public class InteractiveDemo {
     }
 
     private static void printMenu() {
-        System.out.println();
-        System.out.println("#".repeat(60));
-        System.out.println("#  JavaDay Istanbul - Design Patterns Demo");
-        System.out.println("#".repeat(60));
-        System.out.println();
-        System.out.println("  SUNUM PATTERN'LERI:");
+        IO.println();
+        IO.println("#".repeat(60));
+        IO.println("#  JavaDay Istanbul - Design Patterns Demo");
+        IO.println("#".repeat(60));
+        IO.println();
+        IO.println("  SUNUM PATTERN'LERI:");
         for (int i = 0; i < 5; i++) {
             System.out.printf("    [%2d] %s%n", i + 1, PATTERN_NAMES[i]);
         }
-        System.out.println();
-        System.out.println("  BONUS PATTERN'LER:");
+        IO.println();
+        IO.println("  BONUS PATTERN'LER:");
         for (int i = 5; i < PATTERN_NAMES.length; i++) {
             System.out.printf("    [%2d] %s%n", i + 1, PATTERN_NAMES[i]);
         }
-        System.out.println();
-        System.out.println("  DIGER:");
-        System.out.println("    [12] Tumunu calistir");
-        System.out.println("    [ 0] Cikis");
-        System.out.println();
+        IO.println();
+        IO.println("  DIGER:");
+        IO.println("    [12] Tumunu calistir");
+        IO.println("    [ 0] Cikis");
+        IO.println();
     }
 }

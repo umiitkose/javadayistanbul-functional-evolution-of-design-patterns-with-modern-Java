@@ -40,7 +40,7 @@
 - **Etki:** "90 satir boilerplate -> 30 satir record"
 
 ### 11:30 - 15:00 | DECORATOR PATTERN (3.5 dk)
-- Sol: 6 dosya (interface + base + 3 decorator, ic ice sarma)
+- Sol: 7 dosya (interface + soyut decorator + concrete + 3 decorator, ic ice sarma)
 - Sag: UnaryOperator + andThen() zincirleme
 - **Vurgula:** Ic ice sarma (`new A(new B(new C()))`) vs `a.andThen(b).andThen(c)`
 - **Java Feature:** UnaryOperator, andThen() compostion (30 sn)

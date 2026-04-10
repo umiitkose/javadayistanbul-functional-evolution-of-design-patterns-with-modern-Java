@@ -12,20 +12,20 @@ Bu proje, bir **E-Ticaret Siparis Isleme Sistemi** uzerinden 11 farkli design pa
 - `modern/` - Modern fonksiyonel implementasyon (Java 8-26 ozellikleri)
 - `demo/` - Karsilastirmali demo sinifi (her ikisini de calistirir)
 
-## Sunum Pattern'leri (3 Ana Pattern)
+## Sunum Pattern'leri (4 Ana Pattern)
 
 | #   | Pattern             | Klasik                                         | Modern                                   | Ogrenilen Java Ozelligi                  |
 | --- | ------------------- | ---------------------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | 1   | **Builder**         | POJO (getter/setter/equals/hashCode) + Builder | record + compact constructor + wither    | Records, Compact Constructors            |
 | 2   | **Strategy**        | Interface + 3 concrete class + service         | Consumer\<T> + lambda                    | Lambda Expressions, Functional Interface |
 | 3   | **Decorator**       | Interface + wrapper classes (ic ice sarma)     | UnaryOperator\<T> + andThen() zincirleme | UnaryOperator, Function Composition      |
+| 4   | **Template Method** | Abstract class + inheritance                    | record + Consumer/Function parametreleri | Higher-Order Functions, Composition      |
 
-## Bonus Pattern'ler (8 Ek Pattern)
+## Bonus Pattern'ler (7 Ek Pattern)
 
 | #   | Pattern                     | Klasik                                    | Modern                              | Ogrenilen Java Ozelligi          |
 | --- | --------------------------- | ----------------------------------------- | ----------------------------------- | -------------------------------- |
-| 4   | **Iterator/Stream**         | for-each ile external iteration           | Stream pipeline ile internal iteration | Stream API, Declarative Thinking |
-| 5   | **Template Method**         | Abstract class + inheritance              | record + Consumer/Function parametreleri | Higher-Order Functions, Composition |
+| 5   | **Iterator/Stream**         | for-each ile external iteration           | Stream pipeline ile internal iteration | Stream API, Declarative Thinking |
 | 6   | **Observer**                | Listener interface + concrete listeners   | Consumer\<T> + lambda               | Consumer, Method References      |
 | 7   | **Factory Method**          | Enum + factory class + interface          | sealed interface + pattern matching | Sealed + Exhaustive Switch       |
 | 8   | **State**                   | State interface + 4 state class + context | sealed interface + record + switch  | Sealed Records, Pattern Matching |
@@ -62,7 +62,7 @@ src/main/java/com/javadayistanbul/patterns/
 │   ├── strategy/              # 5 dosya: interface + 3 concrete + service
 │   ├── builder/               # 2 dosya: POJO + builder
 │   ├── templatemethod/        # 4 dosya: abstract + 2 concrete + orderClassic
-│   ├── decorator/             # 6 dosya: interface + base + 3 decorator + orderClassic
+│   ├── decorator/             # 7 dosya: interface + soyut decorator + concrete + 3 decorator + orderClassic
 │   ├── visitor/               # 8 dosya: item interface + 3 item + visitor interface + 2 visitor
 │   ├── observer/              # 5 dosya: event + listener interface + 2 listener + manager
 │   ├── factory/               # 6 dosya: enum + interface + 3 concrete + factory

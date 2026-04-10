@@ -11,6 +11,6 @@ public class CreateOrderCommand implements OrderCommand {
 
     @Override
     public void execute() {
-        System.out.println("    Siparis olusturuldu: #" + orderId + " | Musteri: " + customerName);
+        IO.println("    Siparis olusturuldu: #" + orderId + " | Musteri: " + customerName);
     }
 }

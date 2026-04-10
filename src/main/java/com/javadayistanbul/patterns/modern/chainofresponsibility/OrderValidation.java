@@ -9,7 +9,7 @@ public class OrderValidation {
 
     public static final Predicate<Order> hasStock = order -> {
         boolean valid = order.stockQuantity() > 0;
-        System.out.println(valid
+        IO.println(valid
                 ? "    [OK] Stok kontrolu gecti: " + order.stockQuantity() + " adet"
                 : "    [FAIL] Stok yetersiz: " + order.id());
         return valid;
@@ -17,7 +17,7 @@ public class OrderValidation {
 
     public static final Predicate<Order> hasValidAmount = order -> {
         boolean valid = order.amount().compareTo(BigDecimal.ZERO) > 0;
-        System.out.println(valid
+        IO.println(valid
                 ? "    [OK] Odeme tutari gecerli: " + order.amount() + " TL"
                 : "    [FAIL] Gecersiz tutar: " + order.amount());
         return valid;
@@ -25,7 +25,7 @@ public class OrderValidation {
 
     public static final Predicate<Order> hasValidAddress = order -> {
         boolean valid = order.shippingAddress() != null && !order.shippingAddress().isBlank();
-        System.out.println(valid
+        IO.println(valid
                 ? "    [OK] Adres gecerli: " + order.shippingAddress()
                 : "    [FAIL] Teslimat adresi bos!");
         return valid;

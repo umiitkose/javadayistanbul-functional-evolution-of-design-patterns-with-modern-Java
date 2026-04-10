@@ -8,21 +8,21 @@ import com.javadayistanbul.patterns.classic.factory.NotificationClassicType;
 public class FactoryDemo {
 
     public static void run() {
-        System.out.println("=".repeat(60));
-        System.out.println("  FACTORY METHOD PATTERN");
-        System.out.println("  Java Feature: Sealed Interface + Pattern Matching");
-        System.out.println("=".repeat(60));
-        System.out.println();
+        IO.println("=".repeat(60));
+        IO.println("  FACTORY METHOD PATTERN");
+        IO.println("  Java Feature: Sealed Interface + Pattern Matching");
+        IO.println("=".repeat(60));
+        IO.println();
 
         classicApproach();
-        System.out.println();
+        IO.println();
         modernApproach();
     }
 
     private static void classicApproach() {
-        System.out.println("--- Klasik Yaklasim (Enum + Factory + Interface) ---");
-        System.out.println("  [6 dosya: 1 enum + 1 interface + 3 concrete + 1 factory]");
-        System.out.println();
+        IO.println("--- Klasik Yaklasim (Enum + Factory + Interface) ---");
+        IO.println("  [6 dosya: 1 enum + 1 interface + 3 concrete + 1 factory]");
+        IO.println();
 
         NotificationClassicService email = NotificationClassicFactory.create(NotificationClassicType.EMAIL);
         NotificationClassicService sms = NotificationClassicFactory.create(NotificationClassicType.SMS);
@@ -34,11 +34,11 @@ public class FactoryDemo {
     }
 
     private static void modernApproach() {
-        System.out.println("--- Modern Yaklasim (Sealed + Pattern Matching) ---");
-        System.out.println("  [1 dosya: sealed interface + record + switch + BiConsumer]");
-        System.out.println("  Factory class yok! Concrete class yok!");
-        System.out.println("  Compiler exhaustiveness kontrolu!");
-        System.out.println();
+        IO.println("--- Modern Yaklasim (Sealed + Pattern Matching) ---");
+        IO.println("  [1 dosya: sealed interface + record + switch + BiConsumer]");
+        IO.println("  Factory class yok! Concrete class yok!");
+        IO.println("  Compiler exhaustiveness kontrolu!");
+        IO.println();
 
         // Varolan enum tabanlı sender'lar
         com.javadayistanbul.patterns.modern.factory.NotificationService.EMAIL.send("ahmet@email.com", "Sipaarisiniz onaylandi!");

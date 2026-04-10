@@ -11,6 +11,6 @@ public class CancelOrderCommand implements OrderCommand {
 
     @Override
     public void execute() {
-        System.out.println("    Siparis iptal edildi: #" + orderId + " | Sebep: " + reason);
+        IO.println("    Siparis iptal edildi: #" + orderId + " | Sebep: " + reason);
     }
 }

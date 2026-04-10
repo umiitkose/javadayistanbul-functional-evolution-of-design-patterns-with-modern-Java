@@ -14,8 +14,8 @@ public class CreditCardPayment implements PaymentStrategy {
     @Override
     public void pay(BigDecimal amount) {
         String masked = "****-****-****-" + cardNumber.substring(cardNumber.length() - 4);
-        System.out.println("  Kredi karti ile odeme yapildi: " + amount + " TL");
-        System.out.println("    Kart: " + masked + " | Sahibi: " + cardHolderName);
+        IO.println("  Kredi karti ile odeme yapildi: " + amount + " TL");
+        IO.println("    Kart: " + masked + " | Sahibi: " + cardHolderName);
     }
 
     public String getCardNumber() {

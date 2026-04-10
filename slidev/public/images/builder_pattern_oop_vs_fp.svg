@@ -1,4 +1,4 @@
-<svg width="100%" viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" height="100%" viewBox="0 0 680 358" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
       <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(230,232,236,0.95)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
@@ -6,9 +6,9 @@
   </defs>
   <style>
     .txtMain { fill: #f6f5ef; font: 600 14px system-ui, -apple-system, Segoe UI, sans-serif; }
-    .txtSub { fill: #c8c6ba; font: 400 12px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .txtSub { fill: #c8c6ba; font: 400 11px system-ui, -apple-system, Segoe UI, sans-serif; }
     .txtTitle { fill: #f0f0ea; font: 600 13px system-ui, -apple-system, Segoe UI, sans-serif; }
-    .boxText { fill: #d4d2c7; font: 600 12px system-ui, -apple-system, Segoe UI, sans-serif; }
+    .boxText { fill: #d4d2c7; font: 600 11px system-ui, -apple-system, Segoe UI, sans-serif; }
     .line { stroke: rgba(230,232,236,0.56); stroke-width: 1.2; }
     .fade { opacity: 0; transform: translateY(7px); }
     @keyframes show {
@@ -31,63 +31,67 @@
     #fpBenefit { animation: show .28s ease-out 5.90s forwards; }
   </style>
 
-  <rect x="0" y="0" width="680" height="380" rx="10" fill="rgba(12,16,24,0.96)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
+  <rect x="0" y="0" width="680" height="358" rx="10" fill="rgba(12,16,24,0.96)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
 
   <text id="oopLabel" class="txtMain fade" x="160" y="28" text-anchor="middle">Klasik OOP</text>
   <text id="fpLabel" class="txtMain fade" x="510" y="28" text-anchor="middle">Modern FP (Record)</text>
-  <line id="divider" class="fade" x1="340" y1="14" x2="340" y2="366" stroke="rgba(222,220,209,0.18)" stroke-width="1" stroke-dasharray="4 4" />
+  <line id="divider" class="fade" x1="340" y1="14" x2="340" y2="348" stroke="rgba(222,220,209,0.18)" stroke-width="1" stroke-dasharray="4 4" />
 
   <g id="oopTop" class="fade">
-    <rect x="48" y="44" width="224" height="54" rx="8" fill="#454540" stroke="#b8b5aa" stroke-width="0.8" />
-    <text class="txtTitle" x="160" y="66" text-anchor="middle">OrderClassic</text>
-    <text class="txtSub" x="160" y="84" text-anchor="middle">id, customerId, items, address...</text>
+    <rect x="48" y="40" width="224" height="50" rx="8" fill="#454540" stroke="#b8b5aa" stroke-width="0.8" />
+    <text class="txtTitle" x="160" y="60" text-anchor="middle">StockReservationClassic</text>
+    <text class="txtSub" x="160" y="78" text-anchor="middle">~20 alan; reservationId, warehouseId, sku...</text>
   </g>
   <g id="oopMid" class="fade">
-    <rect x="60" y="116" width="200" height="124" rx="8" fill="#6f2d17" stroke="#ef9a7b" stroke-width="0.8" />
-    <text class="txtSub" x="160" y="136" text-anchor="middle" fill="#ef9a7b">static inner class Builder</text>
-    <text class="txtSub" x="160" y="154" text-anchor="middle">id(...), customerId(...)</text>
-    <text class="txtSub" x="160" y="172" text-anchor="middle">addItem(...), shippingAddress(...)</text>
-    <text class="txtSub" x="160" y="190" text-anchor="middle">build() - zorunlu alan kontrolu</text>
-    <text class="txtSub" x="160" y="208" text-anchor="middle">state birden cok yerde tasinir</text>
+    <rect x="56" y="98" width="208" height="118" rx="8" fill="#6f2d17" stroke="#ef9a7b" stroke-width="0.8" />
+    <text class="txtSub" x="160" y="116" text-anchor="middle" fill="#ef9a7b">static inner class Builder</text>
+    <text class="txtSub" x="160" y="132" text-anchor="middle">ctor(reservationId, warehouseId, sku)</text>
+    <text class="txtSub" x="160" y="148" text-anchor="middle">fluent: requestedQuantity, unitCost...</text>
+    <text class="txtSub" x="160" y="164" text-anchor="middle">build() — tum kurallar tek metotta</text>
+    <text class="txtSub" x="160" y="180" text-anchor="middle">Builder state: mutable</text>
+    <text class="txtSub" x="160" y="196" text-anchor="middle">getter + equals/hashCode boilerplate</text>
   </g>
   <g id="oopUse" class="fade">
-    <rect x="48" y="256" width="224" height="50" rx="7" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
-    <text class="txtSub" x="160" y="276" text-anchor="middle">new Builder().id().customerId()</text>
-    <text class="txtSub" x="160" y="294" text-anchor="middle">.addItem(...).build()</text>
+    <rect x="48" y="224" width="224" height="46" rx="7" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
+    <text class="txtSub" x="160" y="242" text-anchor="middle">new Builder("R-1","WH-1","SKU-A")</text>
+    <text class="txtSub" x="160" y="258" text-anchor="middle">.requestedQuantity(100).build()</text>
   </g>
   <g id="oopRisk" class="fade">
-    <rect x="48" y="320" width="224" height="38" rx="7" fill="#792020" stroke="#f09595" stroke-width="0.8" />
-    <text class="txtSub" x="160" y="344" text-anchor="middle" fill="#f09595">Boilerplate ve mutable state yuksek</text>
+    <rect x="48" y="278" width="224" height="36" rx="7" fill="#792020" stroke="#f09595" stroke-width="0.8" />
+    <text class="txtSub" x="160" y="300" text-anchor="middle" fill="#f09595">Uzun build(), yuksek boilerplate</text>
   </g>
 
   <g id="fpTop" class="fade">
-    <rect x="368" y="44" width="284" height="104" rx="8" fill="#085040" stroke="#5dcaa5" stroke-width="0.8" />
-    <text class="txtSub" x="510" y="64" text-anchor="middle">record (immutable)</text>
-    <text class="txtTitle" x="510" y="84" text-anchor="middle">Order</text>
-    <text class="txtSub" x="510" y="102" text-anchor="middle">zorunlu alanlar ctor'da garanti</text>
-    <text class="txtSub" x="510" y="120" text-anchor="middle">opsiyoneller with... ile zincirlenir</text>
-    <text class="txtSub" x="510" y="138" text-anchor="middle">tek noktada validasyon</text>
+    <rect x="368" y="40" width="284" height="96" rx="8" fill="#085040" stroke="#5dcaa5" stroke-width="0.8" />
+    <text class="txtSub" x="510" y="58" text-anchor="middle">record (immutable) kompozisyon</text>
+    <text class="txtTitle" x="510" y="78" text-anchor="middle">StockReservation</text>
+    <text class="txtSub" x="510" y="96" text-anchor="middle">identity, quantities, pricing, slot...</text>
+    <text class="txtSub" x="510" y="112" text-anchor="middle">kurallar alt record compact ctor'da</text>
+    <text class="txtSub" x="510" y="128" text-anchor="middle">opsiyoneller: defaults / empty() fabrikalari</text>
   </g>
   <g id="fpCtor" class="fade">
-    <rect x="392" y="164" width="236" height="48" rx="7" fill="#633806" stroke="#ef9f27" stroke-width="0.8" />
-    <text class="boxText" x="510" y="184" text-anchor="middle">new Order(id, customerId, items)</text>
-    <text class="txtSub" x="510" y="200" text-anchor="middle">invalid data girisinde erken hata</text>
+    <rect x="380" y="144" width="260" height="60" rx="7" fill="#633806" stroke="#ef9f27" stroke-width="0.8" />
+    <text class="boxText" x="510" y="168" text-anchor="middle">new StockReservation(</text>
+    <text class="txtSub" x="510" y="184" text-anchor="middle">new ReservationIdentity(...),</text>
+    <text class="txtSub" x="510" y="198" text-anchor="middle">new QuantityAllocation(100,80), ... )</text>
   </g>
-  <line id="fpA1" class="fade line" x1="468" y1="212" x2="444" y2="240" marker-end="url(#arrow)" />
-  <line id="fpA2" class="fade line" x1="552" y1="212" x2="576" y2="240" marker-end="url(#arrow)" />
+  <line id="fpA1" class="fade line" x1="468" y1="206" x2="443" y2="228" marker-end="url(#arrow)" />
+  <line id="fpA2" class="fade line" x1="552" y1="206" x2="583" y2="228" marker-end="url(#arrow)" />
   <g id="fpWith1" class="fade">
-    <rect x="382" y="242" width="122" height="50" rx="7" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
-    <text class="boxText" x="443" y="262" text-anchor="middle">withAddress</text>
-    <text class="txtSub" x="443" y="280" text-anchor="middle">yeni record</text>
+    <rect x="376" y="228" width="132" height="54" rx="7" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
+    <text class="boxText" x="442" y="246" text-anchor="middle">ReservationIdentity</text>
+    <text class="txtSub" x="442" y="262" text-anchor="middle">ID / depo / SKU</text>
+    <text class="txtSub" x="442" y="276" text-anchor="middle">validasyonu</text>
   </g>
   <g id="fpWith2" class="fade">
-    <rect x="516" y="242" width="122" height="50" rx="7" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
-    <text class="boxText" x="577" y="262" text-anchor="middle">withTotal</text>
-    <text class="txtSub" x="577" y="280" text-anchor="middle">yeni record</text>
+    <rect x="518" y="228" width="132" height="54" rx="7" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
+    <text class="boxText" x="584" y="246" text-anchor="middle">QuantityAllocation</text>
+    <text class="txtSub" x="584" y="262" text-anchor="middle">talep / rezerve</text>
+    <text class="txtSub" x="584" y="276" text-anchor="middle">capraz kural</text>
   </g>
   <g id="fpBenefit" class="fade">
-    <rect x="368" y="314" width="284" height="44" rx="7" fill="#28500a" stroke="#97c459" stroke-width="0.8" />
-    <text class="txtSub" x="510" y="334" text-anchor="middle" fill="#97c459">Builder sinifi olmadan okunur akis</text>
-    <text class="txtSub" x="510" y="350" text-anchor="middle" fill="#97c459">immutable model + az boilerplate</text>
+    <rect x="368" y="292" width="284" height="38" rx="7" fill="#28500a" stroke="#97c459" stroke-width="0.8" />
+    <text class="txtSub" x="510" y="310" text-anchor="middle" fill="#97c459">Tek dev build() yok; kucuk tipler</text>
+    <text class="txtSub" x="510" y="324" text-anchor="middle" fill="#97c459">immutable model + daha az tekrar</text>
   </g>
 </svg>

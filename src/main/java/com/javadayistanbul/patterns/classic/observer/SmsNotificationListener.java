@@ -9,6 +9,6 @@ public class SmsNotificationListener implements OrderEventListener {
 
     @Override
     public void onEvent(OrderEvent event) {
-        System.out.println("    [SMS -> " + phoneNumber + "] " + event.getEventType() + ": " + event.getDetails());
+        IO.println("    [SMS -> " + phoneNumber + "] " + event.getEventType() + ": " + event.getDetails());
     }
 }

@@ -9,6 +9,6 @@ public class EmailNotificationListener implements OrderEventListener {
 
     @Override
     public void onEvent(OrderEvent event) {
-        System.out.println("    [Email -> " + email + "] " + event.getEventType() + ": " + event.getDetails());
+        IO.println("    [Email -> " + email + "] " + event.getEventType() + ": " + event.getDetails());
     }
 }

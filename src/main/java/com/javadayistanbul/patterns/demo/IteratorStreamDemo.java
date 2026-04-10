@@ -8,37 +8,37 @@ import java.util.List;
 public class IteratorStreamDemo {
 
     public static void run() {
-        System.out.println("=".repeat(60));
-        System.out.println("  ITERATOR / STREAM PATTERN");
-        System.out.println("  Java Feature: Stream API (Imperative vs Declarative)");
-        System.out.println("=".repeat(60));
-        System.out.println();
+        IO.println("=".repeat(60));
+        IO.println("  ITERATOR / STREAM PATTERN");
+        IO.println("  Java Feature: Stream API (Imperative vs Declarative)");
+        IO.println("=".repeat(60));
+        IO.println();
 
         classicApproach();
-        System.out.println();
+        IO.println();
         modernApproach();
     }
 
     private static void classicApproach() {
-        System.out.println("--- Klasik Yaklasim (External Iteration / for-loop) ---");
+        IO.println("--- Klasik Yaklasim (External Iteration / for-loop) ---");
         var items = classicSampleItems();
 
         BigDecimal total = com.javadayistanbul.patterns.classic.iterator.OrderAnalytics.totalBookRevenue(items);
         var byCategory = com.javadayistanbul.patterns.classic.iterator.OrderAnalytics.revenueByCategory(items);
 
-        System.out.println("  [Classic] BOOK toplam ciro: " + total + " TL");
-        System.out.println("  [Classic] Kategori bazli ciro: " + byCategory);
+        IO.println("  [Classic] BOOK toplam ciro: " + total + " TL");
+        IO.println("  [Classic] Kategori bazli ciro: " + byCategory);
     }
 
     private static void modernApproach() {
-        System.out.println("--- Modern Yaklasim (Declarative Stream Pipeline) ---");
+        IO.println("--- Modern Yaklasim (Declarative Stream Pipeline) ---");
         var items = modernSampleItems();
 
         BigDecimal total = com.javadayistanbul.patterns.modern.iterator.OrderAnalytics.totalBookRevenue(items);
         var byCategory = com.javadayistanbul.patterns.modern.iterator.OrderAnalytics.revenueByCategory(items);
 
-        System.out.println("  [Modern] BOOK toplam ciro: " + total + " TL");
-        System.out.println("  [Modern] Kategori bazli ciro: " + byCategory);
+        IO.println("  [Modern] BOOK toplam ciro: " + total + " TL");
+        IO.println("  [Modern] Kategori bazli ciro: " + byCategory);
     }
 
     private static List<OrderItem> classicSampleItems() {

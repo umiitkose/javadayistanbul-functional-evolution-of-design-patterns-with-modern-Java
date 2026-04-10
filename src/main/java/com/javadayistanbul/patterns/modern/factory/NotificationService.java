@@ -6,11 +6,11 @@ import java.util.function.BiConsumer;
 public enum NotificationService {
 
     EMAIL((recipient, message) ->
-            System.out.println("[Email -> " + recipient + "] " + message)),
+            IO.println("[Email -> " + recipient + "] " + message)),
     SMS((recipient, message) ->
-            System.out.println("[SMS -> " + recipient + "] " + message)),
+            IO.println("[SMS -> " + recipient + "] " + message)),
     PUSH((recipient, message) ->
-            System.out.println("[Push -> " + recipient + "] " + message));
+            IO.println("[Push -> " + recipient + "] " + message));
 
     private final BiConsumer<String, String> sender;
 

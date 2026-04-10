@@ -10,19 +10,19 @@ public sealed interface OrderState {
     static OrderState next(OrderState current) {
         return switch (current) {
             case Pending p -> {
-                System.out.println("    Siparis isleme aliniyor...");
-                yield new Processing();
+                IO.println("    Siparis isleme aliniyor...");
+                yield p;
             }
             case Processing pr -> {
-                System.out.println("    Siparis kargoya veriliyor...");
-                yield new Shipped();
+                IO.println("    Siparis kargoya veriliyor...");
+                yield pr;
             }
             case Shipped s -> {
-                System.out.println("    Siparis teslim edildi!");
-                yield new Delivered();
+                IO.println("    Siparis teslim edildi!");
+                yield s;
             }
             case Delivered d -> {
-                System.out.println("    Siparis zaten teslim edildi!");
+                IO.println("    Siparis zaten teslim edildi!");
                 yield d;
             }
         };
@@ -31,19 +31,19 @@ public sealed interface OrderState {
     static OrderState previous(OrderState current) {
         return switch (current) {
             case Pending p -> {
-                System.out.println("    Siparis zaten baslangic durumunda!");
+                IO.println("    Siparis zaten baslangic durumunda!");
                 yield p;
             }
             case Processing pr -> {
-                System.out.println("    Siparis beklemeye aliniyor...");
+                IO.println("    Siparis beklemeye aliniyor...");
                 yield new Pending();
             }
             case Shipped s -> {
-                System.out.println("    Siparis isleme geri aliniyor...");
+                IO.println("    Siparis isleme geri aliniyor...");
                 yield new Processing();
             }
             case Delivered d -> {
-                System.out.println("    Teslim edilen siparis geri alinamiyor!");
+                IO.println("    Teslim edilen siparis geri alinamiyor!");
                 yield d;
             }
         };

@@ -4,10 +4,10 @@ public class AddressValidationHandler extends OrderValidationHandler {
     @Override
     protected boolean doValidate(Order order) {
         if (order.shippingAddress() == null || order.shippingAddress().isBlank()) {
-            System.out.println("    [FAIL] Teslimat adresi bos!");
+            IO.println("    [FAIL] Teslimat adresi bos!");
             return false;
         }
-        System.out.println("    [OK] Adres gecerli: " + order.shippingAddress());
+        IO.println("    [OK] Adres gecerli: " + order.shippingAddress());
         return true;
     }
 }

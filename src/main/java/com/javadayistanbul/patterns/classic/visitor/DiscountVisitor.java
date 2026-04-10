@@ -9,19 +9,19 @@ public class DiscountVisitor implements OrderItemVisitor {
     public void visit(BookItem book) {
         BigDecimal discount = book.getPrice().multiply(new BigDecimal("0.15"));
         totalDiscount = totalDiscount.add(discount);
-        System.out.println("    Kitap indirimi (%15): " + book.getName() + " -> -" + discount + " TL");
+        IO.println("    Kitap indirimi (%15): " + book.getName() + " -> -" + discount + " TL");
     }
 
     @Override
     public void visit(ElectronicsItem electronics) {
         BigDecimal discount = electronics.getPrice().multiply(new BigDecimal("0.10"));
         totalDiscount = totalDiscount.add(discount);
-        System.out.println("    Elektronik indirimi (%10): " + electronics.getName() + " -> -" + discount + " TL");
+        IO.println("    Elektronik indirimi (%10): " + electronics.getName() + " -> -" + discount + " TL");
     }
 
     @Override
     public void visit(FoodItem food) {
-        System.out.println("    Gida indirimi yok: " + food.getName());
+        IO.println("    Gida indirimi yok: " + food.getName());
     }
 
     public BigDecimal getTotalDiscount() {

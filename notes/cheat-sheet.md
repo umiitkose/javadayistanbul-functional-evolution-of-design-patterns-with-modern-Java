@@ -11,7 +11,7 @@
 | **Strategy** | `interface` + N concrete class | `Consumer<T>` + lambda | 5→1 | Lambda, Functional Interface |
 | **Builder** | POJO + Builder class | `record` + compact constructor | 2→1 | Records, Immutability |
 | **Template Method** | `abstract class` + inheritance | `record` + `Function`/`Consumer` params | 4→2 | Higher-Order Functions |
-| **Decorator** | Interface + wrapper chain | `UnaryOperator<T>` + `andThen()` | 6→2 | Function Composition |
+| **Decorator** | Interface + wrapper chain | `UnaryOperator<T>` + `andThen()` | 7→2 | Function Composition |
 | **Visitor** | Double dispatch + visitor interface | `sealed interface` + `switch` | 8→1 | Sealed Classes, Pattern Matching |
 
 ## Bonus Pattern'ler (6 Ek)

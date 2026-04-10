@@ -13,8 +13,8 @@ public class BankTransferPayment implements PaymentStrategy {
 
     @Override
     public void pay(BigDecimal amount) {
-        System.out.println("  Banka havalesi ile odeme yapildi: " + amount + " TL");
-        System.out.println("    IBAN: " + iban + " | Banka: " + bankName);
+        IO.println("  Banka havalesi ile odeme yapildi: " + amount + " TL");
+        IO.println("    IBAN: " + iban + " | Banka: " + bankName);
     }
 
     public String getIban() {
