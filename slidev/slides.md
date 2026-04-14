@@ -31,7 +31,7 @@ mdc: true
 </div>
 
 <!--
-"Herkese Günaydın, Javaday İstanbulda bolca javayı konuştuğumuz bir günde sırada modern java ile design patternlerin fonksiyonel evrimi adında benim yapacağım sunuma hoşgeldiniz.
+Merhaba, JavaDay İstanbul'a hoş geldiniz. Bugün 25 dakika boyunca tanıdık bir konuyu yeni bir gözle inceleyeceğiz: Design pattern'leri. Ama amacım pattern'leri anlatmak değil — onları zaten biliyorsunuz. Amacım modern Java'nın bu pattern'leri nasıl dönüştürdüğünü göstermek. Sonunda elinizde bir reçete değil, bir karar çerçevesi olacak.
 -->
 
 ---
@@ -148,7 +148,7 @@ mdc: true
 </div>
 
 <!--
-sunumla iligli genel bilgiler, çok detaya girme.
+Yolculuğumuz dört durakta. Önce Java 8'den 26'ya fonksiyonel programlama tarafında neler oldu, onu hızlıca özetleyeceğiz. Sonra design pattern'lere kısa bir bakış. Asıl konumuz üçüncü bölüm: dört pattern'i klasik OOP ve modern FP olarak yan yana göreceğiz — Builder, Strategy, Decorator, Template Method. Son olarak da OOP'yi mi seçmeliyiz, FP'yi mi sorusuna pragmatik bir cevap arayacağız. Hazırsanız başlayalım.
 -->
 
 ---
@@ -250,6 +250,10 @@ class: '!pt-6 !pb-3 text-[10px] leading-tight'
 
 </div>
 
+<!--
+Bu slayt sunumun bağlam haritası, bir dakika ayıracağım. 2014, Java 8 — kırılma noktası. Lambda ile ilk kez davranışı bir değer olarak taşıyabildik. Stream API geldi, filter-map-reduce zincirleri Java'ya girdi. Optional ile null güvenliği başladı.2018-2023 arasında veri ve tip sistemi devrimi yaşandı. Records ile immutable veri taşıyıcıları artık tek satır. Sealed classes ile derleyici hangi alt tiplerin var olduğunu bildi. Java 21 LTS ile pattern matching geldi — switch deyimi artık tip ve yapıya göre dallanabiliyor.Son sürümlerde Stream Gatherers ile özelleştirilebilir pipeline'lar var. Java 26'da gelen 'make final mean final' ile reflection bile final alanları artık değiştiremiyor.Hatırlatmak istediğim ana nokta şu: Lambda davranışı first-class yaptı, record veriyi first-class yaptı, pattern matching kontrol akışını first-class yaptı. Üçü birleştiğinde Java artık 'FP destekleyen OOP dili' değil, gerçek anlamda hibrit bir dil.
+-->
+
 ---
 
 # Design Patterns
@@ -291,6 +295,11 @@ class: '!pt-6 !pb-3 text-[10px] leading-tight'
 
 </div>
 
+<!--
+Hızlı bir hatırlatma. 1994'te Gang of Four'un kitabı yayınlandı ve yazılım dünyasının ortak diline 23 pattern eklendi. Üç kategori: Creational nesne oluşturma, Structural sınıf birleştirme, Behavioral nesneler arası iletişim.
+Sağdaki sarı kutu önemli: Pattern'ler ölmedi, değişen sadece uygulama şekli. Aynı problemleri aynı şekilde çözüyoruz, ama daha az kodla, daha az boilerplate'le, daha az hata olasılığıyla. Bugün göreceğimiz 4 pattern de hâlâ geçerli, sadece modern Java ile yazılış biçimleri farklı.
+-->
+
 ---
 
 # Sunumdaki Pattern'ler
@@ -331,7 +340,8 @@ class: '!pt-6 !pb-3 text-[10px] leading-tight'
 </div>
 
 <!--
-Istege bagli: FP vurgulari (pure functions, immutability, okunabilirlik) ayri slayt.
+Şimdi göreceğimiz 4 pattern. Builder'ı immutability ve records ile. Strategy'yi lambda ve functional interfaces ile. Decorator'ı function composition ile. Template Method'u higher-order functions ile.
+Aşağıdaki kutuda söylediğim şey kritik: her pattern için solda klasik OOP, sağda modern FP yaklaşımını yan yana göreceksiniz. Hangisinin doğru olduğunu söylemeyeceğim — çünkü cevap 'duruma göre değişir.' Hangi durumda hangisini seçeceğinizi anlamanız için ikisini birlikte göstereceğim.
 -->
 
 ---
@@ -376,7 +386,10 @@ class: builder-pattern-slide-1
 </div>
 
 <!--
-Sonraki slaytta kod — bu slaytta sadece problem + diyagram + mesaj.
+İlk pattern Builder. Önce hatırlayalım: telescoping constructor problemi neydi? Bir sınıfın 20 alanı var, bazıları opsiyonel, ve new Thing("a", "b", null, null, BigDecimal.ZERO) gibi bir çağrı yazıyorsunuz. Ne yazdığınız belli değil, hangi parametre nereye gidiyor okunmuyor.
+Klasik Builder bunu çözer: static inner Builder class, fluent setter'lar, sonunda build() metodu. Soldaki diyagramda görüyorsunuz — bir sürü field, mutable bir state, validasyonun build()'da toplandığı bir yapı.
+Sağda modern yaklaşım: aggregate'ı küçük record'lara böl. ReservationIdentity, QuantityAllocation, PricingTerms — her biri kendi kuralını compact constructor'da taşıyor. Aggregate sadece bunların kompozisyonu.
+Vurgulayacağım iki kritik nokta var: Birincisi, Builder mutable. Build çağırmadan builder referansını paylaşırsanız, başka bir yerden state değişebilir, sonra yanlış nesne build edersiniz. Record'da bu risk sıfır. İkincisi, Builder'da validasyon merkezi ve geç — 15 alanı set edip build çağırınca patlar. Record'da validasyon dağıtık ve erken — yanlış ReservationIdentity oluştururken hemen fırlar. Hatayı bulmak çok daha kolay
 -->
 
 ---
@@ -514,13 +527,10 @@ var res = new StockReservation(
 </div>
 
 <!--
-Konusmaci akisi (7 tik):
-1) Klasik: urun + ic Builder, validasyon build()'te toplanir.
-2) Modern: ayni domain tek record ama 8 parca — "nesne" kompozisyon.
-3) Ornek alt tip: compact ctor ile kural nerede yasiyor goster.
-4) Tam kurulum: fabrikalarla opsiyonelleri kapat.
-5) Tek cumle mesaj.
-6-7) Iki vurgu: immutable + kurallarin dagilimi. "Record her yerde Builder degildir"i sozlu soyle.
+Şimdi koda bakalım. Soldaki klasik Builder yaklaşık 60 satır. Private constructor, builder class, fluent setter'lar, build metot, validasyon, equals, hashCode, toString. Tanıdık geldi mi? Java ekosisteminde milyonlarca kez yazıldı.
+Sağda modern yaklaşım. En tepedeki StockReservation record'u 8 satır. Sonra her alt record kendi compact constructor'ında validasyonunu yapıyor. En altta kullanım: factory method'larla defaults() ve empty() çağırarak opsiyonel alanları yönetiyoruz.
+Burada dürüst olmak istiyorum: bu yaklaşımın bir zorluğu var. Opsiyonel alanlarınız çoksa, her seferinde defaults çağırmak zorunda kalıyorsunuz. Builder'ın esnekliği biraz kayboluyor. Bu trade-off'u kabul ediyoruz. Daha karmaşık durumlar için record + builder hibriti var, repo'da örneği mevcut.
+Ana mesaj: 60 satırın 15 satıra indiği bir geçiş, ama boyut değil esas kazanç. Esas kazanç immutability, fail-fast validasyon, ve thread safety — hepsi bedava
 -->
 
 ---
@@ -550,6 +560,10 @@ Konusmaci Notu:
 - Sol taraf: yeni odeme tipi -> yeni sinif, implementasyon ve deploy maliyeti.
 - Sag taraf: ayni akis Consumer ve lambda ile sinif acmadan degisiyor.
 - Mesaj: Pattern ayni, modern Java ile uygulama daha composable ve hizli evriliyor.
+
+İkinci pattern: Strategy. Klasik yapı tanıdık: bir interface tanımlıyorsunuz, PaymentStrategy diyelim, üç implementasyonu var — CreditCard, BankTransfer, Crypto. PaymentService bunlardan birini referans alıyor.
+Sağda modern yaklaşım: interface yerine functional interface — Consumer<BigDecimal>. Üç sınıf yerine üç lambda. PaymentService aynı, ama strateji parametresi artık bir lambda referansı.
+Aşağıdaki kırmızı kutuya bakın: klasikte yeni ödeme tipi eklemek = yeni sınıf yazmak + deploy etmek. Yeşil kutuda: yeni lambda, sınıf yok, deploy yok. Bu özellikle config-driven sistemlerde, A/B test'lerde, runtime'da strateji değiştirmek istediğiniz durumlarda büyük kazanç
 -->
 
 ---
@@ -588,7 +602,7 @@ public class PaymentService {
 // classic/strategy/CreditCardPayment.java
 public class CreditCardPayment implements PaymentStrategy {
     @Override
-    public void pay(BigDecimal amount) { System.out.println("Kredi karti ile odeme: " + amount); }
+    public void pay(BigDecimal amount) { IO.println("Kredi karti ile odeme: " + amount); }
 }
 ```
 
@@ -631,7 +645,7 @@ public interface Consumer<T> {
 ```java
 // modern/strategy/PaymentService.java
 Consumer<BigDecimal> creditCard = amount ->
-    System.out.println("Kredi karti ile odeme: " + amount + " TL");
+    IO.println("Kredi karti ile odeme: " + amount + " TL");
 ```
 
 </v-click>
@@ -642,8 +656,8 @@ Consumer<BigDecimal> creditCard = amount ->
 public static Consumer<BigDecimal> creditCard(String cardNumber, String cardHolderName) {
     return amount -> {
         String masked = "****-****-****-" + cardNumber.substring(cardNumber.length() - 4);
-        System.out.println("  Kredi karti ile odeme yapildi: " + amount + " TL");
-        System.out.println("    Kart: " + masked + " | Sahibi: " + cardHolderName);
+        IO.println("  Kredi karti ile odeme yapildi: " + amount + " TL");
+        IO.println("    Kart: " + masked + " | Sahibi: " + cardHolderName);
     };
 }
 public static void processPayment(Consumer<BigDecimal> strategy, BigDecimal amount) {
@@ -712,11 +726,8 @@ Bu kısımda pure function olayını destekleyecek konuşmada yerler eklemeliyiz
 </div>
 
 <!--
-Konusmaci Notu:
-- Sol tarafta nested wrapper yapisinin nasil buyudugunu anlat.
-- Sag tarafta andThen zinciriyle ayni davranisin sinifsiz kuruldugunu vurgula.
-- Vurgu cumlesi: Function Composition and andThen.
-
+Üçüncü pattern: Decorator. Sipariş örneği üzerinden gidelim. Bir order'a hediye paketi, sigorta, hızlı kargo eklemek istiyoruz. Klasik yaklaşımda her özellik için bir wrapper sınıfı: GiftWrapDecorator, InsuranceDecorator, ExpressShippingDecorator. Solda görüyorsunuz — iç içe kutular, nested constructor zinciri. Her yeni özellik yeni bir sınıf, yeni bir wrapper.
+Sağda modern yaklaşım: her özellik bir UnaryOperator<Order>, yani Order'ı alıp Order döndüren bir fonksiyon. Bunları andThen() ile zincirliyoruz. Kod çok daha lineer okunuyor — giftWrap.andThen(insurance).andThen(express). Sıra önemli, ve sıra kodda açıkça görünüyor.
 Kamera ve Lens örneği buraya çok iyi oturur.
 -->
 
@@ -731,7 +742,6 @@ class: text-xs
 <v-click at="1">
 
 ```java
-// classic/decorator/OrderService.java
 public interface OrderService {
     Order process(Order order);
 }
@@ -741,44 +751,63 @@ public interface OrderService {
 <v-click at="2">
 
 ```java
-// classic/decorator/GiftWrapDecorator.java
-public class GiftWrapDecorator implements OrderService {
-    private final OrderService wrapped;
-    public GiftWrapDecorator(OrderService wrapped) { this.wrapped = wrapped; }
+public class BasicOrderService implements OrderService {
+    @Override
     public Order process(Order order) {
-        Order processed = wrapped.process(order);
-        return processed.addFeature("Hediye Paketi", new BigDecimal("15"));
+        return order; // temel islem; ek ozellik yok
     }
 }
-// + InsuranceDecorator, ExpressShippingDecorator
 ```
 
 </v-click>
 <v-click at="3">
 
 ```java
-// DecoratorDemo.classicApproach(...)
+public abstract class OrderServiceDecorator implements OrderService {
+    protected final OrderService wrapped;
+    protected OrderServiceDecorator(OrderService wrapped) {
+        this.wrapped = wrapped;
+    }
+}
+```
+
+</v-click>
+<v-click at="4">
+
+```java
+public class GiftWrapDecorator extends OrderServiceDecorator {
+    public GiftWrapDecorator(OrderService wrapped) { super(wrapped); }
+    @Override
+    public Order process(Order order) {
+        Order processed = wrapped.process(order); // once icteki zincir
+        return processed.addFeature("Hediye Paketi", new BigDecimal("15"));
+    }
+}
+```
+
+</v-click>
+<v-click at="5">
+
+```java
 OrderService service = new ExpressShippingDecorator(
     new InsuranceDecorator(
         new GiftWrapDecorator(new BasicOrderService())
     )
 );
-var order = new Order("ORD-001", new BigDecimal("200"));
-var result = service.process(order);
 ```
 
 </v-click>
 
 <div class="mt-3 grid grid-cols-3 gap-2 text-[11px]">
-  <div v-click="7" class="p-2 rounded bg-orange-400/10 border border-orange-300/25">
+  <div v-click="9" class="p-2 rounded bg-orange-400/10 border border-orange-300/25">
     <div class="text-orange-300 font-semibold mb-1">Hap Bilgi 1</div>
     <div class="opacity-85">Classic yaklaşımda her yeni özellik için yeni bir wrapper sınıfı gerekir.</div>
   </div>
-  <div v-click="8" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
+  <div v-click="10" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
     <div class="text-blue-300 font-semibold mb-1">Hap Bilgi 2</div>
     <div class="opacity-85">Modern tarafta <code>UnaryOperator</code> zinciriyle davranışlar composable hale gelir.</div>
   </div>
-  <div v-click="9" class="p-2 rounded bg-green-400/10 border border-green-300/25">
+  <div v-click="11" class="p-2 rounded bg-green-400/10 border border-green-300/25">
     <div class="text-green-300 font-semibold mb-1">Hap Bilgi 3</div>
     <div class="opacity-85">Her iki tarafta da ana nesne bozulmadan özellik eklenir; Open/Closed korunur.</div>
   </div>
@@ -788,73 +817,78 @@ var result = service.process(order);
 
 ## <span class="text-green-400">Modern FP</span> <span class="opacity-40 text-xs">— Decorator</span>
 
-<v-click at="4">
+<v-click at="6">
 
 ```java
-// modern/decorator/Order.java
-public record Order(String id, BigDecimal basePrice, BigDecimal totalPrice, List<String> features) {
-    public Order(String id, BigDecimal basePrice) {
-        this(id, basePrice, basePrice, List.of());
-    }
-    public Order addFeature(String feature, BigDecimal extraCost) {
-        var newFeatures = new ArrayList<>(features);
-        newFeatures.add(feature);
-        return new Order(id, basePrice, totalPrice.add(extraCost), newFeatures);
-    }
+// modern/decorator/OrderEnhancer.java
+public static UnaryOperator<Order> giftWrap() {
+    return order -> order.addFeature("Hediye Paketi", new BigDecimal("15"));
+}
+
+public static UnaryOperator<Order> insurance() {
+    return order -> order.addFeature("Kargo Sigortasi", new BigDecimal("10"));
+}
+
+public static UnaryOperator<Order> expressShipping() {
+    return order -> order.addFeature("Hizli Kargo", new BigDecimal("25"));
 }
 ```
 
 </v-click>
-<v-click at="5">
+<v-click at="7">
 
 ```java
-// modern/decorator/OrderEnhancer.java
-UnaryOperator<Order> standardFlow = OrderEnhancer.giftWrap()
-    .andThen(OrderEnhancer.insurance())
-    .andThen(OrderEnhancer.expressShipping());
-
-var order = new Order("ORD-001", new BigDecimal("200"));
-var standardResult = standardFlow.apply(order);
+// Normal kullanim (andThen ile acik zincir):
+// Function<Order, Order> flow = OrderEnhancer.giftWrap()
+//     .andThen(OrderEnhancer.insurance())
+//     .andThen(OrderEnhancer.expressShipping());
 ```
 
-</v-click>
-<v-click at="6">
+```java
+// Sorunlu kullanim:
+// UnaryOperator<Order> campaignFlow = campaign.stream()
+//     .reduce(UnaryOperator.identity(), UnaryOperator::andThen);
+```
 
 ```java
-// kampanyaya gore dinamik composition
+// 2) Reduce ile — dinamik, runtime'da liste degisebilir (calisan surum)
 List<UnaryOperator<Order>> campaign = List.of(
     OrderEnhancer.giftWrap(),
+    OrderEnhancer.insurance(),
     OrderEnhancer.expressShipping()
 );
-UnaryOperator<Order> campaignFlow = campaign.stream()
-    .reduce(UnaryOperator.identity(), UnaryOperator::andThen);
+UnaryOperator<Order> enhanceDynamic = campaign.stream()
+    .reduce(UnaryOperator.identity(), (pipeline, step) -> pipeline.andThen(step));
 
-var campaignResult = campaignFlow.apply(order);
+var order = new Order("ORD-001", new BigDecimal("200"));
+var campaignResult = enhanceDynamic.apply(order);
 ```
 
 </v-click>
 
-<div v-click="10" class="mt-2 p-2 rounded bg-cyan-400/10 border border-cyan-300/25 text-[11px]">
+<div v-click="11" class="mt-2 p-2 rounded bg-cyan-400/10 border border-cyan-300/25 text-[11px]">
   <div class="text-cyan-300 font-semibold mb-1">Function Composition Notu</div>
   <div class="opacity-85"><code>andThen()</code> soldan saga uygulanir; zincirdeki sira degistiginde toplam fiyat ve ozellik sirası da degisir.</div>
 </div>
 
 <!--
-Geçiş: "Strategy behavioral'dı. Şimdi structural bir pattern — Decorator."
-Ana mesaj: andThen() ile dinamik kombinasyon, runtime'da karar.
-Vurgu: SVG'de sol taraf iç içe kutular, sağ taraf düz zincir. Görsel farkı söyle.
-Beklenen soru: "reduce(identity, andThen) ne yapıyor?" → "List üzerinden pipeline oluşturuyor, sıra önemli."
+Soldaki klasik kod: OrderService interface, BasicOrderService temel, OrderServiceDecorator abstract, GiftWrapDecorator concrete. Kullanırken new ExpressShippingDecorator(new InsuranceDecorator(new GiftWrapDecorator(new BasicOrderService()))) — içeriden dışarıya doğru okumak zorundasınız.
+Sağda modern yaklaşım çok daha sade. Üç tane static factory method, her biri UnaryOperator<Order> döndürüyor. Asıl güç aşağıdaki ikinci örnekte: kampanya pipeline'ı runtime'da bir liste olarak geliyor, biz reduce ile dinamik olarak zincirliyoruz. Veritabanından gelen kampanya konfigürasyonuna göre pipeline kurabilirsiniz. Klasik yaklaşımla bu bir factory labirenti olurdu.
+Önemli uyarı: bu yaklaşım saf dönüşümler için ideal — order'a feature ekle, fiyat artır, format değiştir. Decorator'ınızın bir API client'ı varsa, cache tutuyorsa, retry policy'si varsa — klasik OOP hâlâ doğru tercih. Lambda hafif, sınıf ağır. Hafif iş için hafif araç. Bu trade-off'u tanımak mimari olgunluktur.
 -->
 
 ---
 
-# 📋 Template Method Pattern
+# 📋 Template Method Pattern — Rapor Üretimi
 
 <div class="mt-6 max-w-4xl">
   <div class="text-lg opacity-85 leading-relaxed">
     <span class="text-blue-400 font-semibold">Tanım:</span>
     Template Method, bir algoritmanın iskeletini tanımlar; degisen adimlar alt siniflara
     ya da fonksiyon parametrelerine birakilir.
+  </div>
+  <div class="mt-2 text-sm opacity-70">
+    Ornek: Rapor uretimi — PDF / Excel / HTML / Email. Iskelet ayni, format degisiyor.
   </div>
 </div>
 
@@ -867,6 +901,12 @@ Beklenen soru: "reduce(identity, andThen) ne yapıyor?" → "List üzerinden pip
   ></object>
 </div>
 
+<!--
+Dördüncü pattern: Template Method. Senaryo herkesin yaşadığı bir şey: rapor üretimi. PDF, Excel, HTML, Email — hepsinde aynı iskelet: validate, format, render, send. Değişen sadece her adımın detayı.
+Klasik yaklaşımda AbstractReportGenerator var, generate() metodu final, dört abstract metot var. Her format için bir alt sınıf yazıyorsunuz, dört metodu override ediyorsunuz. Dört format = dört sınıf = on altı override.
+Sağda modern yaklaşım: ReportGenerator bir record. İçinde dört functional alan tutuyor — Consumer, Function, UnaryOperator, Consumer. generate() metodu bu lambda'ları sırayla çağırıyor. Yeni format eklemek için yeni sınıf değil, yeni bir factory method yazıyorsunuz, dört lambda döndürüyorsunuz
+-->
+
 ---
 layout: two-cols
 layoutClass: gap-3
@@ -878,14 +918,18 @@ class: text-xs
 <v-click at="1">
 
 ```java
-// classic/templatemethod/AbstractOrderProcessor.java
-public abstract class AbstractOrderProcessor {
-    public final void process(Order order) {
-        validateOrder(order);
-        BigDecimal total = calculateTotal(order);
-        applyDiscount(order, total);
-        sendConfirmation(order);
+public abstract class AbstractReportGenerator {
+    public final void generate(ReportData data) {
+        validateData(data);
+        String formatted = formatData(data);
+        String output = renderOutput(formatted, data.getTitle());
+        sendReport(output);
     }
+
+    protected abstract void validateData(ReportData data);
+    protected abstract String formatData(ReportData data);
+    protected abstract String renderOutput(String formatted, String title);
+    protected abstract void sendReport(String output);
 }
 ```
 
@@ -893,21 +937,31 @@ public abstract class AbstractOrderProcessor {
 <v-click at="2">
 
 ```java
-// degisen adimlar alt sinifa birakilir
-protected abstract void validateOrder(Order order);
-protected abstract BigDecimal calculateTotal(Order order);
-protected abstract void applyDiscount(Order order, BigDecimal total);
-protected abstract void sendConfirmation(Order order);
+public class PdfReportGenerator extends AbstractReportGenerator {
+    @Override
+    protected void validateData(ReportData data) {...}
+    @Override
+    protected String formatData(ReportData data) {...}
+    @Override
+    protected String renderOutput(String formatted, String title) {...}
+    @Override
+    protected void sendReport(String output) {...}
+}
+// + ExcelReportGenerator   → 4 method override
+// + HtmlReportGenerator    → 4 method override
+// + EmailReportGenerator   → 4 method override
+// = 16 override, 5 dosya
 ```
 
 </v-click>
 <v-click at="3">
 
 ```java
-// TemplateMethodDemo.classicApproach(...)
-var order = new Order("ORD-001", "Ahmet Yilmaz", items);
-new StandardOrderProcessor().process(order);
-new PremiumOrderProcessor().process(order);
+var data = new ReportData("Q1 Satis Raporu", columns, rows);
+new PdfReportGenerator().generate(data);
+new ExcelReportGenerator().generate(data);
+new HtmlReportGenerator().generate(data);
+new EmailReportGenerator("yonetim@sirket.com").generate(data);
 ```
 
 </v-click>
@@ -919,24 +973,36 @@ new PremiumOrderProcessor().process(order);
 <v-click at="4">
 
 ```java
-// modern/templatemethod/OrderProcessor.java
-public record OrderProcessor(
-    Consumer<Order> validator,
-    Function<Order, BigDecimal> totalCalculator,
-    BiConsumer<Order, BigDecimal> discountApplier,
-    Consumer<Order> confirmationSender
-) {}
+public record ReportGenerator(
+    Consumer<ReportData> dataValidator,
+    Function<ReportData, String> dataFormatter,
+    UnaryOperator<String> outputRenderer,
+    Consumer<String> reportSender
+) {
+    public void generate(ReportData data) {
+        dataValidator.accept(data);
+        String formatted = dataFormatter.apply(data);
+        String output = outputRenderer.apply(formatted);
+        reportSender.accept(output);
+    }
+}
 ```
 
 </v-click>
 <v-click at="5">
 
 ```java
-public void process(Order order) {
-    validator.accept(order);
-    BigDecimal total = totalCalculator.apply(order);
-    discountApplier.accept(order, total);
-    confirmationSender.accept(order);
+public static ReportGenerator pdf() {
+    return new ReportGenerator(
+        data -> IO.println("  [PDF] Dogrulandi"),
+        data -> {
+            String headers = String.join(" | ", data.columns());
+            String rows = formatRows(data, " | ");
+            return headers + "\n" + "-".repeat(40) + "\n" + rows;
+        },
+        formatted -> "[PDF_DOCUMENT]\n" + formatted,
+        output -> IO.println("  [PDF] Yazildi: rapor.pdf")
+    );
 }
 ```
 
@@ -944,17 +1010,26 @@ public void process(Order order) {
 <v-click at="6">
 
 ```java
-// TemplateMethodDemo.modernApproach(...)
-OrderProcessor.standard().process(order);
-OrderProcessor.premium().process(order);
+var data = new ReportData("Q1 Satis Raporu", columns, rows);
+ReportGenerator.pdf().generate(data);
+ReportGenerator.excel().generate(data);
+ReportGenerator.html().generate(data);
+ReportGenerator.email("yonetim@sirket.com").generate(data);
 ```
 
 </v-click>
 
 <div v-click="7" class="mt-3 p-2 rounded bg-blue-400/10 border border-blue-300/25 text-[11px]">
   <div class="text-blue-300 font-semibold mb-1">Mesaj</div>
-  <div class="opacity-85">Modern Java'da ayni iskelet, inheritance yerine composition ile kurulabilir.</div>
+  <div class="opacity-85">4 format = 4 sinif yerine 4 factory metot. Yeni format? Yeni sinif degil, sadece 4 lambda.</div>
 </div>
+
+<!--
+Soldaki klasik kod: AbstractReportGenerator, sonra PdfReportGenerator extends — ve görüyorsunuz, dört method override. Aynısını ExcelReportGenerator, HtmlReportGenerator, EmailReportGenerator için tekrar yazıyorsunuz. Toplam 16 override, 5 dosya.
+Sağda modern: tek dosyada record, sonra ReportGenerator.pdf() factory method dört lambda döndürüyor. Aynısını excel, html, email için yapıyorsunuz. Kullanım çok temiz: ReportGenerator.pdf().generate(data).
+Sağ alttaki mavi mesaj: 4 format = 4 sınıf yerine 4 factory method. Yeni format ekleme maliyeti dramatik olarak düşüyor.
+Bir bonus avantaj: klasik Template Method'da generate() metodunu final demeyi unutursanız, biri iskeleti override edip bozabilir. Record'da bu risk yok — kalıtım mekanizması zaten yok. Record final keyword'üne ihtiyaç duymadan iskeleti koruyor
+-->
 
 ---
 
@@ -1008,63 +1083,9 @@ OrderProcessor.premium().process(order);
 
 </div>
 
----
-layout: default
-class: text-sm
----
-
-# Best Practices & Öneriler
-
-<div class="grid grid-cols-2 gap-3 mt-4">
-
-<div v-click="1" class="p-3 bg-white/5 rounded-lg border border-white/10">
-  <div class="text-yellow-400 font-bold mb-2 text-sm">Kod Organizasyonu</div>
-  <ul class="text-xs opacity-80 space-y-1 list-none">
-    <li class="flex gap-2"><span class="text-yellow-400">▸</span> Küçük, tek amaçlı fonksiyonlar yazın</li>
-    <li class="flex gap-2"><span class="text-yellow-400">▸</span> Method references tercih edin</li>
-    <li class="flex gap-2"><span class="text-yellow-400">▸</span> Records ile immutable data modelleri</li>
-    <li class="flex gap-2"><span class="text-yellow-400">▸</span> Sealed classes ile kontrollü hiyerarşi</li>
-  </ul>
-</div>
-
-<div v-click="2" class="p-3 bg-white/5 rounded-lg border border-white/10">
-  <div class="text-blue-400 font-bold mb-2 text-sm">Performans Notları</div>
-  <ul class="text-xs opacity-80 space-y-1 list-none">
-    <li class="flex gap-2"><span class="text-blue-400">▸</span> Lambda'lar JVM tarafından optimize edilir (invokedynamic)</li>
-    <li class="flex gap-2"><span class="text-blue-400">▸</span> Stream'ler lazy evaluation kullanır</li>
-    <li class="flex gap-2"><span class="text-blue-400">▸</span> Method references bazen daha verimli</li>
-    <li class="flex gap-2"><span class="text-blue-400">▸</span> Pattern matching switch, if-else zincirinden hızlı</li>
-  </ul>
-</div>
-
-<div v-click="3" class="p-3 bg-white/5 rounded-lg border border-white/10">
-  <div class="text-green-400 font-bold mb-2 text-sm">Okunabilirlik & Kod Review</div>
-  <ul class="text-xs opacity-80 space-y-1 list-none">
-    <li class="flex gap-2"><span class="text-green-400">▸</span> Karmaşık lambda'ları method'a çıkarın</li>
-    <li class="flex gap-2"><span class="text-green-400">▸</span> Anlamlı değişken isimleri kullanın</li>
-    <li class="flex gap-2"><span class="text-green-400">▸</span> Chain'leri makul uzunlukta tutun (3-4 seviye)</li>
-    <li class="flex gap-2"><span class="text-green-400">▸</span> Ekip kararlarını style guide'a yansıtın</li>
-  </ul>
-</div>
-
-<div v-click="4" class="p-3 bg-white/5 rounded-lg border border-white/10">
-  <div class="text-purple-400 font-bold mb-2 text-sm">Legacy Kod Modernizasyonu</div>
-  <ul class="text-xs opacity-80 space-y-1 list-none">
-    <li class="flex gap-2"><span class="text-purple-400">▸</span> Adım adım geçiş yapın, big-bang değil</li>
-    <li class="flex gap-2"><span class="text-purple-400">▸</span> Yeni kodda modern yaklaşım, eski koda dokunmayın</li>
-    <li class="flex gap-2"><span class="text-purple-400">▸</span> Test coverage'ı artırarak modernize edin</li>
-    <li class="flex gap-2"><span class="text-purple-400">▸</span> Ekibi kademeli olarak FP'ye alıştırın</li>
-  </ul>
-</div>
-
-</div>
-
-<div v-click="5" class="mt-3 p-3 bg-gradient-to-r from-yellow-400/10 via-orange-400/10 to-green-400/10 rounded-lg border border-yellow-400/15">
-  <div class="text-center text-xs opacity-80">
-    Design pattern'ler hâlâ güncel ve değerli. Önemli olan <span class="text-yellow-400 font-bold">modern Java'nın sunduğu araçları</span> 
-    tanıyıp, <span class="text-green-400 font-bold">projenin ve ekibin ihtiyaçlarına göre</span> doğru yaklaşımı seçmektir.
-  </div>
-</div>
+<!--
+Java 8 ile davranış first-class oldu — bu gerçek bir transition. Record'lar ve pattern matching ise yeni first-class kategoriler eklemedi, ama FP'nin diğer iki ayağını — immutable veri taşıyıcılarını ve deklaratif eşleşmeyi — dilin native özellikleri haline getirdi.
+-->
 
 ---
 layout: default
@@ -1153,6 +1174,13 @@ Konusmaci Notu:
 - Hibrit mesaji:
   * Domain logic tarafinda OOP, data pipeline tarafinda FP genelde en iyi dengeyi verir.
   * Ana ilke: dogru araci dogru yerde kullanmak.
+
+Bu slayt sunumun kalbi, iki buçuk dakika ayıracağım. Bu kadar FP konuştuktan sonra şu soru kafanızda olabilir: 'Yani her şeyi lambda'ya mı çevireceğiz?' Cevap: hayır.
+Satranç örneğine bakın. Aynı domain, iki rol var. Solda OOP — taşlar, varlıklar. King, Rook, Queen, Pawn. Bunların kimliği var, durumu var, zaman içinde değişir. Position, color, hasMoved gibi alanlar taşıyorlar. Bu şeyleri OOP ile modellemek doğal.
+Sağda FP — kurallar. legalMoves, isInCheck, applyMove, evaluate. Bunlar saf fonksiyonlar. Aynı tahta için aynı sonucu verirler, yan etkileri yok, kimlikleri yok. 'Şah çekilme' kuralı evrensel, sizin tercihinize bağlı değil.
+Buradaki içgörü şu: OOP 'neyi' modelliyor — varlıklar, kimlik, durum. FP 'nasılı' modelliyor — kurallar, dönüşümler, hesaplamalar. Aynı sistemde ikisi de var, ve birbirini tamamlıyor.
+Gerçek dünyaya taşıyalım. Order bir nesne — kimliği var, lifecycle'ı var. Ama calculateShippingCost bir fonksiyon — kural, kimlik yok. User bir nesne, validatePassword bir fonksiyon. Domain entity'lerinizi OOP ile, domain hesaplamalarınızı FP ile modelleyin.
+Sunumdan tek bir şey hatırlayacaksanız bu olsun: Doğru aracı doğru katmana vermek. Her şeyi nesne yaparsanız sınıf hiyerarşisi şişer. Her şeyi fonksiyon yaparsanız kimlik kaybolur. Mimari olgunluk hangi kavramın nerede yaşayacağını bilmektir."
 -->
 
 ---
@@ -1184,6 +1212,12 @@ class: text-center
     </div>
   </div>
 </div>
+
+<!--
+Aracın değil, problemin yanında durun. FP araç, OOP araç. Siz problem çözücüsünüz.
+
+İkinci alıntı Martin Fowler'dan: 'Herhangi bir aptal bilgisayarın anlayacağı kod yazabilir. İyi programcılar insanların anlayacağı kod yazar.' Bütün bu pattern dönüşümlerinin gerçek hedefi performans değil, okunabilirlik. Sizden sonra gelen arkadaşın anlayacağı kod yazmak. Bu sunum boyunca gördüğünüz tüm modern Java özellikleri buna hizmet ediyor."
+-->
 
 ---
 layout: center

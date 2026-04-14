@@ -20,8 +20,8 @@
     #oopTop { animation: show .30s ease-out .58s forwards; }
     #oopArrow1 { animation: show .22s ease-out 1.06s forwards; }
     #oopArrow2 { animation: show .22s ease-out 1.24s forwards; }
-    #oopStandard { animation: show .26s ease-out 1.70s forwards; }
-    #oopPremium { animation: show .26s ease-out 2.05s forwards; }
+    #oopPdf { animation: show .26s ease-out 1.70s forwards; }
+    #oopExcel { animation: show .26s ease-out 2.05s forwards; }
     #oopProblem { animation: show .24s ease-out 2.50s forwards; }
     #oopReq { animation: show .24s ease-out 2.92s forwards; }
     #fpLabel { animation: show .28s ease-out 3.30s forwards; }
@@ -31,8 +31,8 @@
     #fpArrowMain { animation: show .20s ease-out 4.73s forwards; }
     #fpArrowLeft { animation: show .22s ease-out 5.08s forwards; }
     #fpArrowRight { animation: show .22s ease-out 5.24s forwards; }
-    #fpStandard { animation: show .24s ease-out 5.64s forwards; }
-    #fpPremium { animation: show .24s ease-out 5.99s forwards; }
+    #fpPdf { animation: show .24s ease-out 5.64s forwards; }
+    #fpExcel { animation: show .24s ease-out 5.99s forwards; }
     #fpBenefit { animation: show .28s ease-out 6.42s forwards; }
   </style>
   <rect x="0" y="0" width="680" height="400" rx="10" fill="rgba(12,16,24,0.96)" stroke="rgba(255,255,255,0.08)" stroke-width="1" />
@@ -42,63 +42,63 @@
   <g id="oopTop" class="fade">
     <rect x="60" y="44" width="200" height="80" rx="8" fill="#6f2d17" stroke="#ef9a7b" stroke-width="0.8" />
     <text class="txtSub" x="160" y="62" text-anchor="middle">abstract</text>
-    <text class="txtTitle" x="160" y="80" text-anchor="middle">AbstractOrderProcessor</text>
-    <text class="txtSub" x="160" y="100" text-anchor="middle">+ process() final</text>
-    <text class="txtSub" x="160" y="116" text-anchor="middle">validate, calc, discount, send</text>
+    <text class="txtTitle" x="160" y="80" text-anchor="middle">AbstractReportGenerator</text>
+    <text class="txtSub" x="160" y="100" text-anchor="middle">+ generate() final</text>
+    <text class="txtSub" x="160" y="116" text-anchor="middle">validate, format, render, send</text>
   </g>
   <line id="oopArrow1" class="fade line" x1="120" y1="124" x2="100" y2="165" marker-end="url(#arrow)" />
   <line id="oopArrow2" class="fade line" x1="200" y1="124" x2="220" y2="165" marker-end="url(#arrow)" />
-  <g id="oopStandard" class="fade">
+  <g id="oopPdf" class="fade">
     <rect x="44" y="166" width="112" height="60" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
-    <text class="boxText" x="100" y="186" text-anchor="middle">Standard</text>
-    <text class="boxHint" x="100" y="202" text-anchor="middle">indirim yok</text>
-    <text class="boxHint" x="100" y="216" text-anchor="middle">email bildirim</text>
+    <text class="boxText" x="100" y="186" text-anchor="middle">PdfReport</text>
+    <text class="boxHint" x="100" y="202" text-anchor="middle">tablo formati</text>
+    <text class="boxHint" x="100" y="216" text-anchor="middle">dosyaya yaz</text>
   </g>
-  <g id="oopPremium" class="fade">
+  <g id="oopExcel" class="fade">
     <rect x="164" y="166" width="112" height="60" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
-    <text class="boxText" x="220" y="186" text-anchor="middle">Premium</text>
-    <text class="boxHint" x="220" y="202" text-anchor="middle">%10 indirim</text>
-    <text class="boxHint" x="220" y="216" text-anchor="middle">SMS bildirim</text>
+    <text class="boxText" x="220" y="186" text-anchor="middle">ExcelReport</text>
+    <text class="boxHint" x="220" y="202" text-anchor="middle">CSV formati</text>
+    <text class="boxHint" x="220" y="216" text-anchor="middle">xlsx dosyasi</text>
   </g>
   <g id="oopProblem" class="fade">
     <rect x="60" y="248" width="200" height="48" rx="6" fill="#633806" stroke="#ef9f27" stroke-width="0.7" />
-    <text class="txtSub" x="160" y="268" text-anchor="middle" fill="#ef9f27">Her varyasyon = yeni alt sinif</text>
+    <text class="txtSub" x="160" y="268" text-anchor="middle" fill="#ef9f27">Her format = yeni alt sinif</text>
     <text class="txtSub" x="160" y="284" text-anchor="middle" fill="#ef9f27">Kalitim agaci buyur</text>
   </g>
   <g id="oopReq" class="fade">
     <rect x="60" y="316" width="200" height="48" rx="6" fill="#792020" stroke="#f09595" stroke-width="0.7" />
-    <text class="txtSub" x="160" y="336" text-anchor="middle" fill="#f09595">VIPOrderProcessor?</text>
+    <text class="txtSub" x="160" y="336" text-anchor="middle" fill="#f09595">SlackReportGenerator?</text>
     <text class="txtSub" x="160" y="352" text-anchor="middle" fill="#f09595">yeni sinif ekle</text>
   </g>
   <g id="fpTop" class="fade">
     <rect x="360" y="44" width="220" height="100" rx="8" fill="#085040" stroke="#5dcaa5" stroke-width="0.8" />
     <text class="txtSub" x="470" y="64" text-anchor="middle">record</text>
-    <text class="txtTitle" x="470" y="82" text-anchor="middle">OrderProcessor</text>
-    <text class="txtSub" x="470" y="100" text-anchor="middle">validator: Consumer&lt;Order&gt;</text>
-    <text class="txtSub" x="470" y="116" text-anchor="middle">discountApplier: BiConsumer</text>
-    <text class="txtSub" x="470" y="132" text-anchor="middle">confirmationSender: Consumer</text>
+    <text class="txtTitle" x="470" y="82" text-anchor="middle">ReportGenerator</text>
+    <text class="txtSub" x="470" y="100" text-anchor="middle">dataValidator: Consumer</text>
+    <text class="txtSub" x="470" y="116" text-anchor="middle">dataFormatter: Function</text>
+    <text class="txtSub" x="470" y="132" text-anchor="middle">outputRenderer, reportSender</text>
   </g>
   <g id="fpProcess" class="fade">
     <rect x="390" y="166" width="160" height="44" rx="8" fill="#3c3488" stroke="#afa9ec" stroke-width="0.8" />
-    <text class="txtTitle" x="470" y="184" text-anchor="middle">process(Order)</text>
-    <text class="txtSub" x="470" y="200" text-anchor="middle">adimlari sirayla cagirir</text>
+    <text class="txtTitle" x="470" y="184" text-anchor="middle">generate(ReportData)</text>
+    <text class="txtSub" x="470" y="200" text-anchor="middle">validate->format->render->send</text>
   </g>
   <line id="fpArrowMain" class="fade line" x1="470" y1="144" x2="470" y2="164" marker-end="url(#arrow)" />
   <line id="fpArrowLeft" class="fade line" x1="430" y1="210" x2="400" y2="248" stroke-dasharray="5 3" marker-end="url(#arrow)" />
   <line id="fpArrowRight" class="fade line" x1="510" y1="210" x2="540" y2="248" stroke-dasharray="5 3" marker-end="url(#arrow)" />
-  <g id="fpStandard" class="fade">
+  <g id="fpPdf" class="fade">
     <rect x="348" y="248" width="96" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
-    <text class="boxText" x="396" y="266" text-anchor="middle">standard()</text>
+    <text class="boxText" x="396" y="266" text-anchor="middle">pdf()</text>
     <text class="boxHint" x="396" y="282" text-anchor="middle">lambda set</text>
   </g>
-  <g id="fpPremium" class="fade">
+  <g id="fpExcel" class="fade">
     <rect x="496" y="248" width="96" height="44" rx="6" fill="#454540" stroke="#b8b5aa" stroke-width="0.7" />
-    <text class="boxText" x="544" y="266" text-anchor="middle">premium()</text>
+    <text class="boxText" x="544" y="266" text-anchor="middle">excel()</text>
     <text class="boxHint" x="544" y="282" text-anchor="middle">lambda set</text>
   </g>
   <g id="fpBenefit" class="fade">
     <rect x="360" y="316" width="220" height="48" rx="6" fill="#28500a" stroke="#97c459" stroke-width="0.7" />
-    <text class="txtSub" x="470" y="336" text-anchor="middle" fill="#97c459">Yeni varyasyon = yeni lambda seti</text>
+    <text class="txtSub" x="470" y="336" text-anchor="middle" fill="#97c459">Yeni format = yeni lambda seti</text>
     <text class="txtSub" x="470" y="352" text-anchor="middle" fill="#97c459">sinif yok, kalitim yok</text>
   </g>
 </svg>
