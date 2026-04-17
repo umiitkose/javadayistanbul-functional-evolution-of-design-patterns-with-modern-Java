@@ -399,15 +399,23 @@ class: builder-pattern-code builder-pattern-two-cols
 ---
 
 <style>
-.builder-pattern-two-cols .slidev-code {
-  font-size: 12px !important;
-  line-height: 1.36 !important;
-  padding: 0.4rem 0.5rem !important;
+.builder-pattern-two-cols pre,
+.builder-pattern-two-cols code,
+.builder-pattern-two-cols .slidev-code,
+.builder-pattern-two-cols .shiki {
+  font-size: 9px !important;
+  line-height: 1.25 !important;
+  padding: 0.15rem 0.25rem !important;
+}
+.builder-pattern-two-cols .slidev-code code,
+.builder-pattern-two-cols pre code {
+  font-size: 9px !important;
+  line-height: 1.25 !important;
 }
 .builder-pattern-two-cols h2 {
-  font-size: 0.95rem !important;
-  line-height: 1.2 !important;
-  margin: 0 0 0.35rem 0 !important;
+  font-size: 0.65rem !important;
+  line-height: 1.05 !important;
+  margin: 0 0 0.15rem 0 !important;
 }
 </style>
 
@@ -569,8 +577,24 @@ Aşağıdaki kırmızı kutuya bakın: klasikte yeni ödeme tipi eklemek = yeni 
 ---
 layout: two-cols
 layoutClass: gap-3
-class: text-xs
+class: text-xs strategy-two-cols
 ---
+
+<style>
+.strategy-two-cols pre,
+.strategy-two-cols code,
+.strategy-two-cols .slidev-code,
+.strategy-two-cols .shiki {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  padding: 0.2rem 0.3rem !important;
+}
+.strategy-two-cols .slidev-code code,
+.strategy-two-cols pre code {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+}
+</style>
 
 ## 🎯 <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Strategy</span>
 
@@ -622,6 +646,21 @@ service.processPayment(amount);
   <div class="text-red-300 font-semibold mb-1">Not</div>
   <div class="opacity-90">
     Strategy'nin ana fikri davranisi nesneden ayirmaktir. Klasikte interface + class, modernde functional interface + lambda ile ayni hedefe ulasiriz.
+  </div>
+</div>
+
+<div class="mt-2 grid grid-cols-1 gap-1 text-[10px]">
+  <div v-click="10" class="p-1.5 rounded bg-blue-400/10 border border-blue-300/25">
+    <span class="text-blue-300 font-semibold">Functional Interface:</span>
+    <span class="opacity-85">Strategy davranisini sinif yerine <code>Consumer&lt;BigDecimal&gt;</code> ile temsil ediyoruz.</span>
+  </div>
+  <div v-click="11" class="p-1.5 rounded bg-green-400/10 border border-green-300/25">
+    <span class="text-green-300 font-semibold">Lambda ve Tip:</span>
+    <span class="opacity-85">Lambda tek basina tip tasimaz; hedef tipi bir functional interface belirler.</span>
+  </div>
+  <div v-click="12" class="p-1.5 rounded bg-yellow-400/10 border border-yellow-300/25">
+    <span class="text-yellow-300 font-semibold">Daha Az Boilerplate:</span>
+    <span class="opacity-85">Daha az sinif, daha kisa kod, daha kolay bakim ve test.</span>
   </div>
 </div>
 
@@ -685,21 +724,6 @@ PaymentService.processPayment(bank, amount);
 
 </v-click>
 
-<div class="mt-4 grid grid-cols-3 gap-2 text-xs">
-  <div v-click="10" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
-    <div class="text-blue-300 font-semibold mb-1">Functional Interface</div>
-    <div class="opacity-85">Strategy davranisini sinif yerine fonksiyonel bir tip (ornegin
-      <code class="inline-block break-all">Consumer&lt;<wbr>BigDecimal<wbr>&gt;</code>) ile temsil ediyoruz.</div>
-  </div>
-  <div v-click="11" class="p-2 rounded bg-green-400/10 border border-green-300/25">
-    <div class="text-green-300 font-semibold mb-1">Lambda ve Tip Bagimliligi</div>
-    <div class="opacity-85">Java'da lambda tek basina tip tasimaz; hedef tipi her zaman bir functional interface belirler.</div>
-  </div>
-  <div v-click="12" class="p-2 rounded bg-yellow-400/10 border border-yellow-300/25">
-    <div class="text-yellow-300 font-semibold mb-1">Daha Az Boilerplate</div>
-    <div class="opacity-85">Daha az sınıf, daha kısa kod, daha kolay bakım ve test.</div>
-  </div>
-</div>
 
 <!--
 Bu kısımda pure function olayını destekleyecek konuşmada yerler eklemeliyiz.
@@ -734,8 +758,24 @@ Kamera ve Lens örneği buraya çok iyi oturur.
 ---
 layout: two-cols
 layoutClass: gap-3
-class: text-xs
+class: text-xs decorator-two-cols
 ---
+
+<style>
+.decorator-two-cols pre,
+.decorator-two-cols code,
+.decorator-two-cols .slidev-code,
+.decorator-two-cols .shiki {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  padding: 0.2rem 0.3rem !important;
+}
+.decorator-two-cols .slidev-code code,
+.decorator-two-cols pre code {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+}
+</style>
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Decorator</span>
 
@@ -798,18 +838,14 @@ OrderService service = new ExpressShippingDecorator(
 
 </v-click>
 
-<div class="mt-3 grid grid-cols-3 gap-2 text-[11px]">
-  <div v-click="9" class="p-2 rounded bg-orange-400/10 border border-orange-300/25">
-    <div class="text-orange-300 font-semibold mb-1">Hap Bilgi 1</div>
-    <div class="opacity-85">Classic yaklaşımda her yeni özellik için yeni bir wrapper sınıfı gerekir.</div>
+<div class="mt-2 grid grid-cols-1 gap-1 text-[9px]">
+  <div v-click="9" class="p-1 rounded bg-orange-400/10 border border-orange-300/25">
+    <span class="text-orange-300 font-semibold">Classic:</span>
+    <span class="opacity-85">Her yeni ozellik icin yeni bir wrapper sinifi gerekir.</span>
   </div>
-  <div v-click="10" class="p-2 rounded bg-blue-400/10 border border-blue-300/25">
-    <div class="text-blue-300 font-semibold mb-1">Hap Bilgi 2</div>
-    <div class="opacity-85">Modern tarafta <code>UnaryOperator</code> zinciriyle davranışlar composable hale gelir.</div>
-  </div>
-  <div v-click="11" class="p-2 rounded bg-green-400/10 border border-green-300/25">
-    <div class="text-green-300 font-semibold mb-1">Hap Bilgi 3</div>
-    <div class="opacity-85">Her iki tarafta da ana nesne bozulmadan özellik eklenir; Open/Closed korunur.</div>
+  <div v-click="10" class="p-1 rounded bg-blue-400/10 border border-blue-300/25">
+    <span class="text-blue-300 font-semibold">Modern:</span>
+    <span class="opacity-85"><code>UnaryOperator</code> zinciriyle davranislar composable hale gelir.</span>
   </div>
 </div>
 
@@ -866,9 +902,13 @@ var campaignResult = enhanceDynamic.apply(order);
 
 </v-click>
 
-<div v-click="11" class="mt-2 p-2 rounded bg-cyan-400/10 border border-cyan-300/25 text-[11px]">
-  <div class="text-cyan-300 font-semibold mb-1">Function Composition Notu</div>
-  <div class="opacity-85"><code>andThen()</code> soldan saga uygulanir; zincirdeki sira degistiginde toplam fiyat ve ozellik sirası da degisir.</div>
+<div v-click="11" class="mt-1 p-1 rounded bg-cyan-400/10 border border-cyan-300/25 text-[9px]">
+  <span class="text-cyan-300 font-semibold">Composition:</span>
+  <span class="opacity-85"><code>andThen()</code> soldan saga uygulanir; sira degisince fiyat ve ozellik sirasi da degisir.</span>
+</div>
+<div v-click="11" class="mt-1 p-1 rounded bg-green-400/10 border border-green-300/25 text-[9px]">
+  <span class="text-green-300 font-semibold">Ortak:</span>
+  <span class="opacity-85">Ana nesne bozulmadan ozellik eklenir; Open/Closed korunur.</span>
 </div>
 
 <!--
@@ -910,8 +950,24 @@ Sağda modern yaklaşım: ReportGenerator bir record. İçinde dört functional 
 ---
 layout: two-cols
 layoutClass: gap-3
-class: text-xs
+class: text-xs template-two-cols
 ---
+
+<style>
+.template-two-cols pre,
+.template-two-cols code,
+.template-two-cols .slidev-code,
+.template-two-cols .shiki {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  padding: 0.2rem 0.3rem !important;
+}
+.template-two-cols .slidev-code code,
+.template-two-cols pre code {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+}
+</style>
 
 ## <span class="text-red-400">Klasik OOP</span> <span class="opacity-40 text-xs">— Template Method</span>
 
@@ -1019,9 +1075,9 @@ ReportGenerator.email("yonetim@sirket.com").generate(data);
 
 </v-click>
 
-<div v-click="7" class="mt-3 p-2 rounded bg-blue-400/10 border border-blue-300/25 text-[11px]">
-  <div class="text-blue-300 font-semibold mb-1">Mesaj</div>
-  <div class="opacity-85">4 format = 4 sinif yerine 4 factory metot. Yeni format? Yeni sinif degil, sadece 4 lambda.</div>
+<div v-click="7" class="mt-2 p-1 rounded bg-blue-400/10 border border-blue-300/25 text-[9px]">
+  <span class="text-blue-300 font-semibold">Mesaj:</span>
+  <span class="opacity-85">4 format = 4 sinif yerine 4 factory metot. Yeni format? Yeni sinif degil, sadece 4 lambda.</span>
 </div>
 
 <!--
